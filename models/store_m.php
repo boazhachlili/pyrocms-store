@@ -20,17 +20,25 @@ class Store_m extends MY_Model {
      * @param int $id
      * @return array 
      */	
-	public function get($id) {
+	public function get_store($id) {
 		$this->db->where(array('id' => $id));
-		return $this->db->get($his->db->dbprefix('store_config'))->row();	
+		return $this->db->get('store_config')->row();	
 	}
 	
     /**
      * @return array
      */
-	public function get_all() {
-		$this->db->select($this->db->dbprefix('store_config') . '.* ');	
-		return $this->db->get($this->db->dbprefix('store_config'))->result();
+	public function get_store_all() {
+		$this->db->select('store_config.*');	
+		return $this->db->get('store_config')->result();
     }	
-}
 
+    /**     
+     * @param int $id
+     * @return array 
+     */		
+	function retrieve_categories($id){  
+		$this->db->where(array('store_categories' => $id)); 
+		return $this->db->get('store_categories')->row(); 
+	}
+}
