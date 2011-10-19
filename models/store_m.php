@@ -33,7 +33,8 @@ class Store_m extends MY_Model {
      */	
 	public function get_store($id) {
 		$this->db->where(array('id' => $id));
-		return $this->db->get($this->_table['store_config'])->row();	
+		return $this->db->get($this->_table['store_config'])
+					->row();	
 	}
 	
     /**
@@ -42,7 +43,8 @@ class Store_m extends MY_Model {
      */
 	public function get_store_all() {
 		$this->db->select('store_config.*');	
-		return $this->db->get($this->_table['store_config'])->result();
+		return $this->db->get($this->_table['store_config'])
+					->result();
     }	
 
     /**  
@@ -52,7 +54,8 @@ class Store_m extends MY_Model {
      */		
 	function retrieve_categories($id){  
 		$this->db->where(array('store_categories' => $id)); 
-		return $this->db->get($this->_table['store_categories'])->row(); 
+		return $this->db->get($this->_table['store_categories'])
+					->row(); 
 	}
 
     /**   
@@ -63,7 +66,8 @@ class Store_m extends MY_Model {
 	function retrieve_products($id){  
 		$this->db->select('store_products.*');
 		$this->db->where(array('store_products' => $id)); 
-		return $this->db->get($this->_table['store_categories'])->result(); 
+		return $this->db->get($this->_table['store_categories'])
+					->result(); 
 	}
 	
 }
