@@ -19,6 +19,7 @@ class Admin extends Admin_Controller
 		$this->load->library('form_validation');
 		$this->lang->load('store');
 
+		
 		// Set the validation rules
 		$this->item_validation_rules = array(
 			array(
@@ -40,10 +41,12 @@ class Admin extends Admin_Controller
 	}
 
 	/**
-	 * List all items
+	 * List all available Stores
 	 */
 	public function index()
 	{
-		
+		$data['store_config'] = $this->store_m->get_store_all();  
+		//print_r($data['store_config']); // Print out the array to see if it works (Remove this line when done testing)
+		$this->template->build('admin/index', $data);
 	}
 }

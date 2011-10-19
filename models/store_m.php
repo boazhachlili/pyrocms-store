@@ -12,7 +12,7 @@ class Store_m extends MY_Model {
 	public function __construct()
 	{		
 		parent::__construct();
-		
+
 		$this->_table = array(
 			'store_config'					=> 'store_config',
 			'store_categories'				=> 'store_categories',
@@ -25,7 +25,7 @@ class Store_m extends MY_Model {
 			'store_order_adresses'			=> 'store_order_adresses'
 		);
 	}
-	
+
     /**  
 	 * Get a specific Store
      * @param int $id
@@ -36,7 +36,7 @@ class Store_m extends MY_Model {
 		return $this->db->get($this->_table['store_config'])
 					->row();	
 	}
-	
+
     /**
 	 * Get all available Stores
      * @return array
@@ -69,5 +69,5 @@ class Store_m extends MY_Model {
 		return $this->db->get($this->_table['store_categories'])
 					->result(); 
 	}
-	
+
 }
