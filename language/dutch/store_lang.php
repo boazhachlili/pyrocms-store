@@ -7,5 +7,5 @@
  * @package 	PyroCMS
  * @subpackage 	Store Module
  */
-
+$lang['']	=	'';
 ?>
