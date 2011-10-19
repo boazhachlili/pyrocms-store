@@ -22,7 +22,7 @@ class Module_Store extends Module {
 			'description' => array(
 				'en' => 'This is a PyroCMS Store module.',
 				'nl' => 'Dit is een webwinkel module voor PyroCMS',
-				'de' => 'Dies ist ein Online-Shop fÃ¼r PyroCMS'
+				'de' => 'Dies ist ein Online-Shop für PyroCMS'
 			),
 			'frontend' => TRUE,
 			'backend' => TRUE,
@@ -270,7 +270,7 @@ class Module_Store extends Module {
 		$this->db->query("DROP TABLE IF EXISTS `" . $this->db->dbprefix('store_orders') . "`;");
 		$this->db->query("DROP TABLE IF EXISTS `" . $this->db->dbprefix('store_users_adresses') . "`;");
 		$this->db->query("DROP TABLE IF EXISTS `" . $this->db->dbprefix('store_order_adresses') . "`;");
-		
+
 		$this->db->delete('settings', array('module' => 'store'));
 		{
 			return TRUE;
