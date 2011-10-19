@@ -254,22 +254,6 @@ class Module_Store extends Module {
 				ON DELETE NO ACTION
 				ON UPDATE NO ACTION)
 			ENGINE = InnoDB;");
-		
-		$store_setting = array(
-			'slug'			=> 'sample_setting',
-			'title'			=> 'Sample Setting',
-			'description'	=> 'A Yes or No option for the Sample module',
-			'`default`'		=> '1',
-			'`value`'		=> '1',
-			'type'			=> 'select',
-			'`options`'		=> '1=Yes|0=No',
-			'is_required'	=> 1,
-			'is_gui'		=> 1,
-			'module'		=> 'store'
-		);
-		
-		$this->dbforge->add_field($store);
-		$this->dbforge->add_key('id', TRUE);
 
 		if(is_dir('uploads/store') OR @mkdir('uploads/store',0777,TRUE))
 		{
