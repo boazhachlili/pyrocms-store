@@ -15,14 +15,14 @@ class Module_Store extends Module {
 	{
 		return array(
 			'name' => array(
-				'en' => 'Store',
-				'nl' => 'Webwinkel',
-				'ch' => 'Store'
+				'en' => 'Online Store',
+				'nl' => 'Online Webwinkel',
+				'de' => 'Online Store'
 			),
 			'description' => array(
 				'en' => 'This is a PyroCMS Store module.',
 				'nl' => 'Dit is een webwinkel module voor PyroCMS',
-				'ch' => 'This is a PyroCMS Store module.'
+				'de' => 'Dies ist ein Online-Shop für PyroCMS'
 			),
 			'frontend' => TRUE,
 			'backend' => TRUE,
@@ -32,8 +32,6 @@ class Module_Store extends Module {
 
 	public function install()
 	{
-		$this->db->delete('settings', array('module' => 'store'));
-
 		// Store Config
 		$this->db->query("DROP TABLE IF EXISTS `" . $this->db->dbprefix('store_config') . "`;");
 		$this->db->query("
