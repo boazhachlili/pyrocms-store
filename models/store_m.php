@@ -15,4 +15,22 @@ class Store_m extends MY_Model {
 		
 		$this->_table = 'store';
 	}
+	
+    /**     
+     * @param int $id
+     * @return array 
+     */	
+	public function get($id) {
+		$this->db->where(array('id' => $id));
+		return $this->db->get($his->db->dbprefix('store_config'))->row();	
+	}
+	
+    /**
+     * @return array
+     */
+	public function get_all() {
+		$this->db->select($this->db->dbprefix('store_config') . '.* ');	
+		return $this->db->get($this->db->dbprefix('store_config'))->result();
+    }	
 }
+
