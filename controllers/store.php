@@ -25,6 +25,6 @@ class Store extends Public_Controller
 	public function index($offset = 0)
 	{
 		$data['store_config'] = $this->store_m->get_store_all();  
-		//print_r($data['store_config']); // Print out the array to see if it works (Remove this line when done testing)
+		$this->template->build('index', $data);
 	}
 }

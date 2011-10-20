@@ -45,8 +45,12 @@ class Admin extends Admin_Controller
 	 */
 	public function index()
 	{
-		$data['store_config'] = $this->store_m->get_store_all();  
-		//print_r($data['store_config']); // Print out the array to see if it works (Remove this line when done testing)
-		$this->template->build('admin/index', $data);
+
+		$this->data->store_config = $this->store_m->get_store_all();
+			
+
+				
+		
+		$this->template->build('admin/index', $this->data);
 	}
 }

@@ -42,8 +42,8 @@ class Store_m extends MY_Model {
      * @return array
      */
 	public function get_store_all() {
-		$this->db->select('store_config.*');	
-		return $this->db->get($this->_table['store_config']);
+		return $this->db->get('store_config')
+					->result();
     }	
 
     /**  

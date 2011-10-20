@@ -50,6 +50,7 @@ class Module_Store extends Module {
 			  `new_order_mail_alert` ENUM('1','0') NULL ,
 			  `additional_emails` VARCHAR(200) NULL ,
 			  `active` ENUM('1','0') NULL ,
+			  `default` ENUM('1','0') NULL ,
 			  `core_sites_id` BIGINT NOT NULL ,
 			  PRIMARY KEY (`store_id`) ,
 			  UNIQUE INDEX `name_UNIQUE` (`name` ASC) )
