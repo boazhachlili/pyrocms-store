@@ -9,11 +9,14 @@
  */
 
 // Shortcuts
- $lang['store_list_stores']				= 'List Stores';
- $lang['store_add_store']				= 'Add Store';
- 
- // Label Admin Index
- $lang['store_new_store_label']          = 'New Store';
+$lang['store_list_stores']				= 'List Stores';
+$lang['store_add_store']				= 'Add Store';
+
+// Flieds
+$lang['store_field_name']				= 'Store name';
+
+// Label Admin Index
+$lang['store_new_store_label']          = 'New Store';
 $lang['store_edit_store_name']          = 'Edit store name';
 $lang['store_label']					= 'Store';
 $lang['store_num_categories_label']		= 'Categories';

@@ -22,14 +22,20 @@ class Admin extends Admin_Controller
 		
 		// Set the validation rules
 		$this->item_validation_rules = array(
-			array(
-				'field' => 'name',
-				'label' => 'Name',
-				'rules' => 'trim|max_length[10]|required',
-				'field' => 'email',
-				'label' => 'Email',
-				'rules' => 'trim|max_length[50]|required'				
-			)
+				array('field' => 'name',					'label' => 'name',					'rules' => 'trim|max_length[10]|required'),
+				array('field' => 'email',					'label' => 'email',					'rules' => 'trim|max_length[50]|required|valid_email'),
+				array('field' => 'email2',					'label' => 'email2',				'rules' => 'trim|max_length[50]|required|valid_email'),
+				array('field' => 'currency',				'label' => 'currency',				'rules' => 'required'),
+				array('field' => 'item_per_page',			'label' => 'item_per_page',			'rules' => 'required'),
+				array('field' => 'show_with_tax',			'label' => 'show_with_tax',			'rules' => 'required'),
+				array('field' => 'display_stock',			'label' => 'display_stock',			'rules' => 'required'),
+				array('field' => 'allow_comments',			'label' => 'allow_comments',		'rules' => 'required'),
+				array('field' => 'new_order_mail_alert',	'label' => 'new_order_mail_alert',	'rules' => 'required'),
+				array('field' => 'active',					'label' => 'active',				'rules' => 'required'),
+				array('field' => 'is_default',				'label' => 'is_default',			'rules' => 'required'),
+				array('field' => 'agb',						'label' => 'agb',					'rules' => 'required'),
+				array('field' => 'privacy_policy',			'label' => 'privacy_policy',		'rules' => 'required'),
+				array('field' => 'delivery_information',	'label' => 'delivery_information',	'rules' => 'required')
 		);
 
 		$this->form_validation->set_rules($this->item_validation_rules);
@@ -51,12 +57,8 @@ class Admin extends Admin_Controller
 	
 	public function create()
 	{
-		// defining the validation rules
-		$this->rules = array(
-			array('field' => '', 'label' => '', 'rules' => '')
-		);
 		// Set the validation rules
-		$this->form_validation->set_rules($this->rules);
+		$this->form_validation->set_rules($this->item_validation_rules);
 
 		// Something went wrong..
 		if ($this->form_validation->run()==FALSE)
@@ -64,7 +66,7 @@ class Admin extends Admin_Controller
 			// Required for validation
 			foreach ($this->item_validation_rules as $rule)
 			{
-				$store_config->{$rule['field']} = $this->input->post($rule['field']);
+				$store_config[$rule['field']] = $this->input->post($rule['field']);
 			}
 			// Setting the vars to view array
 			$this->data = array(

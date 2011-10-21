@@ -107,8 +107,20 @@ class Store_m extends MY_Model {
 	function insert(){
 		
 		$store_config = array(
-	        'name'	=>	$this->input->post('name'),
-			'email'	=>	$this->input->post('email'),
+	        'name'					=>	$this->input->post('name'),
+			'email'					=>	$this->input->post('email'),
+			'email2'				=>	$this->input->post('email2'),
+			'currency'				=>	$this->input->post('currency'),
+			'item_per_page'			=>	$this->input->post('item_per_page'),
+			'show_with_tax'			=>	$this->input->post('show_with_tax'),
+			'display_stock'			=>	$this->input->post('display_stock'),
+			'allow_comments'		=>	$this->input->post('allow_comments'),
+			'new_order_mail_alert'	=>	$this->input->post('new_order_mail_alert'),
+			'active'				=>	$this->input->post('active'),
+			'is_default'			=>	$this->input->post('is_default'),
+			'agb'					=>	$this->input->post('agb'),
+			'privacy_policy'		=>	$this->input->post('privacy_policy'),
+			'delivery_information'	=>	$this->input->post('delivery_information')
 	    );
 		
 		return $this->db->insert('store_config',$store_config);
