@@ -25,15 +25,15 @@ class Admin extends Admin_Controller
 			array(
 				'field' => 'name',
 				'label' => 'Name',
-				'rules' => 'trim|max_length[100]|required'
-			),
-			array(
-				'field' => 'slug',
-				'label' => 'Slug',
-				'rules' => 'trim|max_length[100]|required'
+				'rules' => 'trim|max_length[10]|required',
+				'field' => 'email',
+				'label' => 'Email',
+				'rules' => 'trim|max_length[50]|required'				
 			)
 		);
 
+		$this->form_validation->set_rules($this->item_validation_rules);
+		
 		// We'll set the partials and metadata here since they're used everywhere
 		$this->template->set_partial('shortcuts', 'admin/partials/shortcuts')
 						->append_metadata(js('admin.js', 'store'))
@@ -45,12 +45,54 @@ class Admin extends Admin_Controller
 	 */
 	public function index()
 	{
-
 		$this->data->store_config = $this->store_m->get_store_all();
-			
-
-				
-		
 		$this->template->build('admin/index', $this->data);
 	}
+	
+	public function create()
+	{
+		// Set the validation rules
+		$this->form_validation->set_rules($this->item_validation_rules);
+
+		if ($this->form_validation->run() )
+		{
+			if ($id = $this->store_m->insert($this->input->post()))
+			{
+				// Everything went ok..
+				$this->session->set_flashdata('success', lang('store_create_success'));
+
+				// Redirect back to the form or main page
+				$this->input->post('btnAction') == 'save_exit'
+					? redirect('admin/store')
+					: redirect('admin/store/edit/' . $id);
+			}
+			
+			// Something went wrong..
+			else
+			{
+				$this->session->set_flashdata('error', lang('store_create_error'));
+				redirect('admin/store/create');
+			}
+		}
+
+		// Required for validation
+		foreach ($this->item_validation_rules as $rule)
+		{
+			$store_config->{$rule['field']} = $this->input->post($rule['field']);
+		}
+
+		
+		$this->template
+			->title($this->module_details['name'], lang('store_new_store_label'))
+			->set('store_config', $store_config)
+			->build('admin/create');	
+	
+
+	//$this->data->store_config =& $store_config;
+	
+	//$this->template->build('admin/create', $this->data);
+	
+	}	
+	
+	
 }

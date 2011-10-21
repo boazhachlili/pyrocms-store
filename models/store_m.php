@@ -69,4 +69,54 @@ class Store_m extends MY_Model {
 					->result(); 
 	}
 
+    /**   
+	 * Get number of products in a Store
+     * @param int $id
+     * @return string 
+     */		
+	function count_products(){
+		//$this->db->where('store_store_id', $this->site->id); //Show only from one Store
+		return $this->db->count_all_results('store_products'); 
+	}
+
+    /**   
+	 * Get number of categories in a Store
+     * @param int $id
+     * @return string 
+     */		
+	function count_categories(){
+		//$this->db->where('store_store_id', $this->site->id); //Show only from one Store
+		return $this->db->count_all_results('store_categories'); 
+	}
+
+    /**   
+	 * Get number of pending orders in a store
+     * @param int $id
+     * @return string 
+     */		
+	function count_pending_orders(){
+		$this->db->where('status', 1); 
+		return $this->db->count_all_results('store_orders'); 
+	}
+	
+	    /**   
+	 * Insert a new Store
+     * @param int $id
+     * @return string 
+     */		
+	function insert($store_config = array()){
+		
+		$store_config = array(
+	        'name'=>$this->input->post('name'),
+			'email'=>$this->input->post('email'),
+	    );
+		
+		return $this->db->insert('store_config', array(
+    		'`name`' => $store_config['name'],
+         ));
+		 
+		 
+		 
+	}
+
 }

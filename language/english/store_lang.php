@@ -13,6 +13,7 @@
  $lang['store_add_store']				= 'Add Store';
  
  // Label Admin Index
+ $lang['store_new_store_label']          = 'New Store';
 $lang['store_edit_store_name']          = 'Edit store name';
 $lang['store_label']					= 'Store';
 $lang['store_num_categories_label']		= 'Categories';
@@ -45,3 +46,9 @@ $lang['store_num_pending_orders']		= '# pending Orders';
 $lang['store_backup_data_label']		= 'Backup Data';
 $lang['store_restore_data_label']		= 'Restore Data';
 $lang['store_set_default_label']		= 'Set Default';
+
+//Create Store
+
+$lang['store_create_success']			= 'Store sucessfully created';
+$lang['store_content_label']			= 'Store Content';
+$lang['store_additional_info_label']	= 'Additional Information';

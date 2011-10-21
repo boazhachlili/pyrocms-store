@@ -57,17 +57,17 @@
 				<tr>
 					<td><strong><?php echo lang('store_statistics_label').": "; ?></strong></td>
 					<td><?php echo lang('store_num_categories_label'); ?></td>
-					<td>&nbsp;</td>
+					<td><?php echo $this->store_m->count_categories($store->store_id); ?></td>
 				</tr>	
 				<tr>
 					<td>&nbsp;</td>
 					<td><?php echo lang('store_num_products_label'); ?></td>
-					<td>&nbsp;</td>
+					<td><?php echo $this->store_m->count_products($store->store_id); ?></td>
 				</tr>	
 				<tr>
 					<td>&nbsp;</td>
 					<td><?php echo lang('store_num_pending_orders'); ?></td>
-					<td>&nbsp;</td>
+					<td><?php echo $this->store_m->count_pending_orders($store->store_id); ?></td>
 				</tr>
 				<tr>
 					<td><strong><?php echo lang('store_actions_label').": "; ?></strong></td>
