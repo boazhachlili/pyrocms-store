@@ -136,5 +136,34 @@ class Store_m extends MY_Model {
 			return $this->item->id;
 		}
 	}
+	
+	public function fill_edit($id){
+		
+		$this->db->where('store_id',$id);
+		return $this->db->get($this->_table['store_config']);
+	}
+	
+	public function edit($id){
+		
+		$this->data = array(
+	        'name'					=>	$this->input->post('name'),
+			'email'					=>	$this->input->post('email'),
+			'additional_emails'		=>	$this->input->post('additional_emails'),
+			'currency'				=>	$this->input->post('currency'),
+			'item_per_page'			=>	$this->input->post('item_per_page'),
+			'show_with_tax'			=>	$this->input->post('show_with_tax'),
+			'display_stock'			=>	$this->input->post('display_stock'),
+			'allow_comments'		=>	$this->input->post('allow_comments'),
+			'new_order_mail_alert'	=>	$this->input->post('new_order_mail_alert'),
+			'active'				=>	$this->input->post('active'),
+			'is_default'			=>	$this->input->post('is_default'),
+			'agb'					=>	$this->input->post('agb'),
+			'privacy_policy'		=>	$this->input->post('privacy_policy'),
+			'delivery_information'	=>	$this->input->post('delivery_information'),
+			'core_sites_id'			=>	$this->get_core_site_id(SITE_REF)
+	    );
+		$this->db->where('store_id',$id);
+		return $this->db->update($this->_table['store_config'],$this->data);
+	}
 
 }
