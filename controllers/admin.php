@@ -121,14 +121,13 @@ class Admin extends Admin_Controller
 			$this->store_m->edit($this->uri->segment(4));
 			redirect('admin/store');
 		}
-		
-		
+	}
 	
-
-	//$this->data->store_config =& $store_config;
-	
-	//$this->template->build('admin/create', $this->data);
-	
+	public function delete()
+	{
+		$this->session->set_flashdata('success', lang('store_create_success'));
+		$this->store_m->delete($this->uri->segment(4));
+		redirect('admin/store');
 	}	
 	
 	
