@@ -165,5 +165,11 @@ class Store_m extends MY_Model {
 		$this->db->where('store_id',$id);
 		return $this->db->update($this->_table['store_config'],$this->data);
 	}
+	
+	public function delete($id){
+		
+		$this->db->where('store_id',$id);
+		return $this->db->delete($this->_table['store_config']);
+	}
 
 }
