@@ -104,16 +104,14 @@ class Store_m extends MY_Model {
      * @param int $id
      * @return string 
      */		
-	function insert($store_config = array()){
+	function insert(){
 		
 		$store_config = array(
-	        'name'=>$this->input->post('name'),
-			'email'=>$this->input->post('email'),
+	        'name'	=>	$this->input->post('name'),
+			'email'	=>	$this->input->post('email'),
 	    );
 		
-		return $this->db->insert('store_config', array(
-    		'`name`' => $store_config['name'],
-         ));
+		return $this->db->insert('store_config',$store_config);
 		 
 		 
 		 

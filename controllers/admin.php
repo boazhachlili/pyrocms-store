@@ -51,41 +51,41 @@ class Admin extends Admin_Controller
 	
 	public function create()
 	{
+		// defining the validation rules
+		$this->rules = array(
+			array('field' => '', 'label' => '', 'rules' => '')
+		);
 		// Set the validation rules
-		$this->form_validation->set_rules($this->item_validation_rules);
+		$this->form_validation->set_rules($this->rules);
 
-		if ($this->form_validation->run() )
+		// Something went wrong..
+		if ($this->form_validation->run()==FALSE)
 		{
-			if ($id = $this->store_m->insert($this->input->post()))
+			// Required for validation
+			foreach ($this->item_validation_rules as $rule)
 			{
-				// Everything went ok..
-				$this->session->set_flashdata('success', lang('store_create_success'));
-
-				// Redirect back to the form or main page
-				$this->input->post('btnAction') == 'save_exit'
-					? redirect('admin/store')
-					: redirect('admin/store/edit/' . $id);
+				$store_config->{$rule['field']} = $this->input->post($rule['field']);
 			}
+			// Setting the vars to view array
+			$this->data = array(
+				'store_config'	=>	$store_config
+			);
+			// Flash data
+			$this->session->set_flashdata('error', lang('store_create_error'));
+			// Loading the view
+			$this->template
+				->title($this->module_details['name'], lang('store_new_store_label'))
+				->build('admin/create',$this->data);
+		}	
+		else
+		{
 			
-			// Something went wrong..
-			else
-			{
-				$this->session->set_flashdata('error', lang('store_create_error'));
-				redirect('admin/store/create');
-			}
+			$this->session->set_flashdata('success', lang('store_create_success'));
+			$this->store_m->insert();
+			redirect('admin/store');
 		}
-
-		// Required for validation
-		foreach ($this->item_validation_rules as $rule)
-		{
-			$store_config->{$rule['field']} = $this->input->post($rule['field']);
-		}
-
 		
-		$this->template
-			->title($this->module_details['name'], lang('store_new_store_label'))
-			->set('store_config', $store_config)
-			->build('admin/create');	
+		
 	
 
 	//$this->data->store_config =& $store_config;
