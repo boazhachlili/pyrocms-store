@@ -15,7 +15,7 @@ $lang['store_add_store']					= 'Add Store';
 // Flieds
 $lang['store_field_name']					= 'Store name';
 $lang['store_field_email']					= 'Store default email';
-$lang['store_field_email2']					= 'Additional emails (Separate with ",")';
+$lang['store_field_additional_emails']		= 'Additional emails (Separate with ",")';
 $lang['store_field_currency']				= 'Default currency';
 $lang['store_field_item_per_page']			= 'Items per Page';
 $lang['store_field_show_with_tax']			= 'Show with Tax';
