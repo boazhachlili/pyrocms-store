@@ -28,8 +28,8 @@
 				<span class="required-icon tooltip"><?php echo lang('required_label');?></span>
 			</li>
 			<li class="<?php echo alternator('even', ''); ?>">
-				<?php echo lang('store_field_email2','email2'); ?>
-				<?php echo form_input('email2',set_value('email2',''),'class="text" maxlength="100"'); ?>
+				<?php echo lang('store_field_additional_emails','additional_emails'); ?>
+				<?php echo form_input('additional_emails',set_value('additional_emails',''),'class="text" maxlength="100"'); ?>
 			</li>
 			<li class="<?php echo alternator('even', ''); ?>">
 				<?php echo lang('store_field_currency','currency'); ?>

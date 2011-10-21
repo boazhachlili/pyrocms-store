@@ -109,7 +109,7 @@ class Store_m extends MY_Model {
 		$store_config = array(
 	        'name'					=>	$this->input->post('name'),
 			'email'					=>	$this->input->post('email'),
-			'email2'				=>	$this->input->post('email2'),
+			'additional_emails'		=>	$this->input->post('additional_emails'),
 			'currency'				=>	$this->input->post('currency'),
 			'item_per_page'			=>	$this->input->post('item_per_page'),
 			'show_with_tax'			=>	$this->input->post('show_with_tax'),
