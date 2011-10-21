@@ -130,8 +130,7 @@ class Store_m extends MY_Model {
 	
 	private function get_core_site_id($site_ref)
 	{
-		$this->db->where('ref',$site_ref);
-		$this->query = $this->db->get($this->_table['core_sites']);
+		$this->query = $this->db->query("SELECT * FROM " . $this->_table['core_sites']. " WHERE ref='" . $site_ref . "';");
 		foreach($this->query->result() as $this->item)
 		{
 			return $this->item->id;
