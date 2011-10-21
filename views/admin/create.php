@@ -19,51 +19,57 @@
 		<ul>
 			<li class="<?php echo alternator('even', ''); ?>">
 				<?php echo lang('store_field_name','name'); ?>
-				<?php echo form_input('name',set_value('name',$store_config['name']),'class="text" maxlength="10"'); ?>
+				<?php echo form_input('name',set_value('name',''),'class="text" maxlength="10"'); ?>
 				<span class="required-icon tooltip"><?php echo lang('required_label');?></span>
 			</li>
 			<li class="<?php echo alternator('even', ''); ?>">
-				<label for="email">Store default email</label>
-				<input type="text" id="email" name="email" maxlength="100" value="" class="text" />
+				<?php echo lang('store_field_email','email'); ?>
+				<?php echo form_input('email',set_value('email',''),'class="text" maxlength="100"'); ?>
 				<span class="required-icon tooltip"><?php echo lang('required_label');?></span>
 			</li>
 			<li class="<?php echo alternator('even', ''); ?>">
-				<label for="email2">Additional emails (Separate with ",")</label>
-				<input type="text" id="email2" name="email2" maxlength="100" value="" class="text" />
+				<?php echo lang('store_field_email2','email2'); ?>
+				<?php echo form_input('email2',set_value('email2',''),'class="text" maxlength="100"'); ?>
 			</li>
 			<li class="<?php echo alternator('even', ''); ?>">
-				<label for="currency">Default currency</label>
-				<input type="text" id="currency" name="currency" maxlength="10" value="" class="text" />
+				<?php echo lang('store_field_currency','currency'); ?>
+				<?php echo form_input('currency',set_value('currency',''),'class="text" maxlength="10"'); ?>
 				<span class="required-icon tooltip"><?php echo lang('required_label');?></span>
 			</li>
 			<li class="<?php echo alternator('even', ''); ?>">
-				<label for="item_per_page">Items per Page</label>
-				<input type="text" id="item_per_page" name="item_per_page" maxlength="10" value="" class="text" />
+				<?php echo lang('store_field_item_per_page','item_per_page'); ?>
+				<?php echo form_input('item_per_page',set_value('item_per_page',''),'class="text" maxlength="10"'); ?>
 				<span class="required-icon tooltip"><?php echo lang('required_label');?></span>
 			</li>
 			<li class="<?php echo alternator('even', ''); ?>">
-				<label for="show_with_tax">Show with Tax</label>
-				<input type="radio" id="show_with_tax" name="show_with_tax" value="1" checked="checked"/> Yes <input type="radio" id="show_with_tax" name="show_with_tax" value="0" /> No
+				<?php echo lang('store_field_show_with_tax','show_with_tax'); ?>
+                <?php echo form_radio('show_with_tax','1',TRUE).$this->lang->line('store_radio_yes'); ?>
+                <?php echo form_radio('show_with_tax','0',FALSE).$this->lang->line('store_radio_no'); ?>
 			</li>		
 			<li class="<?php echo alternator('even', ''); ?>">
-				<label for="display_stock">Display Stock</label>
-				<input type="radio" id="display_stock" name="display_stock" value="1" checked="checked"/> Yes <input type="radio" id="display_stock" name="display_stock" value="0" /> No
+				<?php echo lang('store_field_display_stock','display_stock'); ?>
+                <?php echo form_radio('display_stock','1',TRUE).$this->lang->line('store_radio_yes'); ?>
+                <?php echo form_radio('display_stock','0',FALSE).$this->lang->line('store_radio_no'); ?>
 			</li>	
 			<li class="<?php echo alternator('even', ''); ?>">
-				<label for="allow_comments">Allow Comments</label>
-				<input type="radio" id="allow_comments" name="allow_comments" value="1" checked="checked"/> Yes <input type="radio" id="allow_comments" name="allow_comments" value="0" /> No
+				<?php echo lang('store_field_allow_comments','allow_comments'); ?>
+                <?php echo form_radio('allow_comments','1',TRUE).$this->lang->line('store_radio_yes'); ?>
+                <?php echo form_radio('allow_comments','0',FALSE).$this->lang->line('store_radio_no'); ?>
 			</li>
 			<li class="<?php echo alternator('even', ''); ?>">
-				<label for="new_order_mail_alert">Mail Alert on new Ordner</label>
-				<input type="radio" id="new_order_mail_alert" name="new_order_mail_alert" value="1" checked="checked"/> Yes <input type="radio" id="new_order_mail_alert" name="new_order_mail_alert" value="0" /> No
+				<?php echo lang('store_field_new_order_mail_alert','new_order_mail_alert'); ?>
+                <?php echo form_radio('new_order_mail_alert','1',TRUE).$this->lang->line('store_radio_yes'); ?>
+                <?php echo form_radio('new_order_mail_alert','0',FALSE).$this->lang->line('store_radio_no'); ?>
 			</li>	
 			<li class="<?php echo alternator('even', ''); ?>">
-				<label for="active">Is active</label>
-				<input type="radio" id="active" name="active" value="1" checked="checked"/> Yes <input type="radio" id="active" name="active" value="0" /> No
+				<?php echo lang('store_field_active','active'); ?>
+                <?php echo form_radio('active','1',TRUE).$this->lang->line('store_radio_yes'); ?>
+                <?php echo form_radio('active','0',FALSE).$this->lang->line('store_radio_no'); ?>
 			</li>
 			<li class="<?php echo alternator('even', ''); ?>">
-				<label for="is_default">Is default</label>
-				<input type="radio" id="is_default" name="is_default" value="1" /> Yes <input type="radio" id="is_default" name="is_default" value="0" checked="checked"/> No
+				<?php echo lang('store_field_is_default','is_default'); ?>
+                <?php echo form_radio('is_default','1',TRUE).$this->lang->line('store_radio_yes'); ?>
+                <?php echo form_radio('is_default','0',FALSE).$this->lang->line('store_radio_no'); ?>
 			</li>		
 		</ul>
 	</div>
@@ -72,18 +78,18 @@
 	<div id="store-additional-info">
 		<ul>
 			<li class="<?php echo alternator('even', ''); ?>">
-				<label for="agb">Store AGB</label>
-				<?php echo form_textarea('agb','','rows="7"'); ?>
+				<?php echo lang('store_field_agb','agb'); ?>
+				<?php echo form_textarea('agb',set_value('agb',''),'rows="7"'); ?>
 				<span class="required-icon tooltip"><?php echo lang('required_label');?></span>
 			</li>
 			<li class="<?php echo alternator('even', ''); ?>">
-				<label for="privacy_policy">Store Privacy Policy</label>
-				<?php echo form_textarea('privacy_policy','','rows="7"'); ?>
+				<?php echo lang('store_field_privacy_policy','privacy_policy'); ?>
+				<?php echo form_textarea('privacy_policy',set_value('privacy_policy',''),'rows="7"'); ?>
 				<span class="required-icon tooltip"><?php echo lang('required_label');?></span>
 			</li>
 			<li class="<?php echo alternator('even', ''); ?>">
-				<label for="delivery_information">Store Delivery Information</label>
-				<?php echo form_textarea('delivery_information','','rows="7"'); ?>
+				<?php echo lang('store_field_delivery_information','delivery_information'); ?>
+				<?php echo form_textarea('delivery_information',set_value('delivery_information',''),'rows="7"'); ?>
 				<span class="required-icon tooltip"><?php echo lang('required_label');?></span>
 			</li>			
 		</ul>

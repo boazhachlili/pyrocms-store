@@ -22,20 +22,20 @@ class Admin extends Admin_Controller
 		
 		// Set the validation rules
 		$this->item_validation_rules = array(
-				array('field' => 'name',					'label' => 'name',					'rules' => 'trim|max_length[10]|required'),
-				array('field' => 'email',					'label' => 'email',					'rules' => 'trim|max_length[50]|required|valid_email'),
-				array('field' => 'email2',					'label' => 'email2',				'rules' => 'trim|max_length[50]|required|valid_email'),
-				array('field' => 'currency',				'label' => 'currency',				'rules' => 'required'),
-				array('field' => 'item_per_page',			'label' => 'item_per_page',			'rules' => 'required'),
-				array('field' => 'show_with_tax',			'label' => 'show_with_tax',			'rules' => 'required'),
-				array('field' => 'display_stock',			'label' => 'display_stock',			'rules' => 'required'),
-				array('field' => 'allow_comments',			'label' => 'allow_comments',		'rules' => 'required'),
-				array('field' => 'new_order_mail_alert',	'label' => 'new_order_mail_alert',	'rules' => 'required'),
-				array('field' => 'active',					'label' => 'active',				'rules' => 'required'),
-				array('field' => 'is_default',				'label' => 'is_default',			'rules' => 'required'),
-				array('field' => 'agb',						'label' => 'agb',					'rules' => 'required'),
-				array('field' => 'privacy_policy',			'label' => 'privacy_policy',		'rules' => 'required'),
-				array('field' => 'delivery_information',	'label' => 'delivery_information',	'rules' => 'required')
+				array('field' => 'name',					'label' => 'lang:store_field_name',					'rules' => 'trim|max_length[10]|required'),
+				array('field' => 'email',					'label' => 'lang:store_field_email',				'rules' => 'trim|max_length[100]|required|valid_email'),
+				array('field' => 'email2',					'label' => 'lang:store_field_email2',				'rules' => 'trim|max_length[100]|required|valid_email'),
+				array('field' => 'currency',				'label' => 'lang:store_field_currency',				'rules' => 'trim|max_length[10]|required'),
+				array('field' => 'item_per_page',			'label' => 'lang:store_field_item_per_page',		'rules' => 'trim|max_length[10]|required'),
+				array('field' => 'show_with_tax',			'label' => 'lang:store_field_show_with_tax',		'rules' => 'required'),
+				array('field' => 'display_stock',			'label' => 'lang:store_field_display_stock',		'rules' => 'required'),
+				array('field' => 'allow_comments',			'label' => 'lang:store_field_allow_comments',		'rules' => 'required'),
+				array('field' => 'new_order_mail_alert',	'label' => 'lang:store_field_new_order_mail_alert',	'rules' => 'required'),
+				array('field' => 'active',					'label' => 'lang:store_field_active',				'rules' => 'required'),
+				array('field' => 'is_default',				'label' => 'lang:store_field_is_default',			'rules' => 'required'),
+				array('field' => 'agb',						'label' => 'lang:store_field_agb',					'rules' => 'required'),
+				array('field' => 'privacy_policy',			'label' => 'lang:store_field_privacy_policy',		'rules' => 'required'),
+				array('field' => 'delivery_information',	'label' => 'lang:store_field_delivery_information',	'rules' => 'required')
 		);
 
 		$this->form_validation->set_rules($this->item_validation_rules);
