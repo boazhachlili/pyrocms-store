@@ -72,3 +72,9 @@ $lang['store_set_default_label']			= 'Set Default';
 $lang['store_create_success']				= 'Store sucessfully created';
 $lang['store_content_label']				= 'Store Content';
 $lang['store_additional_info_label']		= 'Additional Information';
+
+//Edit / Delete Store
+
+$lang['store_edit_store']					= 'Edit ';
+$lang['store_edit_success']					= 'Store sucessfully edited';
+$lang['store_delete_success']				= 'Store sucessfully deleted';

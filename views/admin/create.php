@@ -1,7 +1,7 @@
 <?php if ($this->method == 'create'): ?>
 	<h3><?php echo lang('store_add_store') ?></h3>
 <?php else: ?>
-		<h3><?php echo sprintf(lang('store_add_store'), $store_config['name']); ?></h3>
+		<h3><?php echo sprintf(lang('store_add_store'));?></h3>
 <?php endif; ?>
 
 

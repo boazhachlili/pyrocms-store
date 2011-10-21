@@ -5,9 +5,9 @@ foreach($sql->result() as $this->item)
 ?>
 
 <?php if ($this->method == 'create'): ?>
-	<h3><?php echo lang('store_add_store'). $store_config['name']; ?></h3>
+	<h3><?php echo lang('store_add_store')?></h3>
 <?php else: ?>
-		<h3><?php echo sprintf(lang('store_add_store'), $store_config['name']); ?></h3>
+		<h3><?php echo sprintf(lang('store_edit_store'). $this->item->name); ?></h3>
 <?php endif; ?>
 
 
@@ -131,7 +131,7 @@ foreach($sql->result() as $this->item)
 		</ul>
 	</div>
 	
-	<div class="float-right">
+	<div class="buttons float-right padding-top">
 		<?php $this->load->view('admin/partials/buttons', array('buttons' => array('save', 'cancel') )); ?>
 	</div>
 	
