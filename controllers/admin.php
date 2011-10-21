@@ -63,11 +63,7 @@ class Admin extends Admin_Controller
 		// Something went wrong..
 		if ($this->form_validation->run()==FALSE)
 		{
-			// Required for validation
-			foreach ($this->item_validation_rules as $rule)
-			{
-				$store_config[$rule['field']] = $this->input->post($rule['field']);
-			}
+			$store_config['name'] = 'hi';
 			// Setting the vars to view array
 			$this->data = array(
 				'store_config'	=>	$store_config
