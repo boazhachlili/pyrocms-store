@@ -22,7 +22,8 @@ class Store_m extends MY_Model {
 			'store_attributes'				=> 'store_attributes',
 			'store_orders'					=> 'store_orders',
 			'store_users_adresses'			=> 'store_users_adresses',
-			'store_order_adresses'			=> 'store_order_adresses'
+			'store_order_adresses'			=> 'store_order_adresses',
+			'core_sites'					=> 'core_sites'
 		);
 	}
 
@@ -51,7 +52,7 @@ class Store_m extends MY_Model {
      * @param int $id
      * @return array 
      */		
-	function retrieve_categories($id){  
+	public function retrieve_categories($id){  
 		$this->db->where(array('store_categories' => $id)); 
 		return $this->db->get($this->_table['store_categories'])
 					->row(); 
@@ -62,7 +63,7 @@ class Store_m extends MY_Model {
      * @param int $id
      * @return array 
      */		
-	function retrieve_products($id){  
+	public function retrieve_products($id){  
 		$this->db->select('store_products.*');
 		$this->db->where(array('store_products' => $id)); 
 		return $this->db->get($this->_table['store_categories'])
@@ -74,7 +75,7 @@ class Store_m extends MY_Model {
      * @param int $id
      * @return string 
      */		
-	function count_products(){
+	public function count_products(){
 		//$this->db->where('store_store_id', $this->site->id); //Show only from one Store
 		return $this->db->count_all_results('store_products'); 
 	}
@@ -84,7 +85,7 @@ class Store_m extends MY_Model {
      * @param int $id
      * @return string 
      */		
-	function count_categories(){
+	public function count_categories(){
 		//$this->db->where('store_store_id', $this->site->id); //Show only from one Store
 		return $this->db->count_all_results('store_categories'); 
 	}
@@ -94,7 +95,7 @@ class Store_m extends MY_Model {
      * @param int $id
      * @return string 
      */		
-	function count_pending_orders(){
+	public function count_pending_orders(){
 		$this->db->where('status', 1); 
 		return $this->db->count_all_results('store_orders'); 
 	}
@@ -104,9 +105,9 @@ class Store_m extends MY_Model {
      * @param int $id
      * @return string 
      */		
-	function insert(){
+	public function insert(){
 		
-		$store_config = array(
+		$this->data = array(
 	        'name'					=>	$this->input->post('name'),
 			'email'					=>	$this->input->post('email'),
 			'additional_emails'		=>	$this->input->post('additional_emails'),
@@ -120,13 +121,21 @@ class Store_m extends MY_Model {
 			'is_default'			=>	$this->input->post('is_default'),
 			'agb'					=>	$this->input->post('agb'),
 			'privacy_policy'		=>	$this->input->post('privacy_policy'),
-			'delivery_information'	=>	$this->input->post('delivery_information')
+			'delivery_information'	=>	$this->input->post('delivery_information'),
+			'core_sites_id'			=>	$this->get_core_site_id(SITE_REF)
 	    );
 		
-		return $this->db->insert('store_config',$store_config);
-		 
-		 
-		 
+		return $this->db->insert($this->_table['store_config'],$this->data);
+	}
+	
+	private function get_core_site_id($site_ref)
+	{
+		$this->db->where('ref',$site_ref);
+		$this->query = $this->db->get($this->_table['core_sites']);
+		foreach($this->query->result() as $this->item)
+		{
+			return $this->item->id;
+		}
 	}
 
 }
