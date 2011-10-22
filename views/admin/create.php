@@ -1,7 +1,7 @@
 <?php if ($this->method == 'create'): ?>
-	<h3><?php echo lang('store_add_store'). $store_config['name']; ?></h3>
+	<h3><?php echo lang('store_add_store') ?></h3>
 <?php else: ?>
-		<h3><?php echo sprintf(lang('store_add_store'), $store_config['name']); ?></h3>
+		<h3><?php echo sprintf(lang('store_add_store'));?></h3>
 <?php endif; ?>
 
 
@@ -68,8 +68,8 @@
 			</li>
 			<li class="<?php echo alternator('even', ''); ?>">
 				<?php echo lang('store_field_is_default','is_default'); ?>
-                <?php echo form_radio('is_default','1',TRUE).$this->lang->line('store_radio_yes'); ?>
-                <?php echo form_radio('is_default','0',FALSE).$this->lang->line('store_radio_no'); ?>
+                <?php echo form_radio('is_default','1',FALSE).$this->lang->line('store_radio_yes'); ?>
+                <?php echo form_radio('is_default','0',TRUE).$this->lang->line('store_radio_no'); ?>
 			</li>		
 		</ul>
 	</div>
@@ -95,7 +95,7 @@
 		</ul>
 	</div>
 	
-	<div class="float-right">
+	<div class="buttons float-right padding-top">
 		<?php $this->load->view('admin/partials/buttons', array('buttons' => array('save', 'cancel') )); ?>
 	</div>
 	

@@ -24,7 +24,7 @@ class Admin extends Admin_Controller
 		$this->item_validation_rules = array(
 				array('field' => 'name',					'label' => 'lang:store_field_name',					'rules' => 'trim|max_length[10]|required'),
 				array('field' => 'email',					'label' => 'lang:store_field_email',				'rules' => 'trim|max_length[100]|required|valid_email'),
-				array('field' => 'additional_emails',		'label' => 'lang:store_field_additional_emails',	'rules' => 'trim|max_length[100]|required|valid_email'),
+				array('field' => 'additional_emails',		'label' => 'lang:store_field_additional_emails',	'rules' => 'trim|max_length[100]|valid_emails'),
 				array('field' => 'currency',				'label' => 'lang:store_field_currency',				'rules' => 'trim|max_length[10]|required'),
 				array('field' => 'item_per_page',			'label' => 'lang:store_field_item_per_page',		'rules' => 'trim|max_length[10]|required'),
 				array('field' => 'show_with_tax',			'label' => 'lang:store_field_show_with_tax',		'rules' => 'required'),
@@ -111,13 +111,13 @@ class Admin extends Admin_Controller
 			$this->session->set_flashdata('error', lang('store_create_error'));
 			// Loading the view
 			$this->template
-				->title($this->module_details['name'], lang('store_new_store_label'))
+				->title($this->module_details['name'], lang('store_edit_store_label'))
 				->build('admin/edit',$this->data);
 		}	
 		else
 		{
 			
-			$this->session->set_flashdata('success', lang('store_create_success'));
+			$this->session->set_flashdata('success', lang('store_edit_success'));
 			$this->store_m->edit($this->uri->segment(4));
 			redirect('admin/store');
 		}
@@ -125,7 +125,7 @@ class Admin extends Admin_Controller
 	
 	public function delete()
 	{
-		$this->session->set_flashdata('success', lang('store_create_success'));
+		$this->session->set_flashdata('success', lang('store_delete_success'));
 		$this->store_m->delete($this->uri->segment(4));
 		redirect('admin/store');
 	}	
