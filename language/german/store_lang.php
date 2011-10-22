@@ -67,9 +67,11 @@ $lang['store_label_cart_name']				= 'Item Description';
 $lang['store_label_cart_price']				= 'Item Price';
 $lang['store_label_cart_subtotal']			= 'Sub-Total';
 $lang['store_label_cart_total']				= 'Total';
+$lang['store_label_cart_empty']				= 'Empty';
 // Widget Cart
 $lang['store_label_widget_cart_qty']		= 'QTY';
 $lang['store_label_widget_cart_name']		= 'Name';
+$lang['store_label_widget_cart_empty']		= 'Empty';
 
 // Buttons
 $lang['store_button_add_category']			= 'Add category';

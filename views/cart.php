@@ -65,7 +65,7 @@
 	}
 	else
 	{
-		$html .= 'empty';
+		$html .= $this->lang->line('store_label_cart_empty');
 	}
 	
 	$html .= '</div>';
