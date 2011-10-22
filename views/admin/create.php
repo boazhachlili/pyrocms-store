@@ -1,7 +1,7 @@
 <?php if ($this->method == 'create'): ?>
-	<h3><?php echo lang('store_add_store') ?></h3>
+	<h3><?php echo lang('store_title_add_store') ?></h3>
 <?php else: ?>
-		<h3><?php echo sprintf(lang('store_add_store'));?></h3>
+		<h3><?php echo sprintf(lang('store_title_add_store'));?></h3>
 <?php endif; ?>
 
 
@@ -10,8 +10,8 @@
 <div class="tabs">
 
 	<ul class="tab-menu">
-		<li><a href="#store-content"><span><?php echo lang('store_content_label');?></span></a></li>
-		<li><a href="#store-additional-info"><span><?php echo lang('store_additional_info_label');?></span></a></li>
+		<li><a href="#store-content"><span><?php echo lang('store_tab_content');?></span></a></li>
+		<li><a href="#store-additional-info"><span><?php echo lang('store_tab_additional_info');?></span></a></li>
 
 	</ul>
 	<!-- Content tab -->

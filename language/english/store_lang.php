@@ -9,10 +9,20 @@
  */
 
 // Shortcuts
-$lang['store_list_stores']					= 'List Stores';
-$lang['store_add_store']					= 'Add Store';
+$lang['store_shortcut_list_stores']			= 'List Stores';
+$lang['store_shortcut_add_store']			= 'Add Store';
 
-// Flieds
+// Titles
+$lang['store_title_store']         			= 'Stores';
+$lang['store_title_add_store']         		= 'Add Store';
+$lang['store_title_edit_store']         	= 'Edit Store';
+$lang['store_title_stats_store']         	= 'Store Statistics';
+
+// Tabs
+$lang['store_tab_content']					= 'Store Content';
+$lang['store_tab_additional_info']			= 'Additional Information';
+
+// Fields
 $lang['store_field_name']					= 'Store name';
 $lang['store_field_email']					= 'Store default email';
 $lang['store_field_additional_emails']		= 'Additional emails (Separate with ",")';
@@ -21,60 +31,82 @@ $lang['store_field_item_per_page']			= 'Items per Page';
 $lang['store_field_show_with_tax']			= 'Show with Tax';
 $lang['store_field_display_stock']			= 'Display Stock';
 $lang['store_field_allow_comments']			= 'Allow Comments';
-$lang['store_field_new_order_mail_alert']	= 'Mail Alert on new Ordner';
+$lang['store_field_new_order_mail_alert']	= 'Mail Alert on new Order';
 $lang['store_field_active']					= 'Is active';
 $lang['store_field_is_default']				= 'Is default';
 $lang['store_field_agb']					= 'Store AGB';
 $lang['store_field_privacy_policy']			= 'Store Privacy Policy';
 $lang['store_field_delivery_information']	= 'Store Delivery Information';
 
-//Radios
+// Radios
 $lang['store_radio_yes']					= ' Yes ';
 $lang['store_radio_no']						= ' No ';
 
-// Label Admin Index
-$lang['store_new_store_label']         		= 'New Store';
-$lang['store_edit_store_name']          	= 'Edit store name';
-$lang['store_label']						= 'Store';
-$lang['store_num_categories_label']			= 'Categories';
-$lang['store_actions_label']				= 'Actions';
-$lang['store_upload_label']					= 'Upload';
-$lang['store_manage_label']					= 'Manage';
-$lang['store_delete_label']					= 'Delete';
-$lang['store_no_store_error']				= 'No Store created';
+// Labels
+//$lang['store_label_categories']				= 'Categories';
+//$lang['store_label_upload']					= 'Upload';
+//$lang['store_label_manage']					= 'Manage';
+$lang['store_label_store_name']				= 'Store Name';
+$lang['store_label_is_default']				= 'Default';
+$lang['store_label_general_options']		= 'General Options';
+$lang['store_label_email']					= 'Email';
+$lang['store_label_email_additional']		= 'Additional Emails';
+$lang['store_label_active']					= 'Active';
+$lang['store_label_allow_comments']			= 'Allow comments';
+$lang['store_label_currency']				= 'Currency';
+$lang['store_label_item_per_page']			= 'Items per Page';
+$lang['store_label_display_stock']			= 'Dispaly stock';
+$lang['store_label_statistics']				= 'Statistics';
+$lang['store_label_num_categories']			= '# Categories in Store';
+$lang['store_label_num_products']			= '# Products in Store';
+$lang['store_label_num_pending_orders']		= '# pending Orders';
+$lang['store_label_actions']				= 'Actions';
 
-$lang['store_name_label']					= 'Name';
-$lang['store_email_label']					= 'Email';
-$lang['store_allow_comments_label']			= 'Allow comments';
+// Buttons
+$lang['store_button_add_category']			= 'Add category';
+$lang['store_button_add_product']			= 'Add product';
+$lang['store_button_edit']					= 'Edit';
+$lang['store_button_delete']				= 'Delete';
+//$lang['store_button_preview']				= 'Preview';
+$lang['store_button_backup_data']			= 'Backup Data';
+$lang['store_button_restore_data']			= 'Restore Data';
+$lang['store_button_set_default']			= 'Set Default';
 
-$lang['store_active_label']					= 'Active';
-$lang['store_is_default_label']				= 'Default';
-$lang['store_edit_label']					= 'Edit';
-$lang['store_preview_label']				= 'Preview';
+// Messages
+$lang['store_messages_no_store_error']		= 'No Store created';
+$lang['store_messages_create_success']		= 'Store sucessfully created';
+$lang['store_messages_edit_success']		= 'Store sucessfully edited';
+$lang['store_messages_delete_success']		= 'Store sucessfully deleted';
 
-$lang['store_add_category']					= 'Add category';
-$lang['store_add_product']					= 'Add product';
-$lang['store_general_options']				= 'General Options';
-$lang['store_email_additional_label']		= 'Additional Emails';
-$lang['store_currency_label']				= 'Currency';
-$lang['store_item_per_page_label']			= 'Items per Page';
-$lang['store_display_stock_label']			= 'Dispaly stock';
-$lang['store_statistics_label']				= 'Statistics';
-$lang['store_num_categories_label']			= '# Categories in Store';
-$lang['store_num_products_label']			= '# Products in Store';
-$lang['store_num_pending_orders']			= '# pending Orders';
-$lang['store_backup_data_label']			= 'Backup Data';
-$lang['store_restore_data_label']			= 'Restore Data';
-$lang['store_set_default_label']			= 'Set Default';
+// Choices
+$lang['store_choice_yes']					= 'Yes';
+$lang['store_choice_no']					= 'No';
 
-//Create Store
-
-$lang['store_create_success']				= 'Store sucessfully created';
-$lang['store_content_label']				= 'Store Content';
-$lang['store_additional_info_label']		= 'Additional Information';
-
-//Edit / Delete Store
-
-$lang['store_edit_store']					= 'Edit ';
-$lang['store_edit_success']					= 'Store sucessfully edited';
+// Cart and Cart widget
+$lang['store_delete_success']				= 'Store sucessfully deleted';
+$lang['store_delete_success']				= 'Store sucessfully deleted';
+$lang['store_delete_success']				= 'Store sucessfully deleted';
+$lang['store_delete_success']				= 'Store sucessfully deleted';
+$lang['store_delete_success']				= 'Store sucessfully deleted';
+$lang['store_delete_success']				= 'Store sucessfully deleted';
+$lang['store_delete_success']				= 'Store sucessfully deleted';
+$lang['store_delete_success']				= 'Store sucessfully deleted';
+$lang['store_delete_success']				= 'Store sucessfully deleted';
+$lang['store_delete_success']				= 'Store sucessfully deleted';
+$lang['store_delete_success']				= 'Store sucessfully deleted';
+$lang['store_delete_success']				= 'Store sucessfully deleted';
+$lang['store_delete_success']				= 'Store sucessfully deleted';
+$lang['store_delete_success']				= 'Store sucessfully deleted';
+$lang['store_delete_success']				= 'Store sucessfully deleted';
+$lang['store_delete_success']				= 'Store sucessfully deleted';
+$lang['store_delete_success']				= 'Store sucessfully deleted';
+$lang['store_delete_success']				= 'Store sucessfully deleted';
+$lang['store_delete_success']				= 'Store sucessfully deleted';
+$lang['store_delete_success']				= 'Store sucessfully deleted';
+$lang['store_delete_success']				= 'Store sucessfully deleted';
+$lang['store_delete_success']				= 'Store sucessfully deleted';
+$lang['store_delete_success']				= 'Store sucessfully deleted';
+$lang['store_delete_success']				= 'Store sucessfully deleted';
+$lang['store_delete_success']				= 'Store sucessfully deleted';
+$lang['store_delete_success']				= 'Store sucessfully deleted';
 $lang['store_delete_success']				= 'Store sucessfully deleted';
