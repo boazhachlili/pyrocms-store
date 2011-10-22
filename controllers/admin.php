@@ -73,7 +73,7 @@ class Admin extends Admin_Controller
 			// Loading the view
 			$this->template
 				->title($this->module_details['name'], lang('store_new_store_label'))
-				->build('admin/add',$this->data);
+				->build('admin/create',$this->data);
 		}	
 		else
 		{

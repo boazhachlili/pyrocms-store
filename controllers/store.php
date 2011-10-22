@@ -10,11 +10,12 @@
 class Store extends Public_Controller
 {
 
-	public function __construct()
-	{
+	public function __construct(){
+
 		parent::__construct();
 
 		// Load the required classes
+		$this->load->library('cart');
 		$this->load->model('store_m');
 		$this->lang->load('store');
 		
@@ -22,9 +23,77 @@ class Store extends Public_Controller
 						->append_metadata(js('store.js', 'store'));
 	}
 
-	public function index($offset = 0)
-	{
-		$data['store_config'] = $this->store_m->get_store_all();  
-		$this->template->build('index', $data);
+	public function index(){
+
+		if(!$this->cart->contents())
+		{
+			$data = array(
+						array(
+							'id'      => 'sku_123ABC',
+							'qty'     => 1,
+							'price'   => 39.95,
+							'name'    => 'T-Shirt',
+							'options' => array('Size' => 'L', 'Color' => 'Red')
+						),
+						array(
+							'id'      => 'sku_123ABD',
+							'qty'     => 1,
+							'price'   => 39.95,
+							'name'    => 'Jeans',
+							'options' => array('Size' => 'L', 'Color' => 'Blue')
+						)
+					);
+					
+			$this->cart->insert($data); 
+		}
+
+		$this->data = array(
+			''	=>	''
+		);
+
+		$this->template->build('index', $this->data);
+	}
+	
+	public function categories(){
+
+		$this->data = array(
+			''	=>	''
+		);
+		
+		$this->template->build('category', $this->data);
+	}
+	
+	public function product(){
+
+		$this->data = array(
+			''	=>	''
+		);
+		
+		$this->template->build('details', $this->data);
+	}
+	
+	public function show_cart(){
+
+		$this->data = array(
+			''	=>	''
+		);
+		
+		$this->template->build('cart', $this->data);
+	}
+	
+	public function update_cart(){
+
+		$this->data = $this->input->post();
+		$this->cart->update($this->data);
+		redirect('store');
+	}
+	
+	public function checkout(){
+		
+		$this->data = array(
+			''	=>	''
+		);
+		
+		$this->template->build('checkout', $this->data);
 	}
 }
