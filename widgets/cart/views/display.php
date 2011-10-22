@@ -1,86 +1,11 @@
-<style type="text/css">
-div#widget_shopping_cart{
-	width: 100%;
-}
-
-div#widget_shopping_cart > form > div#widget_contents{
-	width: 100%;
-	padding: 0;
-	margin: 0px 15px 0px 15px;
-	clear: both;
-}
-
-div#widget_shopping_cart > form > div#widget_contents > div#widget_header_qty{
-	width: 20%;
-	height: 25px;
-	font: normal normal bold 12px/25px Arial, Helvetica, sans-serif;
-	display: inline-block;
-	float: left;
-}
-
-div#widget_shopping_cart > form > div#widget_contents > div#widget_header_name{
-	width: 80%;
-	height: 25px;
-	font: normal normal bold 12px/25px Arial, Helvetica, sans-serif;
-	display: inline-block;
-	float: left;
-}
-
-div#widget_shopping_cart > form > div#widget_contents > ul#widget_cart_list{
-	list-style: none;
-	padding: 0;
-	margin: 0;
-	clear: both;
-}
-
-div#widget_shopping_cart > form > div#widget_contents > ul#widget_cart_list > li.widget_cart_items{
-	width: 100%;
-	height: 30px;
-	padding: 0;
-	margin: 5px 0px 5px 0px;
-	display: block;
-}
-
-div#widget_shopping_cart > form > div#widget_contents > ul#widget_cart_list > li.widget_cart_items > div.widget_cart_item_qty{
-	width: 20%;
-	height: 25px;
-	font: normal normal normal 12px/25px Arial, Helvetica, sans-serif;
-	display: inline-block;
-	float: left;
-}
-
-div#widget_shopping_cart > form > div#widget_contents > ul#widget_cart_list > li.widget_cart_items > div.widget_cart_item_qty > .widget_input_qty{
-	width: 50%;
-}
-
-div#widget_shopping_cart > form > div#widget_contents > ul#widget_cart_list > li.widget_cart_items > div.widget_cart_item_name{
-	width: 80%;
-	height: 30px;
-	font: normal normal normal 12px/34px Arial, Helvetica, sans-serif;
-	display: inline-block;
-	float: left;
-}
-
-div#widget_shopping_cart > form > div#widget_cart_controls{
-	width: 100%;
-	padding: 0;
-	margin: 0px 15px 0px 15px;
-	clear: both;
-}
-
-div#widget_shopping_cart > form > div#widget_cart_controls > a#widget_button_details{
-	display: inline-block;
-}
-
-div#widget_shopping_cart > form > div#widget_cart_controls > input['submit']#widget_button_update{
-	display: inline-block;
-}
-</style>
 <?php
-	$html='<div id="widget_shopping_cart">';
+	$html='<link href="'.ADDONPATH.'modules/store/css/widget_cart.css" type="text/css" rel="stylesheet" />';
+	$html.='<script type="text/javascript" src="'.ADDONPATH.'modules/store/js/widget_cart.js"></script>';
+	$html.='<div id="widget_shopping_cart">';
 	if($this->cart->contents())
 	{
 		$html .= form_open('/store/update_cart/')."\n";
+		$html .= form_hidden('redirect', current_url());
 		$html .= '	<div id="widget_contents">'."\n";
 		$html .= '		<div id="widget_header_qty">QTY</div>'."\n";
 		$html .= '		<div id="widget_header_name">Name</div>'."\n";

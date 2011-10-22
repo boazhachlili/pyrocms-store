@@ -26,6 +26,12 @@ class Widget_Cart extends Widgets {
 	public $fields = array(
 	);
 	
+	public function __construct()
+	{
+		parent::__construct();
+		
+		$this->load->library('cart');
+	}
 	
 	public function form($options)
 	{		

@@ -25,28 +25,6 @@ class Store extends Public_Controller
 
 	public function index(){
 
-		if(!$this->cart->contents())
-		{
-			$data = array(
-						array(
-							'id'      => 'sku_123ABC',
-							'qty'     => 1,
-							'price'   => 39.95,
-							'name'    => 'T-Shirt',
-							'options' => array('Size' => 'L', 'Color' => 'Red')
-						),
-						array(
-							'id'      => 'sku_123ABD',
-							'qty'     => 1,
-							'price'   => 39.95,
-							'name'    => 'Jeans',
-							'options' => array('Size' => 'L', 'Color' => 'Blue')
-						)
-					);
-					
-			$this->cart->insert($data); 
-		}
-
 		$this->data = array(
 			''	=>	''
 		);
@@ -82,10 +60,10 @@ class Store extends Public_Controller
 	}
 	
 	public function update_cart(){
-
+		$this->redirect = $this->input->post('redirect');
 		$this->data = $this->input->post();
 		$this->cart->update($this->data);
-		redirect('store');
+		redirect($this->redirect);
 	}
 	
 	public function checkout(){

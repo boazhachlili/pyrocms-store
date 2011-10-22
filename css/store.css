@@ -3,26 +3,26 @@ div#show_cart{
 	width: 100%;
 }
 
-div#show_cart > div#cart_header{
+div#show_cart > form > div#cart_header{
 	width: 100%;
 	clear: both;
 }
 
-div#show_cart > div#cart_header > div#cart_header_qty{
+div#show_cart > form > div#cart_header > div#cart_header_qty{
 	width: 10%;
 	font: normal normal bold 12px Arial, Helvetica, sans-serif;
 	display: inline-block;
 	float: left;
 }
 
-div#show_cart > div#cart_header > div#cart_header_name{
+div#show_cart > form > div#cart_header > div#cart_header_name{
 	width: 50%;
 	font: normal normal bold 12px Arial, Helvetica, sans-serif;
 	display: inline-block;
 	float: left;
 }
 
-div#show_cart > div#cart_header > div#cart_header_price{
+div#show_cart > form > div#cart_header > div#cart_header_price{
 	width: 20%;
 	font: normal normal bold 12px Arial, Helvetica, sans-serif;
 	text-align: right;
@@ -30,7 +30,7 @@ div#show_cart > div#cart_header > div#cart_header_price{
 	float: left;
 }
 
-div#show_cart > div#cart_header > div#cart_header_subtotal{
+div#show_cart > form > div#cart_header > div#cart_header_subtotal{
 	width: 20%;
 	font: normal normal bold 12px Arial, Helvetica, sans-serif;
 	text-align: right;
@@ -38,42 +38,42 @@ div#show_cart > div#cart_header > div#cart_header_subtotal{
 	float: left;
 }
 
-div#show_cart > div.cart_items{
+div#show_cart > form > div.cart_items{
 	width: 100%;
 	clear: both;
 	padding: 0;
 	margin: 5px 0px 5px 0px;
 }
 
-div#show_cart > div.cart_items > div.cart_item_qty{
+div#show_cart > form > div.cart_items > div.cart_item_qty{
 	width: 10%;
 	font: normal normal normal 12px Arial, Helvetica, sans-serif;
 	display: inline-block;
 	float: left;
 }
 
-div#show_cart > div.cart_items > div.cart_item_qty > input{
+div#show_cart > form > div.cart_items > div.cart_item_qty > input{
 	width: 50%;
 }
 
-div#show_cart > div.cart_items > div.cart_item_name{
+div#show_cart > form > div.cart_items > div.cart_item_name{
 	width: 50%;
 	font: normal normal normal 12px Arial, Helvetica, sans-serif;
 	display: inline-block;
 	float: left;
 }
 
-div#show_cart > div.cart_items > div.cart_item_name > div.cart_item_name_options{
+div#show_cart > form > div.cart_items > div.cart_item_name > div.cart_item_name_options{
 }
 
-div#show_cart > div.cart_items > div.cart_item_name > div.cart_item_name_options > ul.options_list{
+div#show_cart > form > div.cart_items > div.cart_item_name > div.cart_item_name_options > ul.options_list{
 	list-style: none;
 	padding: 0;
 	margin: 0;
 	clear: both;
 }
 
-div#show_cart > div.cart_items > div.cart_item_name > div.cart_item_name_options > ul.options_list > li.options_item{
+div#show_cart > form > div.cart_items > div.cart_item_name > div.cart_item_name_options > ul.options_list > li.options_item{
 	width: 100%;
 	padding: 0;
 	margin: 5px 0px 5px 0px;
@@ -81,19 +81,19 @@ div#show_cart > div.cart_items > div.cart_item_name > div.cart_item_name_options
 	clear: both;
 }
 
-div#show_cart > div.cart_items > div.cart_item_name > div.cart_item_name_options > ul.options_list > li.options_item > div.options_item_name{
+div#show_cart > form > div.cart_items > div.cart_item_name > div.cart_item_name_options > ul.options_list > li.options_item > div.options_item_name{
 	font: normal normal bold 12px Arial, Helvetica, sans-serif;
 	display: inline-block;
 	float: left;
 }
 
-div#show_cart > div.cart_items > div.cart_item_name > div.cart_item_name_options > ul.options_list > li.options_item > div.options_item_value{
+div#show_cart > form > div.cart_items > div.cart_item_name > div.cart_item_name_options > ul.options_list > li.options_item > div.options_item_value{
 	font: normal normal normal 12px Arial, Helvetica, sans-serif;
 	display: inline-block;
 	float: left;
 }
 
-div#show_cart > div.cart_items > div.cart_item_price{
+div#show_cart > form > div.cart_items > div.cart_item_price{
 	width: 20%;
 	font: normal normal normal 12px Arial, Helvetica, sans-serif;
 	text-align: right;
@@ -101,7 +101,7 @@ div#show_cart > div.cart_items > div.cart_item_price{
 	float: left;
 }
 
-div#show_cart > div.cart_items > div.cart_item_subtotal{
+div#show_cart > form > div.cart_items > div.cart_item_subtotal{
 	width: 20%;
 	font: normal normal normal 12px Arial, Helvetica, sans-serif;
 	text-align: right;
@@ -109,24 +109,24 @@ div#show_cart > div.cart_items > div.cart_item_subtotal{
 	float: left;
 }
 
-div#show_cart > div#cart_footer{
+div#show_cart > form > div#cart_footer{
 	width: 100%;
 	clear: both;
 }
 
-div#show_cart > div#cart_footer > div#cart_footer{
+div#show_cart > form > div#cart_footer > div#cart_footer{
 	width: 10%;
 	display: inline-block;
 	float: left;
 }
 
-div#show_cart > div#cart_footer > div#cart_footer_{
+div#show_cart > form > div#cart_footer > div#cart_footer_{
 	width: 50%;
 	display: inline-block;
 	float: left;
 }
 
-div#show_cart > div#cart_footer > div#cart_footer_label_total{
+div#show_cart > form > div#cart_footer > div#cart_footer_label_total{
 	width: 20%;
 	font: normal normal normal 12px Arial, Helvetica, sans-serif;
 	text-align: right;
@@ -134,7 +134,7 @@ div#show_cart > div#cart_footer > div#cart_footer_label_total{
 	float: left;
 }
 
-div#show_cart > div#cart_footer > div#cart_footer_text_total{
+div#show_cart > form > div#cart_footer > div#cart_footer_text_total{
 	width: 20%;
 	font: normal normal normal 12px Arial, Helvetica, sans-serif;
 	text-align: right;
@@ -142,16 +142,16 @@ div#show_cart > div#cart_footer > div#cart_footer_text_total{
 	float: left;
 }
 
-div#show_cart > div#cart_controls{
+div#show_cart > form > div#cart_controls{
 	width: 100%;
 	text-align: right;
 	clear: both;
 }
 
-div#show_cart > div#cart_controls > div#cart_control_paypal{
+div#show_cart > form > div#cart_controls > div#cart_control_paypal{
 	display: inline-block;
 }
 
-div#show_cart > div#cart_controls > div#cart_control_update{
+div#show_cart > form > div#cart_controls > div#cart_control_update{
 	display: inline-block;
 }
