@@ -1,5 +1,12 @@
-<?php
-	
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
+/**
+ * This is a store module for PyroCMS
+ *
+ * @author 		Jaap Jolman And Kevin Meier - pyrocms-store Team
+ * @website		http://jolman.eu
+ * @package 	PyroCMS
+ * @subpackage 	Store Module
+**/
 	$html = '<div id="show_cart">';
 	
 	if($this->cart->contents())
@@ -8,10 +15,10 @@
 		$html .= form_hidden('redirect', current_url());
 		
 		$html .= '	<div id="cart_header">';
-		$html .= '		<div id="cart_header_qty">QTY</div>';
-		$html .= '		<div id="cart_header_name">Item Description</div>';
-		$html .= '		<div id="cart_header_price">Item Price</div>';
-		$html .= '		<div id="cart_header_subtotal">Sub-Total</div>';
+		$html .= '		<div id="cart_header_qty">'.$this->lang->line('store_label_cart_qty').'</div>';
+		$html .= '		<div id="cart_header_name">'.$this->lang->line('store_label_cart_name').'</div>';
+		$html .= '		<div id="cart_header_price">'.$this->lang->line('store_label_cart_price').'</div>';
+		$html .= '		<div id="cart_header_subtotal">'.$this->lang->line('store_label_cart_subtotal').'</div>';
 		$html .= '	</div>';
 		
 		$i=1;
@@ -45,13 +52,13 @@
 		$html .= '	<div id="cart_footer">';
 		$html .= '		<div id="cart_footer">&nbsp;</div>';
 		$html .= '		<div id="cart_footer_">&nbsp;</div>';
-		$html .= '		<div id="cart_footer_label_total">Total</div>';
+		$html .= '		<div id="cart_footer_label_total">'.$this->lang->line('store_label_cart_total').'</div>';
 		$html .= '		<div id="cart_footer_text_total">'.$this->cart->format_number($this->cart->total()).'</div>';
 		$html .= '	</div>';
 		
 		$html .= '	<div id="cart_controls">';
-		$html .= '		'.anchor('https://paypal.com','Paypal','class="button" id="cart_control_paypal"');
-		$html .= '		'.form_submit('', 'Update your Cart','id="cart_control_update"');
+		$html .= '		'.anchor('https://paypal.com',$this->lang->line('store_button_cart_paypal'),'class="button" id="cart_control_paypal"');
+		$html .= '		'.form_submit('', $this->lang->line('store_button_cart_update'),'id="cart_control_update"');
 		$html .= '	</div>';
 		
 		$html .= form_close();

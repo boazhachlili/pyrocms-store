@@ -1,3 +1,13 @@
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
+/**
+ * This is a store module for PyroCMS
+ *
+ * @author 		Jaap Jolman And Kevin Meier - pyrocms-store Team
+ * @website		http://jolman.eu
+ * @package 	PyroCMS
+ * @subpackage 	Store Module
+**/
+?>
 <?php foreach($sql->result() as $this->item){ ?>
 <?php if ($this->method == 'edit'): ?>
 	<h3><?php echo lang('store_title_edit_store')?></h3>

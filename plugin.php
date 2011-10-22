@@ -6,7 +6,7 @@
  * @website		http://jolman.eu
  * @package 	PyroCMS
  * @subpackage 	Store Module
- */
+**/
 class Plugin_Store extends Plugin
 {
 }

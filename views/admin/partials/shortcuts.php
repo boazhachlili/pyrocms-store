@@ -1,3 +1,13 @@
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
+/**
+ * This is a store module for PyroCMS
+ *
+ * @author 		Jaap Jolman And Kevin Meier - pyrocms-store Team
+ * @website		http://jolman.eu
+ * @package 	PyroCMS
+ * @subpackage 	Store Module
+**/
+?>
 <nav id="shortcuts">
 	<h6><?php echo lang('cp_shortcuts_title'); ?></h6>
 	<ul>

@@ -6,7 +6,7 @@
  * @website		http://jolman.eu
  * @package 	PyroCMS
  * @subpackage 	Store Module
- */
+**/
 class Store_m extends MY_Model {
 
 	public function __construct()

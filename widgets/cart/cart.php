@@ -1,12 +1,12 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
-
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
- * @package 		PyroCMS
- * @subpackage 		Social Media Widget
- * @author			Jacob Albert Jolman - ODIN-ICT
- * 
- * Show Social Media links in your site
- */
+ * This is a store module for PyroCMS
+ *
+ * @author 		Jaap Jolman And Kevin Meier - pyrocms-store Team
+ * @website		http://jolman.eu
+ * @package 	PyroCMS
+ * @subpackage 	Store Module
+**/
 class Widget_Cart extends Widgets {
 
 	public $title = array(

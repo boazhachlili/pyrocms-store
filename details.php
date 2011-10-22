@@ -1,4 +1,4 @@
-<?php defined('BASEPATH') or exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * This is a store module for PyroCMS
  *
@@ -6,7 +6,7 @@
  * @website		http://jolman.eu
  * @package 	PyroCMS
  * @subpackage 	Store Module
- */
+**/
 class Module_Store extends Module {
 
 	public $version = '0.1';

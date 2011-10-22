@@ -6,7 +6,7 @@
  * @website		http://jolman.eu
  * @package 	PyroCMS
  * @subpackage 	Store Module
- */
+**/
 class Admin extends Admin_Controller
 {
 
@@ -63,33 +63,23 @@ class Admin extends Admin_Controller
 		// Something went wrong..
 		if ($this->form_validation->run()==FALSE)
 		{
-			$this->store_config['name']	= 'hi';
-			// Setting the vars to view array
 			$this->data = array(
-				'store_config'	=>	$this->store_config
 			);
+			
 			// Flash data
-			$this->session->set_flashdata('error', lang('store_create_error'));
+			$this->session->set_flashdata('error', lang('store_messages_create_error'));
+			
 			// Loading the view
 			$this->template
-				->title($this->module_details['name'], lang('store_new_store_label'))
+				->title($this->module_details['name'], lang('store_title_new_store'))
 				->build('admin/create',$this->data);
 		}	
 		else
 		{
-			
-			$this->session->set_flashdata('success', lang('store_create_success'));
+			$this->session->set_flashdata('success', lang('store_messages_create_success'));
 			$this->store_m->insert();
 			redirect('admin/store');
 		}
-		
-		
-	
-
-	//$this->data->store_config =& $store_config;
-	
-	//$this->template->build('admin/create', $this->data);
-	
 	}	
 	
 	public function edit()
@@ -101,23 +91,23 @@ class Admin extends Admin_Controller
 		if ($this->form_validation->run()==FALSE)
 		{
 			$this->sql					= $this->store_m->fill_edit($this->uri->segment(4));
-			$this->store_config['name'] = 'hi';
-			// Setting the vars to view array
+			
 			$this->data = array(
-				'sql'			=>	$this->sql,
-				'store_config'	=>	$this->store_config
+				'sql'			=>	$this->sql
 			);
+			
 			// Flash data
-			$this->session->set_flashdata('error', lang('store_create_error'));
+			$this->session->set_flashdata('error', lang('store_messages_edit_error'));
+			
 			// Loading the view
 			$this->template
-				->title($this->module_details['name'], lang('store_edit_store_label'))
+				->title($this->module_details['name'], lang('store_title_edit_store'))
 				->build('admin/edit',$this->data);
 		}	
 		else
 		{
 			
-			$this->session->set_flashdata('success', lang('store_edit_success'));
+			$this->session->set_flashdata('success', lang('store_messages_edit_success'));
 			$this->store_m->edit($this->uri->segment(4));
 			redirect('admin/store');
 		}
@@ -125,7 +115,7 @@ class Admin extends Admin_Controller
 	
 	public function delete()
 	{
-		$this->session->set_flashdata('success', lang('store_delete_success'));
+		$this->session->set_flashdata('success', lang('store_messages_delete_success'));
 		$this->store_m->delete($this->uri->segment(4));
 		redirect('admin/store');
 	}	
