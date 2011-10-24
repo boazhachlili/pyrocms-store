@@ -32,8 +32,8 @@ class Store_m extends MY_Model {
      * @param int $id
      * @return array 
      */	
-	public function get_store($id) {
-		$this->db->where(array('id' => $id));
+	public function get_store($store_id) {
+		$this->db->where(array('store_id' => $store_id));
 		return $this->db->get($this->_table['store_config'])
 					->row();	
 	}
@@ -171,4 +171,45 @@ class Store_m extends MY_Model {
 		$this->db->where('store_id',$id);
 		return $this->db->delete($this->_table['store_config']);
 	}
+	
+	
+	public function add_category($id){
+		
+		$this->data = array(
+	        'name'					=>	$this->input->post('name'),
+			'html'					=>	$this->input->post('html'),
+			'parent_id'				=>	$this->input->post('parent_id'),
+			'images_id'				=>	$this->input->post('images_id'),
+			'thumbnail_id'			=>	$this->input->post('thumbnail_id'),
+			'store_store_id'		=>	$this->input->post('store_store_id')
+	    );
+		$this->db->where('store_categories',$id);
+		return $this->db->insert($this->_table['store_categories'],$this->data);
+	}	
+	
+	function make_categories_dropdown($id)
+        {
+			$this->db->where('store_store_id',$id);
+            $query = $this->db->get('store_categories');
+            if ($query->num_rows() == 0)
+            {
+                return array();
+            }
+            else
+            {
+
+                $data  = array('0'=>'Select');
+                foreach($query->result() as $row)
+                {
+
+                    $data[$row->store_categories_id] = $row->name;
+
+                }
+
+                return $data;
+            }
+
+        }	
+	
+	
 }

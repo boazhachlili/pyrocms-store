@@ -119,6 +119,39 @@ class Admin extends Admin_Controller
 		$this->store_m->delete($this->uri->segment(4));
 		redirect('admin/store');
 	}	
-	
-	
+
+	public function add_category($id)
+	{
+		$this->load->library('form_validation');
+		$this->form_validation->_field_data=array();
+		$fields = array(
+			array('field' => 'name',					'label' => 'store_cat_add_name',					'rules' => 'trim|max_length[10]|required'),
+			array('field' => 'html',					'label' => 'store_cat_add_html',					'rules' => 'trim|max_length[10]|required'),
+			array('field' => 'parent_id',				'label' => 'store_cat_add_parent_id',				'rules' => 'trim|max_length[10]|required'),
+			array('field' => 'images_id',				'label' => 'store_cat_add_images_id',				'rules' => 'trim|max_length[10]|'),
+			array('field' => 'thumbnail_id',			'label' => 'store_cat_add_thumbnail_id',			'rules' => 'trim|max_length[10]|'),
+			array('field' => 'store_store_id',			'label' => 'store_cat_add_store_store_id',			'rules' => 'trim|max_length[10]|required')
+			);
+
+		$this->form_validation->set_rules($fields);
+
+
+		if ($this->form_validation->run())
+		{
+                    if ($this->store_m->add_category($_POST))
+                    {
+                        $this->session->set_flashdata('success', sprintf(lang('store_cat_add_success'), $this->input->post('name')));
+                            redirect('admin/store');
+                    }
+                    else
+                    {
+                        $this->session->set_flashdata(array('error'=> lang('store_cat_add_error')));
+                    }
+		}
+
+		if($id){$this->data->parent_id = $id;}else{$this->data->parent_id = '';}
+		$this->data->categories = $this->store_m->make_categories_dropDown($this->uri->rsegment(3));
+
+		$this->template->build('admin/add_category', $this->data);
+	}
 }
