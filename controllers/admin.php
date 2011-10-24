@@ -33,7 +33,7 @@ class Admin extends Admin_Controller
 				array('field' => 'new_order_mail_alert',	'label' => 'lang:store_field_new_order_mail_alert',	'rules' => 'required'),
 				array('field' => 'active',					'label' => 'lang:store_field_active',				'rules' => 'required'),
 				array('field' => 'is_default',				'label' => 'lang:store_field_is_default',			'rules' => 'required'),
-				array('field' => 'agb',						'label' => 'lang:store_field_agb',					'rules' => 'required'),
+				array('field' => 'terms_and_conditions',	'label' => 'lang:store_field_agb',					'rules' => 'required'),
 				array('field' => 'privacy_policy',			'label' => 'lang:store_field_privacy_policy',		'rules' => 'required'),
 				array('field' => 'delivery_information',	'label' => 'lang:store_field_delivery_information',	'rules' => 'required')
 		);

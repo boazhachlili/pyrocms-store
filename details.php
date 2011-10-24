@@ -55,6 +55,8 @@ class Module_Store extends Module {
 				PRIMARY KEY (`currency_id`) )
 			ENGINE = InnoDB;");
 		
+		$this->db->query("INSERT INTO `" . $this->db->dbprefix('store_currency') . "` (currency_id, currency_symbol, currency_name) VALUES (null, '&euro;', 'Euro') ");
+		
 		// Store Configs
 		$this->db->query("
 			CREATE  TABLE IF NOT EXISTS `" . $this->db->dbprefix('store_config') . "` (
@@ -88,6 +90,9 @@ class Module_Store extends Module {
 				ON DELETE NO ACTION
 				ON UPDATE NO ACTION)
 			ENGINE = InnoDB;");
+		
+		$this->db->query("INSERT INTO `core_stores` (store_id, core_sites_id) VALUES (null,(SELECT `id` FROM `core_sites` WHERE ref='" . $this->site_ref . "')) ");
+		$this->db->query("INSERT INTO `" . $this->db->dbprefix('store_config') . "` (store_id, currency) VALUES (LAST_INSERT_ID(), '1') ");
 		
 		// Store User Addresses
 		$this->db->query("
