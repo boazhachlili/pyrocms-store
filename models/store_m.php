@@ -119,10 +119,9 @@ class Store_m extends MY_Model {
 			'new_order_mail_alert'	=>	$this->input->post('new_order_mail_alert'),
 			'active'				=>	$this->input->post('active'),
 			'is_default'			=>	$this->input->post('is_default'),
-			'agb'					=>	$this->input->post('agb'),
+			'terms_and_conditions'	=>	$this->input->post('terms_and_conditions'),
 			'privacy_policy'		=>	$this->input->post('privacy_policy'),
-			'delivery_information'	=>	$this->input->post('delivery_information'),
-			'core_sites_id'			=>	$this->get_core_site_id(SITE_REF)
+			'delivery_information'	=>	$this->input->post('delivery_information')
 	    );
 		
 		return $this->db->insert($this->_table['store_config'],$this->data);
@@ -157,10 +156,9 @@ class Store_m extends MY_Model {
 			'new_order_mail_alert'	=>	$this->input->post('new_order_mail_alert'),
 			'active'				=>	$this->input->post('active'),
 			'is_default'			=>	$this->input->post('is_default'),
-			'agb'					=>	$this->input->post('agb'),
+			'terms_and_conditions'	=>	$this->input->post('terms_and_conditions'),
 			'privacy_policy'		=>	$this->input->post('privacy_policy'),
-			'delivery_information'	=>	$this->input->post('delivery_information'),
-			'core_sites_id'			=>	$this->get_core_site_id(SITE_REF)
+			'delivery_information'	=>	$this->input->post('delivery_information')
 	    );
 		$this->db->where('store_id',$id);
 		return $this->db->update($this->_table['store_config'],$this->data);
