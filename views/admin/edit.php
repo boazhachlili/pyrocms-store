@@ -119,7 +119,7 @@
 		<ul>
 			<li class="<?php echo alternator('even', ''); ?>">
 				<?php echo lang('store_field_agb','terms_and_conditions'); ?>
-				<?php echo form_textarea('terms_and_conditions',set_value('terms_and_conditions',$this->item->agb),'rows="7"'); ?>
+				<?php echo form_textarea('terms_and_conditions',set_value('terms_and_conditions',$this->item->terms_and_conditions),'rows="7"'); ?>
 				<span class="required-icon tooltip"><?php echo lang('required_label');?></span>
 			</li>
 			<li class="<?php echo alternator('even', ''); ?>">
