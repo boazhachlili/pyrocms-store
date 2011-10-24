@@ -7,5 +7,9 @@
  * @package 	PyroCMS
  * @subpackage 	Store Module
 **/
+	$html = '<div id="categories">';
+	
+	$html .= '</div>';
+	
+	print $html;
 ?>
-<h3>Hello</h3>

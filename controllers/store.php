@@ -24,30 +24,33 @@ class Store extends Public_Controller
 	}
 
 	public function index(){
+		$this->sql = $this->store_m->get_categories();
 
 		$this->data = array(
-			''	=>	''
+			'sql'	=>	$this->sql
 		);
-
+		
 		$this->template->build('index', $this->data);
 	}
 	
-	public function categories(){
+	public function category($category){
+		$this->sql = $this->store_m->get_products($category);
 
 		$this->data = array(
-			''	=>	''
+			'sql'	=>	$this->sql
 		);
 		
 		$this->template->build('category', $this->data);
 	}
 	
-	public function product(){
+	public function product($product){
+		$this->sql = $this->store_m->get_product($product);
 
 		$this->data = array(
-			''	=>	''
+			'sql'	=>	$this->sql
 		);
 		
-		$this->template->build('details', $this->data);
+		$this->template->build('product', $this->data);
 	}
 	
 	public function show_cart(){
