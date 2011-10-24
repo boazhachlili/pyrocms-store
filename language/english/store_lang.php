@@ -17,6 +17,8 @@ $lang['store_title_store']         			= 'Stores';
 $lang['store_title_add_store']         		= 'Add Store';
 $lang['store_title_edit_store']         	= 'Edit Store';
 $lang['store_title_stats_store']         	= 'Store Statistics';
+$lang['store_title_add_category']         	= 'Store Add Category';
+
 
 // Tabs
 $lang['store_tab_content']					= 'Store Content';
@@ -97,7 +99,18 @@ $lang['store_messages_edit_success']		= 'Store sucessfully edited';
 $lang['store_messages_edit_error']			= 'Store editing failed';
 $lang['store_messages_delete_success']		= 'Store sucessfully deleted';
 $lang['store_messages_delete_error']		= 'Store deletetion failed';
+$lang['store_messages_cat_create_success']	= 'Category sucessfully created';
+$lang['store_messages_cat_create_error']	= 'Category creation failed';
 
 // Choices
 $lang['store_choice_yes']					= 'Yes';
 $lang['store_choice_no']					= 'No';
+
+// Add Category
+$lang['store_cat_add_label']				= 'Add Category';
+$lang['store_cat_add_name']					= 'Name';
+$lang['store_cat_add_html']					= 'Description';
+$lang['store_cat_add_parent_id']			= 'Parent';
+$lang['store_cat_add_images_id']			= 'Images';
+$lang['store_cat_add_thumbnail']			= 'Thumbnail';
+$lang['store_cat_add_store_id']				= 'Store ID';
