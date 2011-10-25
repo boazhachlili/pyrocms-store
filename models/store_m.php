@@ -179,35 +179,53 @@ class Store_m extends MY_Model {
 			'parent_id'				=>	$this->input->post('parent_id'),
 			'images_id'				=>	$this->input->post('images_id'),
 			'thumbnail_id'			=>	$this->input->post('thumbnail_id'),
-			'store_store_id'		=>	$this->input->post('store_store_id')
+			'config_id'				=>	$this->input->post('config_id')
 	    );
 		$this->db->where('store_categories',$id);
 		return $this->db->insert($this->_table['store_categories'],$this->data);
 	}	
 	
-	function make_categories_dropdown($id)
-        {
-			$this->db->where('store_store_id',$id);
-            $query = $this->db->get('store_categories');
-            if ($query->num_rows() == 0)
-            {
-                return array();
-            }
-            else
-            {
+	public function make_categories_dropdown($id)
+	{
+		$this->db->where('config_id',$id);
+		$this->query = $this->db->get('store_categories');
+		if ($this->query->num_rows() == 0)
+		{
+			return array();
+		}
+		else
+		{
 
-                $data  = array('0'=>'Select');
-                foreach($query->result() as $row)
-                {
+			$this->data  = array('0'=>'Select');
+			foreach($this->query->result() as $this->row)
+			{
 
-                    $data[$row->store_categories_id] = $row->name;
+				$this->data[$row->categories_id] = $this->row->name;
 
-                }
+			}
 
-                return $data;
-            }
+			return $this->data;
+		}
 
-        }	
+	}	
 	
+	public function get_categories()
+	{
+		$this->query = $this->db->get('store_categories');
+		return $this->query;
+	}
 	
+	public function get_products($category)
+	{
+		$this->db->where('categories_id',$category);
+		$this->query = $this->db->get('store_products');
+		return $this->query;
+	}
+	
+	public function get_product($product)
+	{
+		$this->db->where('products_id',$product);
+		$this->query = $this->db->get('store_products');
+		return $this->query;
+	}
 }

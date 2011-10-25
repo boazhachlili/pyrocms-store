@@ -8,7 +8,21 @@
  * @subpackage 	Store Module
 **/
 	$html = '<div id="category">';
+	$html .= '	<ul>';
 	
+	foreach($sql->result() as $this->category)
+	{
+		$html .= '		<li>';
+		$html .= '			<div>';
+		$html .= '				<a href="/store/product/' . $this->category->products_id . '/" title="' . $this->category->name . '">' . $this->category->name . '</a>';
+		$html .= '			</div>';
+		$html .= '			<div>';
+		$html .= '				<img src="" alt="' . $this->category->name . '" />';
+		$html .= '			</div>';
+		$html .= '		</li>';
+	}
+	
+	$html .= '	</ul>';
 	$html .= '</div>';
 	
 	print $html;

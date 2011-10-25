@@ -48,7 +48,7 @@
 			
 		</li>
 	</ol>
-	<?php echo form_hidden('store_store_id',set_value($this->uri->rsegment(3),$this->uri->rsegment(3)),'class="text" maxlength="10"'); ?>
+	<?php echo form_hidden('config_id',set_value($this->uri->rsegment(3),$this->uri->rsegment(3)),'class="text" maxlength="10"'); ?>
 	<div class="buttons float-right padding-top">
 		<?php $this->load->view('admin/partials/buttons', array('buttons' => array('save', 'cancel') )); ?>
 	</div>
