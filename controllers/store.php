@@ -69,6 +69,13 @@ class Store extends Public_Controller
 		redirect($this->redirect);
 	}
 	
+	public function insert_cart($product){
+		$this->redirect = $this->input->post('redirect');
+		$this->data = $this->store_m->get_product_in_cart($product);
+		$this->cart->insert($this->data);
+		redirect($this->redirect);
+	}
+	
 	public function checkout(){
 		
 		$this->data = array(

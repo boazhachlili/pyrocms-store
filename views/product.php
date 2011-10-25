@@ -12,6 +12,9 @@
 	
 	foreach($sql->result() as $this->product)
 	{
+		$html .= form_open('/store/insert_cart/' . $this->product->products_id . '/');
+		$html .= form_hidden('redirect', current_url());
+		
 		$html .= '		<li>';
 		$html .= '			<div>';
 		$html .= '				<h2>' . $this->product->name . '</h2>';
@@ -20,7 +23,12 @@
 		$html .= '				<img src="" alt="' . $this->product->name . '" />';
 		$html .= '				' . $this->product->html;
 		$html .= '			</div>';
+		$html .= '			<div>';
+		$html .= '				<span>' . $this->cart->format_number($this->product->price) . '</span>' . form_input('qty','1') . form_submit('','Add to Cart');
+		$html .= '			</div>';
 		$html .= '		</li>';
+		
+		$html .= form_close();
 	}
 	
 	$html .= '	</ul>';
