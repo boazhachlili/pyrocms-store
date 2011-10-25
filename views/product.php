@@ -18,8 +18,8 @@
 		$html .= '			</div>';
 		$html .= '			<div>';
 		$html .= '				<img src="" alt="' . $this->product->name . '" />';
-		$html .= '				';
-		$html .= '			</div>' . $this->product->html;
+		$html .= '				' . $this->product->html;
+		$html .= '			</div>';
 		$html .= '		</li>';
 	}
 	
