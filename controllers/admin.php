@@ -32,7 +32,6 @@ class Admin extends Admin_Controller
 				array('field' => 'allow_comments',			'label' => 'lang:store_field_allow_comments',		'rules' => 'required'),
 				array('field' => 'new_order_mail_alert',	'label' => 'lang:store_field_new_order_mail_alert',	'rules' => 'required'),
 				array('field' => 'active',					'label' => 'lang:store_field_active',				'rules' => 'required'),
-				array('field' => 'is_default',				'label' => 'lang:store_field_is_default',			'rules' => 'required'),
 				array('field' => 'terms_and_conditions',	'label' => 'lang:store_field_agb',					'rules' => 'required'),
 				array('field' => 'privacy_policy',			'label' => 'lang:store_field_privacy_policy',		'rules' => 'required'),
 				array('field' => 'delivery_information',	'label' => 'lang:store_field_delivery_information',	'rules' => 'required')
@@ -49,11 +48,6 @@ class Admin extends Admin_Controller
 	/**
 	 * List all available Stores
 	 */
-	public function index()
-	{
-		$this->data->store_config = $this->store_m->get_store_all();
-		$this->template->build('admin/index', $this->data);
-	}
 	
 	public function create()
 	{
@@ -82,7 +76,7 @@ class Admin extends Admin_Controller
 		}
 	}	
 	
-	public function edit()
+	public function index()
 	{
 		// Set the validation rules
 		$this->form_validation->set_rules($this->item_validation_rules);
@@ -90,7 +84,7 @@ class Admin extends Admin_Controller
 		// Something went wrong..
 		if ($this->form_validation->run()==FALSE)
 		{
-			$this->sql					= $this->store_m->fill_edit($this->uri->segment(4));
+			$this->sql					= $this->store_m->fill_edit($this->store_m->get_store_id());
 			
 			$this->data = array(
 				'sql'			=>	$this->sql
@@ -102,7 +96,7 @@ class Admin extends Admin_Controller
 			// Loading the view
 			$this->template
 				->title($this->module_details['name'], lang('store_title_edit_store'))
-				->build('admin/edit',$this->data);
+				->build('admin/index',$this->data);
 		}	
 		else
 		{

@@ -23,7 +23,8 @@ class Store_m extends MY_Model {
 			'store_orders'					=> 'store_orders',
 			'store_users_adresses'			=> 'store_users_adresses',
 			'store_order_adresses'			=> 'store_order_adresses',
-			'core_sites'					=> 'core_sites'
+			'core_sites'					=> 'core_sites',
+			'core_sites'					=> 'core_stores'
 		);
 	}
 
@@ -32,8 +33,7 @@ class Store_m extends MY_Model {
      * @param int $id
      * @return array 
      */	
-	public function get_store($store_id) {
-		$this->db->where(array('store_id' => $store_id));
+	public function get_store() {
 		return $this->db->get($this->_table['store_config'])
 					->row();	
 	}
@@ -126,6 +126,16 @@ class Store_m extends MY_Model {
 		
 		return $this->db->insert($this->_table['store_config'],$this->data);
 	}
+
+	public function get_store_id()
+	{
+		$this->query = $this->db->query("SELECT * FROM " . $this->_table['core_stores']. " WHERE core_sites_id='" . $this->store_m->get_core_site_id() . "';");
+		foreach($this->query->result() as $this->item)
+		{
+			return $this->item->id;
+		}
+	}
+
 	
 	private function get_core_site_id($site_ref)
 	{
@@ -142,7 +152,7 @@ class Store_m extends MY_Model {
 		return $this->db->get($this->_table['store_config']);
 	}
 	
-	public function edit($id){
+	public function edit(){
 		
 		$this->data = array(
 	        'name'					=>	$this->input->post('name'),
@@ -160,7 +170,8 @@ class Store_m extends MY_Model {
 			'privacy_policy'		=>	$this->input->post('privacy_policy'),
 			'delivery_information'	=>	$this->input->post('delivery_information')
 	    );
-		$this->db->where('store_id',$id);
+		
+		
 		return $this->db->update($this->_table['store_config'],$this->data);
 	}
 	

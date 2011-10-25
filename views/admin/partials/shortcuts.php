@@ -11,8 +11,9 @@
 <nav id="shortcuts">
 	<h6><?php echo lang('cp_shortcuts_title'); ?></h6>
 	<ul>
-		<li><?php echo anchor('admin/store/create', lang('store_shortcut_add_store'), 'class="add"') ?></li>
-		<li><?php echo anchor('admin/store', lang('store_shortcut_list_stores')); ?></li>
+		<li><?php echo anchor('admin/store', lang('store_shortcut_list_store')); ?></li>
+		<li><?php echo anchor('admin/store/add_category', lang('store_shortcut_add_category'), 'class="add"') ?></li>
+		<li><?php echo anchor('admin/store/add_prodcut', lang('store_shortcut_add_product'), 'class="add"') ?></li>
 	</ul>
 	<br class="clear-both" />
 </nav>

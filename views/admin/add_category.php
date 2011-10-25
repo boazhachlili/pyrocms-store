@@ -10,9 +10,7 @@
 ?>
 
 <?php if ($this->method == 'add_category'): ?>
-	<h3><?php echo lang('store_cat_add_label')." to Store: ". $this->store_m->get_store($this->uri->rsegment(3))->name;?></h3>
-<?php else: ?>
-		<h3><?php echo sprintf(lang('store_title_add_store'));?></h3>
+	<h3><?php echo lang('store_cat_add_label');?></h3>
 <?php endif; ?>
 
 

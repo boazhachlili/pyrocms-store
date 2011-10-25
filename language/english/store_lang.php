@@ -9,8 +9,9 @@
 **/
 
 // Shortcuts
-$lang['store_shortcut_list_stores']			= 'List Stores';
-$lang['store_shortcut_add_store']			= 'Add Store';
+$lang['store_shortcut_list_store']			= 'Store Index';
+$lang['store_shortcut_add_category']		= 'Add Category';
+$lang['store_shortcut_add_product']			= 'Add Product';
 
 // Titles
 $lang['store_title_store']         			= 'Stores';

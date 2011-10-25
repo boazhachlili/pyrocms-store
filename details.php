@@ -72,7 +72,6 @@ class Module_Store extends Module {
 				`allow_comments` ENUM('1','0') NULL ,
 				`new_order_mail_alert` ENUM('1','0') NULL ,
 				`active` ENUM('1','0') NULL ,
-				`is_default` ENUM('1','0') NULL ,
 				`terms_and_conditions` LONGTEXT NULL ,
 				`privacy_policy` LONGTEXT NULL ,
 				`delivery_information` LONGTEXT NULL ,
