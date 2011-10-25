@@ -8,95 +8,125 @@
  * @subpackage 	Store Module
 **/
 ?>
-
 <?php foreach($sql->result() as $this->item){ ?>
 
-<h3><?php echo lang('store_title_store'); ?></h3>
+	<h3><?php echo lang('store_title_edit_store')?></h3>
 
+<?php echo form_open(uri_string(), 'class="crud"'); ?>
 
-	<table border="0" class="table-list">
-			<thead>
-				<tr>
-					<th width="100px"><?php echo lang('store_label_store_name').": "; ?><?php echo $store->name." (Default)"; ?></th>
-					<th width="100px">&nbsp;</th>
-					<th width="100px"><?php echo anchor('admin/store/add_category/' . $store->store_id, lang('store_button_add_category'), 'class="button add"') ." ". anchor('admin/store/add_product/' . $store->store_id, lang('store_button_add_product'), 'class="button add"'); ?></th>
-				</tr>
-			</thead>
-			<tbody>			
-				<tr>
-					<td><strong><?php echo lang('store_label_general_options').": "; ?></strong></td>
-					<td><?php echo lang('store_label_email'); ?></td>
-					<td><?php echo $store->email; ?></td>
-				</tr>
-				<tr>
-					<td>&nbsp;</td>
-					<td><?php echo lang('store_label_email_additional'); ?></td>
-					<td><?php echo $store->additional_emails; ?></td>
-				</tr>
-				<tr>
-					<td>&nbsp;</td>
-					<td><?php echo lang('store_label_active'); ?></td>
-					<td><?php if($store->active == 1){ echo lang('store_choice_yes'); } else { echo lang('store_choice_no'); } ; ?></td>
-				</tr>
-				<tr>
-					<td>&nbsp;</td>
-					<td><?php echo lang('store_label_allow_comments'); ?></td>
-					<td><?php if($store->allow_comments == 1){ echo lang('store_choice_yes'); } else { echo lang('store_choice_no'); } ; ?></td>
-				</tr>
-				<tr>
-					<td>&nbsp;</td>
-					<td><?php echo lang('store_label_currency'); ?></td>
-					<td><?php echo $store->currency; ?></td>
-				</tr>
-				<tr>
-					<td>&nbsp;</td>
-					<td><?php echo lang('store_label_item_per_page'); ?></td>
-					<td><?php echo $store->item_per_page; ?></td>
-				</tr>		
-				<tr>
-					<td>&nbsp;</td>
-					<td><?php echo lang('store_label_display_stock'); ?></td>
-					<td><?php if($store->display_stock == 1){ echo lang('store_choice_yes'); } else { echo lang('store_choice_no'); } ; ?></td>
-				</tr>	
-				<tr>
-					<td><strong><?php echo lang('store_label_statistics').": "; ?></strong></td>
-					<td><?php echo lang('store_label_num_categories'); ?></td>
-					<td><?php echo $this->store_m->count_categories($store->store_id); ?></td>
-				</tr>	
-				<tr>
-					<td>&nbsp;</td>
-					<td><?php echo lang('store_label_num_products'); ?></td>
-					<td><?php echo $this->store_m->count_products($store->store_id); ?></td>
-				</tr>	
-				<tr>
-					<td>&nbsp;</td>
-					<td><?php echo lang('store_label_num_pending_orders'); ?></td>
-					<td><?php echo $this->store_m->count_pending_orders($store->store_id); ?></td>
-				</tr>
-				<tr>
-					<td><strong><?php echo lang('store_label_actions').": "; ?></strong></td>
-					<td><?php echo anchor('admin/store/edit/' . $store->store_id, lang('store_button_edit'), 'class="button edit"'); ?></td>
-					<td>&nbsp;</td>
-				</tr>
-				<tr>
-					<td>&nbsp;</td>
-					<td><?php echo anchor('admin/store/delete/' . $store->store_id, lang('store_button_delete'), array('class'=>'confirm button delete')); ?></td>
-					<td>&nbsp;</td>
-				</tr>		
-				<tr>
-					<td>&nbsp;</td>
-					<td><?php echo anchor('admin/store/backup/' . $store->store_id, lang('store_button_backup_data'), array('class'=>'button backup')); ?></td>
-					<td>&nbsp;</td>
-				</tr>	
-				<tr>
-					<td>&nbsp;</td>
-					<td><?php echo anchor('admin/store/restore/' . $store->store_id, lang('store_button_restore_data'), array('class'=>'button restore')); ?></td>
-					<td>&nbsp;</td>
-				</tr>				
-			</tbody>
-		</table>			
+<div class="tabs">
 
+	<ul class="tab-menu">
+		<li><a href="#store-content"><span><?php echo lang('store_tab_content');?></span></a></li>
+		<li><a href="#store-additional-info"><span><?php echo lang('store_tab_additional_info');?></span></a></li>
+
+	</ul>
+	<!-- Content tab -->
+	<div id="store-content">
+		<ul>
+			<li class="<?php echo alternator('even', ''); ?>">
+				<?php echo lang('store_field_name','name'); ?>
+				<?php echo form_input('name',set_value('name',$this->item->name),'class="text" maxlength="10"'); ?>
+				<span class="required-icon tooltip"><?php echo lang('required_label');?></span>
+			</li>
+			<li class="<?php echo alternator('even', ''); ?>">
+				<?php echo lang('store_field_email','email'); ?>
+				<?php echo form_input('email',set_value('email',$this->item->email),'class="text" maxlength="100"'); ?>
+				<span class="required-icon tooltip"><?php echo lang('required_label');?></span>
+			</li>
+			<li class="<?php echo alternator('even', ''); ?>">
+				<?php echo lang('store_field_additional_emails','additional_emails'); ?>
+				<?php echo form_input('additional_emails',set_value('additional_emails',$this->item->additional_emails),'class="text" maxlength="100"'); ?>
+			</li>
+			<li class="<?php echo alternator('even', ''); ?>">
+				<?php echo lang('store_field_currency','currency'); ?>
+				<?php echo form_input('currency',set_value('currency',$this->item->currency),'class="text" maxlength="10"'); ?>
+				<span class="required-icon tooltip"><?php echo lang('required_label');?></span>
+			</li>
+			<li class="<?php echo alternator('even', ''); ?>">
+				<?php echo lang('store_field_item_per_page','item_per_page'); ?>
+				<?php echo form_input('item_per_page',set_value('item_per_page',$this->item->item_per_page),'class="text" maxlength="10"'); ?>
+				<span class="required-icon tooltip"><?php echo lang('required_label');?></span>
+			</li>
+			<li class="<?php echo alternator('even', ''); ?>">
+				<?php echo lang('store_field_show_with_tax','show_with_tax'); ?>
+               	<?php if($this->item->show_with_tax == 1) { ?>
+                <?php echo form_radio('show_with_tax','1',TRUE).$this->lang->line('store_radio_yes'); ?>
+                <?php echo form_radio('show_with_tax','0',FALSE).$this->lang->line('store_radio_no'); ?>
+                <?php } else { ?>
+                <?php echo form_radio('show_with_tax','1',FALSE).$this->lang->line('store_radio_yes'); ?>
+                <?php echo form_radio('show_with_tax','0',TRUE).$this->lang->line('store_radio_no'); ?>
+                <?php } ?>
+			</li>		
+			<li class="<?php echo alternator('even', ''); ?>">
+				<?php echo lang('store_field_display_stock','display_stock'); ?>
+               	<?php if($this->item->display_stock == 1) { ?>
+                <?php echo form_radio('display_stock','1',TRUE).$this->lang->line('store_radio_yes'); ?>
+                <?php echo form_radio('display_stock','0',FALSE).$this->lang->line('store_radio_no'); ?>
+                <?php } else { ?>
+                <?php echo form_radio('display_stock','1',FALSE).$this->lang->line('store_radio_yes'); ?>
+                <?php echo form_radio('display_stock','0',TRUE).$this->lang->line('store_radio_no'); ?>
+                <?php } ?>
+			</li>	
+			<li class="<?php echo alternator('even', ''); ?>">
+				<?php echo lang('store_field_allow_comments','allow_comments'); ?>
+               	<?php if($this->item->allow_comments == 1) { ?>
+                <?php echo form_radio('allow_comments','1',TRUE).$this->lang->line('store_radio_yes'); ?>
+                <?php echo form_radio('allow_comments','0',FALSE).$this->lang->line('store_radio_no'); ?>
+                <?php } else { ?>
+                <?php echo form_radio('allow_comments','1',FALSE).$this->lang->line('store_radio_yes'); ?>
+                <?php echo form_radio('allow_comments','0',TRUE).$this->lang->line('store_radio_no'); ?>
+                <?php } ?>
+			</li>
+			<li class="<?php echo alternator('even', ''); ?>">
+				<?php echo lang('store_field_new_order_mail_alert','new_order_mail_alert'); ?>
+               	<?php if($this->item->new_order_mail_alert == 1) { ?>
+                <?php echo form_radio('new_order_mail_alert','1',TRUE).$this->lang->line('store_radio_yes'); ?>
+                <?php echo form_radio('new_order_mail_alert','0',FALSE).$this->lang->line('store_radio_no'); ?>
+                <?php } else { ?>
+                <?php echo form_radio('new_order_mail_alert','1',FALSE).$this->lang->line('store_radio_yes'); ?>
+                <?php echo form_radio('new_order_mail_alert','0',TRUE).$this->lang->line('store_radio_no'); ?>
+                <?php } ?>
+			</li>	
+			<li class="<?php echo alternator('even', ''); ?>">
+				<?php echo lang('store_field_active','active'); ?>
+               	<?php if($this->item->active == 1) { ?>
+                <?php echo form_radio('active','1',TRUE).$this->lang->line('store_radio_yes'); ?>
+                <?php echo form_radio('active','0',FALSE).$this->lang->line('store_radio_no'); ?>
+                <?php } else { ?>
+                <?php echo form_radio('active','1',FALSE).$this->lang->line('store_radio_yes'); ?>
+                <?php echo form_radio('active','0',TRUE).$this->lang->line('store_radio_no'); ?>
+                <?php } ?>
+			</li>	
+		</ul>
+	</div>
+
+	<!-- Meta data tab -->
+	<div id="store-additional-info">
+		<ul>
+			<li class="<?php echo alternator('even', ''); ?>">
+				<?php echo lang('store_field_agb','terms_and_conditions'); ?>
+				<?php echo form_textarea('terms_and_conditions',set_value('terms_and_conditions',$this->item->terms_and_conditions),'rows="7"'); ?>
+				<span class="required-icon tooltip"><?php echo lang('required_label');?></span>
+			</li>
+			<li class="<?php echo alternator('even', ''); ?>">
+				<?php echo lang('store_field_privacy_policy','privacy_policy'); ?>
+				<?php echo form_textarea('privacy_policy',set_value('privacy_policy',$this->item->privacy_policy),'rows="7"'); ?>
+				<span class="required-icon tooltip"><?php echo lang('required_label');?></span>
+			</li>
+			<li class="<?php echo alternator('even', ''); ?>">
+				<?php echo lang('store_field_delivery_information','delivery_information'); ?>
+				<?php echo form_textarea('delivery_information',set_value('delivery_information',$this->item->delivery_information),'rows="7"'); ?>
+				<span class="required-icon tooltip"><?php echo lang('required_label');?></span>
+			</li>			
+		</ul>
+	</div>
 	
+	<div class="buttons float-right padding-top">
+		<?php $this->load->view('admin/partials/buttons', array('buttons' => array('save', 'cancel') )); ?>
+	</div>
 	
-<?php } ?>
-
+<?php echo form_close(); ?>
+<?php
+}
+?>

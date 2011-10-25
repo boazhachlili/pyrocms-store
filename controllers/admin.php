@@ -22,7 +22,7 @@ class Admin extends Admin_Controller
 		
 		// Set the validation rules
 		$this->item_validation_rules = array(
-				array('field' => 'name',					'label' => 'lang:store_field_name',					'rules' => 'trim|max_length[10]|required'),
+				array('field' => 'name',					'label' => 'lang:store_field_name',					'rules' => 'trim|max_length[20]|required'),
 				array('field' => 'email',					'label' => 'lang:store_field_email',				'rules' => 'trim|max_length[100]|required|valid_email'),
 				array('field' => 'additional_emails',		'label' => 'lang:store_field_additional_emails',	'rules' => 'trim|max_length[100]|valid_emails'),
 				array('field' => 'currency',				'label' => 'lang:store_field_currency',				'rules' => 'trim|max_length[10]|required'),
@@ -102,7 +102,7 @@ class Admin extends Admin_Controller
 		{
 			
 			$this->session->set_flashdata('success', lang('store_messages_edit_success'));
-			$this->store_m->edit($this->uri->segment(4));
+			$this->store_m->edit($this->store_m->get_store_id());
 			redirect('admin/store');
 		}
 	}
@@ -114,17 +114,19 @@ class Admin extends Admin_Controller
 		redirect('admin/store');
 	}	
 
-	public function add_category($id)
+	public function add_category()
 	{
+		
+		$id = $this->store_m->get_store_id();
 		$this->load->library('form_validation');
 		$this->form_validation->_field_data=array();
 		$fields = array(
 			array('field' => 'name',					'label' => 'store_cat_add_name',					'rules' => 'trim|max_length[10]|required'),
 			array('field' => 'html',					'label' => 'store_cat_add_html',					'rules' => 'trim|max_length[10]|required'),
-			array('field' => 'parent_id',				'label' => 'store_cat_add_parent_id',				'rules' => 'trim|max_length[10]|required'),
+			array('field' => 'parent_id',				'label' => 'store_cat_add_parent_id',				'rules' => 'trim|max_length[10]|'),
 			array('field' => 'images_id',				'label' => 'store_cat_add_images_id',				'rules' => 'trim|max_length[10]|'),
 			array('field' => 'thumbnail_id',			'label' => 'store_cat_add_thumbnail_id',			'rules' => 'trim|max_length[10]|'),
-			array('field' => 'store_store_id',			'label' => 'store_cat_add_store_store_id',			'rules' => 'trim|max_length[10]|required')
+			array('field' => 'store_store_id',			'label' => 'store_cat_add_store_store_id',			'rules' => 'trim|max_length[10]|')
 			);
 
 		$this->form_validation->set_rules($fields);
@@ -144,7 +146,7 @@ class Admin extends Admin_Controller
 		}
 
 		if($id){$this->data->parent_id = $id;}else{$this->data->parent_id = '';}
-		$this->data->categories = $this->store_m->make_categories_dropDown($this->uri->rsegment(3));
+		$this->data->categories = $this->store_m->make_categories_dropdown();
 
 		$this->template->build('admin/add_category', $this->data);
 	}

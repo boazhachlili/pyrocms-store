@@ -24,7 +24,7 @@ class Store_m extends MY_Model {
 			'store_users_adresses'			=> 'store_users_adresses',
 			'store_order_adresses'			=> 'store_order_adresses',
 			'core_sites'					=> 'core_sites',
-			'core_sites'					=> 'core_stores'
+			'core_stores'					=> 'core_stores'
 		);
 	}
 
@@ -118,7 +118,6 @@ class Store_m extends MY_Model {
 			'allow_comments'		=>	$this->input->post('allow_comments'),
 			'new_order_mail_alert'	=>	$this->input->post('new_order_mail_alert'),
 			'active'				=>	$this->input->post('active'),
-			'is_default'			=>	$this->input->post('is_default'),
 			'terms_and_conditions'	=>	$this->input->post('terms_and_conditions'),
 			'privacy_policy'		=>	$this->input->post('privacy_policy'),
 			'delivery_information'	=>	$this->input->post('delivery_information')
@@ -132,7 +131,7 @@ class Store_m extends MY_Model {
 		$this->query = $this->db->query("SELECT * FROM " . $this->_table['core_stores']. " WHERE core_sites_id='" . $this->store_m->get_core_site_id(SITE_REF) . "';");
 		foreach($this->query->result() as $this->item)
 		{
-			return $this->item->id;
+			return $this->item->store_id;
 		}
 	}
 
@@ -148,7 +147,7 @@ class Store_m extends MY_Model {
 	
 	public function fill_edit($id){
 		
-		$this->db->where('store_id',$id);
+		$this->db->where('store_id',$this->store_m->get_store_id());
 		return $this->db->get($this->_table['store_config']);
 	}
 	
@@ -165,7 +164,6 @@ class Store_m extends MY_Model {
 			'allow_comments'		=>	$this->input->post('allow_comments'),
 			'new_order_mail_alert'	=>	$this->input->post('new_order_mail_alert'),
 			'active'				=>	$this->input->post('active'),
-			'is_default'			=>	$this->input->post('is_default'),
 			'terms_and_conditions'	=>	$this->input->post('terms_and_conditions'),
 			'privacy_policy'		=>	$this->input->post('privacy_policy'),
 			'delivery_information'	=>	$this->input->post('delivery_information')
@@ -182,43 +180,43 @@ class Store_m extends MY_Model {
 	}
 	
 	
-	public function add_category($id){
+	public function add_category(){
 		
+		$id = $this->store_m->get_store_id();
 		$this->data = array(
 	        'name'					=>	$this->input->post('name'),
 			'html'					=>	$this->input->post('html'),
 			'parent_id'				=>	$this->input->post('parent_id'),
 			'images_id'				=>	$this->input->post('images_id'),
 			'thumbnail_id'			=>	$this->input->post('thumbnail_id'),
-			'config_id'				=>	$this->input->post('config_id')
+			'config_id'				=>	$this->store_m->get_store_id()
 	    );
 		$this->db->where('store_categories',$id);
 		return $this->db->insert($this->_table['store_categories'],$this->data);
 	}	
 	
-	public function make_categories_dropdown($id)
-	{
-		$this->db->where('config_id',$id);
-		$this->query = $this->db->get('store_categories');
-		if ($this->query->num_rows() == 0)
-		{
-			return array();
-		}
-		else
-		{
+	public function make_categories_dropdown()
+        {
+            $query = $this->db->get('store_categories');
+            if ($query->num_rows() == 0)
+            {
+                return array();
+            }
+            else
+            {
 
-			$this->data  = array('0'=>'Select');
-			foreach($this->query->result() as $this->row)
-			{
+                $data  = array('0'=>'Select');
+                foreach($query->result() as $row)
+                {
 
-				$this->data[$row->categories_id] = $this->row->name;
+                    $data[$row->categories_id] = $row->name;
 
-			}
+                }
 
-			return $this->data;
-		}
+                return $data;
+            }
 
-	}	
+        }	
 	
 	public function get_categories()
 	{
