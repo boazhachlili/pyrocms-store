@@ -7,32 +7,25 @@
  * @package 	PyroCMS
  * @subpackage 	Store Module
 **/
-	$html = '<div id="product">';
-	$html .= '	<ul>';
-	
-	foreach($sql->result() as $this->product)
-	{
-		$html .= form_open('/store/insert_cart/' . $this->product->products_id . '/');
-		$html .= form_hidden('redirect', current_url());
-		
-		$html .= '		<li>';
-		$html .= '			<div>';
-		$html .= '				<h2>' . $this->product->name . '</h2>';
-		$html .= '			</div>';
-		$html .= '			<div>';
-		$html .= '				<img src="" alt="' . $this->product->name . '" />';
-		$html .= '				' . $this->product->html;
-		$html .= '			</div>';
-		$html .= '			<div>';
-		$html .= '				<span>' . $this->cart->format_number($this->product->price) . '</span>' . form_input('qty','1') . form_submit('','Add to Cart');
-		$html .= '			</div>';
-		$html .= '		</li>';
-		
-		$html .= form_close();
-	}
-	
-	$html .= '	</ul>';
-	$html .= '</div>';
-	
-	print $html;
 ?>
+<div id="product">
+	<ul>
+		<?php foreach($sql->result() as $this->product) { ?>
+		<?php echo form_open('/store/insert_cart/' . $this->product->products_id . '/'); ?>
+		<?php echo form_hidden('redirect', current_url()); ?>
+		<li>
+			<div>
+				<h2><?php echo $this->product->name; ?></h2>
+			</div>
+			<div>
+				<img src="" alt="<?php echo $this->product->name; ?>" />
+				<?php echo $this->product->html; ?>
+			</div>
+			<div>
+				<span><?php echo $this->cart->format_number($this->product->price); ?></span><?php echo form_input('qty','1') . form_submit('','Add to Cart'); ?>
+			</div>
+		</li>
+		<?php echo form_close(); ?>
+		<?php } ?>
+	</ul>
+</div>

@@ -7,68 +7,52 @@
  * @package 	PyroCMS
  * @subpackage 	Store Module
 **/
-	$html = '<div id="show_cart">';
-	
-	if($this->cart->contents())
-	{
-		$html .= form_open('/store/update_cart/');
-		$html .= form_hidden('redirect', current_url());
-		
-		$html .= '	<div id="cart_header">';
-		$html .= '		<div id="cart_header_qty">'.$this->lang->line('store_label_cart_qty').'</div>';
-		$html .= '		<div id="cart_header_name">'.$this->lang->line('store_label_cart_name').'</div>';
-		$html .= '		<div id="cart_header_price">'.$this->lang->line('store_label_cart_price').'</div>';
-		$html .= '		<div id="cart_header_subtotal">'.$this->lang->line('store_label_cart_subtotal').'</div>';
-		$html .= '	</div>';
-		
-		$i=1;
-		foreach($this->cart->contents() as $items)
-		{
-			$html .= '	'.form_hidden($i.'[rowid]', $items['rowid']);
-			$html .= '	<div class="cart_items">';
-			$html .= '		<div class="cart_item_qty">'.form_input(array('name' => $i.'[qty]', 'value' => $items['qty'], 'maxlength' => '3', 'size' => '5')).'</div>';
-			$html .= '		<div class="cart_item_name">'.$items['name'];
-			$html .= '			<div class="cart_item_name_options">';
-			
-			if ($this->cart->has_options($items['rowid']) == TRUE)
-			{
-				$html .= '				<ul class="options_list">';
-				foreach ($this->cart->product_options($items['rowid']) as $option_name => $option_value)
-				{
-					$html .= '					<li class="options_item">';
-					$html .= '						<div class="options_item_name">'.$option_name.':&nbsp;&nbsp;</div>';
-					$html .= '						<div class="options_item_value">'.$option_value.'</div>';
-					$html .= '					</li>';
-				}
-				$html .= '				</ul>';
-			}
-			
-			$html .= '			</div>';
-			$html .= '		</div>';
-			$html .= '		<div class="cart_item_price">'.$this->cart->format_number($items['price']).'</div>';
-			$html .= '		<div class="cart_item_subtotal">'.$this->cart->format_number($items['subtotal']).'</div>';
-			$html .= '	</div>';
-		}
-		$html .= '	<div id="cart_footer">';
-		$html .= '		<div id="cart_footer">&nbsp;</div>';
-		$html .= '		<div id="cart_footer_">&nbsp;</div>';
-		$html .= '		<div id="cart_footer_label_total">'.$this->lang->line('store_label_cart_total').'</div>';
-		$html .= '		<div id="cart_footer_text_total">'.$this->cart->format_number($this->cart->total()).'</div>';
-		$html .= '	</div>';
-		
-		$html .= '	<div id="cart_controls">';
-		$html .= '		'.anchor('https://paypal.com',$this->lang->line('store_button_cart_paypal'),'class="button" id="cart_control_paypal"');
-		$html .= '		'.form_submit('', $this->lang->line('store_button_cart_update'),'id="cart_control_update"');
-		$html .= '	</div>';
-		
-		$html .= form_close();
-	}
-	else
-	{
-		$html .= $this->lang->line('store_label_cart_empty');
-	}
-	
-	$html .= '</div>';
-	
-	print $html;
 ?>
+<div id="show_cart">
+	<?php if($this->cart->contents()) { ?>
+	<?php echo form_open('/store/update_cart/'); ?>
+	<?php echo form_hidden('redirect', current_url()); ?>
+	<div id="cart_header">
+		<div id="cart_header_qty"><?php echo $this->lang->line('store_label_cart_qty'); ?></div>
+		<div id="cart_header_name"><?php echo $this->lang->line('store_label_cart_name'); ?></div>
+		<div id="cart_header_price"><?php echo $this->lang->line('store_label_cart_price'); ?></div>
+		<div id="cart_header_subtotal"><?php echo $this->lang->line('store_label_cart_subtotal'); ?></div>
+	</div>';
+	<?php $i=1; foreach($this->cart->contents() as $items) { ?>
+		<?php echo form_hidden($i.'[rowid]', $items['rowid']); ?>
+		<div class="cart_items">
+			<div class="cart_item_qty"><?php echo form_input(array('name' => $i.'[qty]', 'value' => $items['qty'], 'maxlength' => '3', 'size' => '5')); ?></div>
+			<div class="cart_item_name"><?php echo $items['name']; ?>
+				<div class="cart_item_name_options">
+					<?php if ($this->cart->has_options($items['rowid']) == TRUE) { ?>
+					<ul class="options_list">
+						<?php foreach ($this->cart->product_options($items['rowid']) as $option_name => $option_value) { ?>
+						<li class="options_item">';
+							<div class="options_item_name"><?php echo $option_name; ?>:&nbsp;&nbsp;</div>
+							<div class="options_item_value"><?php echo $option_value; ?></div>
+						</li>
+						<?php } ?>
+					</ul>
+					<?php } ?>
+                </div>
+			</div>
+			<div class="cart_item_price"><?php echo $this->cart->format_number($items['price']); ?></div>
+			<div class="cart_item_subtotal"><?php echo $this->cart->format_number($items['subtotal']); ?></div>
+		</div>
+		<?php } ?>
+		<div id="cart_footer">
+			<div id="cart_footer">&nbsp;</div>
+			<div id="cart_footer_">&nbsp;</div>
+			<div id="cart_footer_label_total"><?php echo $this->lang->line('store_label_cart_total'); ?></div>
+			<div id="cart_footer_text_total"><?php echo $this->cart->format_number($this->cart->total()); ?></div>
+		</div>
+		
+		<div id="cart_controls">
+			<?php echo anchor('https://paypal.com',$this->lang->line('store_button_cart_paypal'),'class="button" id="cart_control_paypal"'); ?>
+			<?php echo form_submit('', $this->lang->line('store_button_cart_update'),'id="cart_control_update"'); ?>
+		</div>
+		<?php echo form_close(); ?>
+	<?php } else { ?>
+		<?php echo $this->lang->line('store_label_cart_empty'); ?>
+	<?php } ?>
+</div>

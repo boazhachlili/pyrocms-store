@@ -7,23 +7,18 @@
  * @package 	PyroCMS
  * @subpackage 	Store Module
 **/
-	$html = '<div id="category">';
-	$html .= '	<ul>';
-	
-	foreach($sql->result() as $this->category)
-	{
-		$html .= '		<li>';
-		$html .= '			<div>';
-		$html .= '				<a href="/store/product/' . $this->category->products_id . '/" title="' . $this->category->name . '">' . $this->category->name . '</a>';
-		$html .= '			</div>';
-		$html .= '			<div>';
-		$html .= '				<img src="" alt="' . $this->category->name . '" />';
-		$html .= '			</div>';
-		$html .= '		</li>';
-	}
-	
-	$html .= '	</ul>';
-	$html .= '</div>';
-	
-	print $html;
 ?>
+<div id="category">
+	<ul>
+	<?php foreach($sql->result() as $this->category) { ?>
+		<li>
+			<div>
+				<a href="/store/product/<?php echo $this->category->products_id; ?>/" title="<?php echo $this->category->name; ?>"><?php echo $this->category->name; ?></a>
+			</div>
+			<div>
+				<img src="" alt="<?php echo $this->category->name; ?>" />
+			</div>
+		</li>
+	<?php } ?>
+	</ul>
+</div>
