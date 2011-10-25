@@ -14,7 +14,8 @@ $lang['store_shortcut_add_category']		= 'Add Category';
 $lang['store_shortcut_add_product']			= 'Add Product';
 
 // Titles
-$lang['store_title_store']         			= 'Stores';
+$lang['store_title_store']         			= 'Store';
+$lang['store_title_store_index']         	= 'Store Index';
 $lang['store_title_add_store']         		= 'Add Store';
 $lang['store_title_edit_store']         	= 'Edit Store';
 $lang['store_title_stats_store']         	= 'Store Statistics';
@@ -22,7 +23,7 @@ $lang['store_title_add_category']         	= 'Store Add Category';
 
 
 // Tabs
-$lang['store_tab_content']					= 'Store Content';
+$lang['store_tab_config']					= 'Store Config';
 $lang['store_tab_additional_info']			= 'Additional Information';
 
 // Fields

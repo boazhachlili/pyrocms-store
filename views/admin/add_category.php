@@ -26,7 +26,7 @@
 		</li>
 		<li class="<?php echo alternator('even', ''); ?>">
 			<?php echo lang('store_cat_add_html','html'); ?>
-			<?php echo form_textarea('html',set_value('html',''),'class="text" maxlength="10"'); ?>
+			<?php echo form_textarea('html',set_value('html',''),'class="wysiwyg-simple" maxlength="10"'); ?>
 			<span class="required-icon tooltip"><?php echo lang('required_label');?></span>
 		</li>
 		

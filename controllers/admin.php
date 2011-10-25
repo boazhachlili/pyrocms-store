@@ -22,7 +22,7 @@ class Admin extends Admin_Controller
 		
 		// Set the validation rules
 		$this->item_validation_rules = array(
-				array('field' => 'name',					'label' => 'lang:store_field_name',					'rules' => 'trim|max_length[20]|required'),
+				array('field' => 'name',					'label' => 'lang:store_field_name',					'rules' => 'trim|max_length[50]|required'),
 				array('field' => 'email',					'label' => 'lang:store_field_email',				'rules' => 'trim|max_length[100]|required|valid_email'),
 				array('field' => 'additional_emails',		'label' => 'lang:store_field_additional_emails',	'rules' => 'trim|max_length[100]|valid_emails'),
 				array('field' => 'currency',				'label' => 'lang:store_field_currency',				'rules' => 'trim|max_length[10]|required'),
@@ -91,10 +91,13 @@ class Admin extends Admin_Controller
 			);
 			
 			// Flash data
-			$this->session->set_flashdata('error', lang('store_messages_edit_error'));
+			if (isset($save)){
+				$this->session->set_flashdata('error', lang('store_messages_edit_error'));
+			}	
 			
 			// Loading the view
 			$this->template
+				->append_metadata($this->load->view('fragments/wysiwyg', $this->data, TRUE))
 				->title($this->module_details['name'], lang('store_title_edit_store'))
 				->build('admin/index',$this->data);
 		}	
@@ -148,6 +151,8 @@ class Admin extends Admin_Controller
 		if($id){$this->data->parent_id = $id;}else{$this->data->parent_id = '';}
 		$this->data->categories = $this->store_m->make_categories_dropdown();
 
-		$this->template->build('admin/add_category', $this->data);
+		$this->template
+			->append_metadata($this->load->view('fragments/wysiwyg', $this->data, TRUE))
+			->build('admin/add_category', $this->data);
 	}
 }

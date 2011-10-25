@@ -10,23 +10,23 @@
 ?>
 <?php foreach($sql->result() as $this->item){ ?>
 
-	<h3><?php echo lang('store_title_edit_store')?></h3>
+	<h3><?php echo lang('store_title_store_index')?></h3>
 
 <?php echo form_open(uri_string(), 'class="crud"'); ?>
 
 <div class="tabs">
 
 	<ul class="tab-menu">
-		<li><a href="#store-content"><span><?php echo lang('store_tab_content');?></span></a></li>
+		<li><a href="#store-config"><span><?php echo lang('store_tab_config');?></span></a></li>
 		<li><a href="#store-additional-info"><span><?php echo lang('store_tab_additional_info');?></span></a></li>
 
 	</ul>
 	<!-- Content tab -->
-	<div id="store-content">
+	<div id="store-config">
 		<ul>
 			<li class="<?php echo alternator('even', ''); ?>">
 				<?php echo lang('store_field_name','name'); ?>
-				<?php echo form_input('name',set_value('name',$this->item->name),'class="text" maxlength="10"'); ?>
+				<?php echo form_input('name',set_value('name',$this->item->name),'class="text" maxlength="50"'); ?>
 				<span class="required-icon tooltip"><?php echo lang('required_label');?></span>
 			</li>
 			<li class="<?php echo alternator('even', ''); ?>">
@@ -106,7 +106,7 @@
 		<ul>
 			<li class="<?php echo alternator('even', ''); ?>">
 				<?php echo lang('store_field_agb','terms_and_conditions'); ?>
-				<?php echo form_textarea('terms_and_conditions',set_value('terms_and_conditions',$this->item->terms_and_conditions),'rows="7"'); ?>
+				<?php echo form_textarea('terms_and_conditions',set_value('terms_and_conditions',$this->item->terms_and_conditions),'rows="7" class="wysiwyg-simple"'); ?>
 				<span class="required-icon tooltip"><?php echo lang('required_label');?></span>
 			</li>
 			<li class="<?php echo alternator('even', ''); ?>">
