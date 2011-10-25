@@ -129,7 +129,7 @@ class Store_m extends MY_Model {
 
 	public function get_store_id()
 	{
-		$this->query = $this->db->query("SELECT * FROM " . $this->_table['core_stores']. " WHERE core_sites_id='" . $this->store_m->get_core_site_id() . "';");
+		$this->query = $this->db->query("SELECT * FROM " . $this->_table['core_stores']. " WHERE core_sites_id='" . $this->store_m->get_core_site_id(SITE_REF) . "';");
 		foreach($this->query->result() as $this->item)
 		{
 			return $this->item->id;
