@@ -36,15 +36,9 @@ class Module_Store extends Module {
 			CREATE  TABLE IF NOT EXISTS `core_stores` (
 				`store_id` INT NOT NULL AUTO_INCREMENT ,
 				`core_sites_id` INT(5) NOT NULL ,
-				PRIMARY KEY (`store_id`, `core_sites_id`) ,
-				INDEX `fk_core_stores_core_sites1` (`core_sites_id` ASC) ,
-				CONSTRAINT `fk_core_stores_core_sites1`
-				FOREIGN KEY (`core_sites_id` )
-				REFERENCES `core_sites` (`id` )
-				ON DELETE NO ACTION
-				ON UPDATE NO ACTION)
+				PRIMARY KEY (`store_id`, `core_sites_id`) )
 			ENGINE = InnoDB;");
-		
+
 		$this->db->query("
 			CREATE  TABLE IF NOT EXISTS `" . $this->db->dbprefix('store_currency') . "` (
 				`currency_id` INT NOT NULL AUTO_INCREMENT ,
@@ -52,9 +46,9 @@ class Module_Store extends Module {
 				`currency_name` VARCHAR(100) NULL ,
 				PRIMARY KEY (`currency_id`) )
 			ENGINE = InnoDB;");
-		
+	
 		$this->db->query("INSERT INTO `" . $this->db->dbprefix('store_currency') . "` (currency_id, currency_symbol, currency_name) VALUES (null, '&euro;', 'Euro') ");
-		
+
 		$this->db->query("
 			CREATE  TABLE IF NOT EXISTS `" . $this->db->dbprefix('store_config') . "` (
 				`config_id` INT NOT NULL AUTO_INCREMENT ,
@@ -73,24 +67,12 @@ class Module_Store extends Module {
 				`terms_and_conditions` LONGTEXT NULL ,
 				`privacy_policy` LONGTEXT NULL ,
 				`delivery_information` LONGTEXT NULL ,
-				PRIMARY KEY (`config_id`) ,
-				INDEX `fk_store_config_store_currency` (`currency` ASC) ,
-				INDEX `fk_store_config_core_stores1` (`store_id` ASC) ,
-				CONSTRAINT `fk_store_config_store_currency`
-				FOREIGN KEY (`currency` )
-				REFERENCES `" . $this->db->dbprefix('store_currency') . "` (`currency_id` )
-				ON DELETE NO ACTION
-				ON UPDATE NO ACTION,
-				CONSTRAINT `fk_store_config_core_stores1`
-				FOREIGN KEY (`store_id` )
-				REFERENCES `core_stores` (`store_id` )
-				ON DELETE NO ACTION
-				ON UPDATE NO ACTION)
+				PRIMARY KEY (`config_id`) )
 			ENGINE = InnoDB;");
-		
+
 		$this->db->query("INSERT INTO `core_stores` (store_id, core_sites_id) VALUES (null,(SELECT `id` FROM `core_sites` WHERE ref='" . $this->site_ref . "')) ");
 		$this->db->query("INSERT INTO `" . $this->db->dbprefix('store_config') . "` (store_id, currency) VALUES (LAST_INSERT_ID(), '1') ");
-				
+
 		$this->db->query("
 			CREATE  TABLE IF NOT EXISTS `" . $this->db->dbprefix('store_users_addresses') . "` (
 				`users_id` SMALLINT(5) UNSIGNED NOT NULL ,
@@ -109,43 +91,9 @@ class Module_Store extends Module {
 				`postal_code` VARCHAR(8) NULL ,
 				`country` VARCHAR(100) NULL ,
 				`state` VARCHAR(100) NULL ,
-				PRIMARY KEY (`users_id`, `addresses_users_id`) ,
-				INDEX `fk_store_users_addresses_default_users1` (`users_id` ASC) ,
-				CONSTRAINT `fk_store_users_addresses_default_users1`
-				FOREIGN KEY (`users_id` )
-				REFERENCES `" . $this->db->dbprefix('default_users') . "` (`id` )
-				ON DELETE NO ACTION
-				ON UPDATE NO ACTION)
+				PRIMARY KEY (`users_id`, `addresses_users_id`) )
 			ENGINE = InnoDB;");
-		
-		$this->db->query("
-			CREATE  TABLE IF NOT EXISTS `" . $this->db->dbprefix('store_categories') . "` (
-				`categories_id` INT NOT NULL AUTO_INCREMENT ,
-				`config_id` INT NOT NULL ,
-				`name` VARCHAR(50) NOT NULL ,
-				`html` LONGTEXT NULL ,
-				`parent_id` INT NULL ,
-				`images_id` VARCHAR(50) NULL ,
-				`thumbnail_id` VARCHAR(50) NULL ,
-				PRIMARY KEY (`categories_id`, `config_id`) ,
-				UNIQUE INDEX `name_UNIQUE` (`name` ASC) ,
-				INDEX `fk_store_categories_store_config1` (`config_id` ASC) ,
-				CONSTRAINT `fk_store_categories_store_config1`
-				FOREIGN KEY (`config_id` )
-				REFERENCES `" . $this->db->dbprefix('store_config') . "` (`config_id` )
-				ON DELETE NO ACTION
-				ON UPDATE NO ACTION)
-			ENGINE = InnoDB;");
-		
-		$this->db->query("
-			CREATE  TABLE IF NOT EXISTS `" . $this->db->dbprefix('store_attributes') . "` (
-				`attributes_id` INT NOT NULL AUTO_INCREMENT ,
-				`name` VARCHAR(50) NOT NULL ,
-				`html` LONGTEXT NULL ,
-				PRIMARY KEY (`attributes_id`) ,
-				UNIQUE INDEX `name_UNIQUE` (`name` ASC) )
-			ENGINE = InnoDB;");
-		
+
 		$this->db->query("
 			CREATE  TABLE IF NOT EXISTS `" . $this->db->dbprefix('store_products') . "` (
 				`products_id` INT NOT NULL AUTO_INCREMENT ,
@@ -165,56 +113,47 @@ class Module_Store extends Module {
 				`thumbnail_id` VARCHAR(50) NULL ,
 				`allow_comments` ENUM('1','0') NULL ,
 				PRIMARY KEY (`products_id`, `categories_id`, `config_id`) ,
-				UNIQUE INDEX `name_UNIQUE` (`name` ASC) ,
-				INDEX `fk_store_products_store_categories1` (`categories_id` ASC) ,
-				INDEX `fk_store_products_store_config1` (`config_id` ASC) ,
-				INDEX `fk_store_products_store_attributes1` (`attributes_id` ASC) ,
-				CONSTRAINT `fk_store_products_store_categories1`
-				FOREIGN KEY (`categories_id` )
-				REFERENCES `" . $this->db->dbprefix('store_categories') . "` (`categories_id` )
-				ON DELETE NO ACTION
-				ON UPDATE NO ACTION,
-				CONSTRAINT `fk_store_products_store_config1`
-				FOREIGN KEY (`config_id` )
-				REFERENCES `" . $this->db->dbprefix('store_config') . "` (`config_id` )
-				ON DELETE NO ACTION
-				ON UPDATE NO ACTION,
-				CONSTRAINT `fk_store_products_store_attributes1`
-				FOREIGN KEY (`attributes_id` )
-				REFERENCES `" . $this->db->dbprefix('store_attributes') . "` (`attributes_id` )
-				ON DELETE NO ACTION
-				ON UPDATE NO ACTION)
+				UNIQUE INDEX `name_UNIQUE` (`name` ASC) )
 			ENGINE = InnoDB;");
-		
+
+		$this->db->query("
+			CREATE  TABLE IF NOT EXISTS `" . $this->db->dbprefix('store_categories') . "` (
+				`categories_id` INT NOT NULL AUTO_INCREMENT ,
+				`config_id` INT NOT NULL ,
+				`name` VARCHAR(50) NOT NULL ,
+				`html` LONGTEXT NULL ,
+				`parent_id` INT NULL ,
+				`images_id` VARCHAR(50) NULL ,
+				`thumbnail_id` VARCHAR(50) NULL ,
+				PRIMARY KEY (`categories_id`, `config_id`) ,
+				UNIQUE INDEX `name_UNIQUE` (`name` ASC) )
+			ENGINE = InnoDB;");
+
+		$this->db->query("
+			CREATE  TABLE IF NOT EXISTS `" . $this->db->dbprefix('store_attributes') . "` (
+				`attributes_id` INT NOT NULL AUTO_INCREMENT ,
+				`name` VARCHAR(50) NOT NULL ,
+				`html` LONGTEXT NULL ,
+				PRIMARY KEY (`attributes_id`) ,
+				UNIQUE INDEX `name_UNIQUE` (`name` ASC) )
+			ENGINE = InnoDB;");
+
 		$this->db->query("
 			CREATE  TABLE IF NOT EXISTS `" . $this->db->dbprefix('store_tags') . "` (
 				`tags_id` INT NOT NULL AUTO_INCREMENT ,
 				`name` VARCHAR(50) NULL ,
 				PRIMARY KEY (`tags_id`) )
 			ENGINE = InnoDB;");
-		
+
 		$this->db->query("
 			CREATE  TABLE IF NOT EXISTS `" . $this->db->dbprefix('store_products_has_tags') . "` (
 				`products_id` INT NOT NULL ,
 				`categories_id` INT NOT NULL ,
 				`config_id` INT NOT NULL ,
 				`tags_id` INT NOT NULL ,
-				PRIMARY KEY (`products_id`, `categories_id`, `config_id`, `tags_id`) ,
-				INDEX `fk_store_products_has_store_tags_store_tags1` (`tags_id` ASC) ,
-				INDEX `fk_store_products_has_store_tags_store_products1` (`products_id` ASC, `categories_id` ASC, `config_id` ASC) ,
-				CONSTRAINT `fk_store_products_has_store_tags_store_products1`
-				FOREIGN KEY (`products_id` , `categories_id` , `config_id` )
-				REFERENCES `" . $this->db->dbprefix('store_products') . "` (`products_id` , `categories_id` , `config_id` )
-				ON DELETE NO ACTION
-				ON UPDATE NO ACTION,
-				CONSTRAINT `fk_store_products_has_store_tags_store_tags1`
-				FOREIGN KEY (`tags_id` )
-				REFERENCES `" . $this->db->dbprefix('store_tags') . "` (`tags_id` )
-				ON DELETE NO ACTION
-				ON UPDATE NO ACTION)
+				PRIMARY KEY (`products_id`, `categories_id`, `config_id`, `tags_id`) )
 			ENGINE = InnoDB;");
-		
-		
+
 		$this->db->query("
 			CREATE  TABLE IF NOT EXISTS `" . $this->db->dbprefix('store_order_addresses') . "` (
 				`addresses_orders_id` INT NOT NULL AUTO_INCREMENT ,
@@ -234,7 +173,7 @@ class Module_Store extends Module {
 				`state` VARCHAR(100) NULL ,
 				PRIMARY KEY (`addresses_orders_id`) )
 			ENGINE = InnoDB;");
-		
+
 		$this->db->query("
 			CREATE  TABLE IF NOT EXISTS `" . $this->db->dbprefix('store_orders') . "` (
 				`orders_id` INT NOT NULL AUTO_INCREMENT ,
@@ -252,27 +191,9 @@ class Module_Store extends Module {
 				`shipping_method` VARCHAR(45) NULL ,
 				`tax` FLOAT NULL ,
 				`shipping_cost` FLOAT NULL ,
-				PRIMARY KEY (`orders_id`, `users_id`, `payment_address`, `shipping_address`) ,
-				INDEX `fk_store_orders_default_users1` (`users_id` ASC) ,
-				INDEX `fk_store_orders_store_order_addresses1` (`shipping_address` ASC) ,
-				INDEX `fk_store_orders_store_users_addresses1` (`payment_address` ASC) ,
-				CONSTRAINT `fk_store_orders_default_users1`
-				FOREIGN KEY (`users_id` )
-				REFERENCES `" . $this->db->dbprefix('default_users') . "` (`id` )
-				ON DELETE NO ACTION
-				ON UPDATE NO ACTION,
-				CONSTRAINT `fk_store_orders_store_order_addresses1`
-				FOREIGN KEY (`shipping_address` )
-				REFERENCES `" . $this->db->dbprefix('store_order_addresses') . "` (`addresses_orders_id` )
-				ON DELETE NO ACTION
-				ON UPDATE NO ACTION,
-				CONSTRAINT `fk_store_orders_store_users_addresses1`
-				FOREIGN KEY (`payment_address` )
-				REFERENCES `" . $this->db->dbprefix('store_users_addresses') . "` (`addresses_users_id` )
-				ON DELETE NO ACTION
-				ON UPDATE NO ACTION)
+				PRIMARY KEY (`orders_id`, `users_id`, `payment_address`, `shipping_address`) )
 			ENGINE = InnoDB;");
-		
+
 		$this->db->query("
 			CREATE  TABLE IF NOT EXISTS `" . $this->db->dbprefix('store_orders_has_store_products') . "` (
 				`orders_id` INT NOT NULL ,
@@ -281,19 +202,7 @@ class Module_Store extends Module {
 				`categories_id` INT NOT NULL ,
 				`config_id` INT NOT NULL ,
 				`number` INT NULL ,
-				PRIMARY KEY (`orders_id`, `users_id`, `products_id`, `categories_id`, `config_id`) ,
-				INDEX `fk_store_orders_has_store_products_store_products1` (`products_id` ASC, `categories_id` ASC, `config_id` ASC) ,
-				INDEX `fk_store_orders_has_store_products_store_orders1` (`orders_id` ASC, `users_id` ASC) ,
-				CONSTRAINT `fk_store_orders_has_store_products_store_orders1`
-				FOREIGN KEY (`orders_id` , `users_id` )
-				REFERENCES `" . $this->db->dbprefix('store_orders') . "` (`orders_id` , `users_id` )
-				ON DELETE NO ACTION
-				ON UPDATE NO ACTION,
-				CONSTRAINT `fk_store_orders_has_store_products_store_products1`
-				FOREIGN KEY (`products_id` , `categories_id` , `config_id` )
-				REFERENCES `" . $this->db->dbprefix('store_products') . "` (`products_id` , `categories_id` , `config_id` )
-				ON DELETE NO ACTION
-				ON UPDATE NO ACTION)
+				PRIMARY KEY (`orders_id`, `users_id`, `products_id`, `categories_id`, `config_id`) )
 			ENGINE = InnoDB;");
 			
 		if(is_dir('uploads/store') OR @mkdir('uploads/store',0777,TRUE))
