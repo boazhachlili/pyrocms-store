@@ -91,7 +91,7 @@ class Module_Store extends Module {
 				`postal_code` VARCHAR(8) NULL ,
 				`country` VARCHAR(100) NULL ,
 				`state` VARCHAR(100) NULL ,
-				PRIMARY KEY (`users_id`, `addresses_users_id`) )
+				PRIMARY KEY (`addresses_users_id`, `users_id`) )
 			ENGINE = InnoDB;");
 
 		$this->db->query("
@@ -223,9 +223,7 @@ class Module_Store extends Module {
 		$this->db->query("DROP TABLE IF EXISTS `" . $this->db->dbprefix('store_products_has_tags') . "`;");
 		$this->db->query("DROP TABLE IF EXISTS `" . $this->db->dbprefix('store_orders') . "`;");
 		$this->db->query("DROP TABLE IF EXISTS `" . $this->db->dbprefix('store_order_addresses') . "`;");
-		$this->db->query("DROP TABLE IF EXISTS `" . $this->db->dbprefix('store_orders_products') . "`;");
-		$this->db->query("DROP TABLE IF EXISTS `" . $this->db->dbprefix('store_products_has_orders') . "`;");
-		$this->db->query("DROP TABLE IF EXISTS `" . $this->db->dbprefix('store_orders_has_products') . "`;");
+		$this->db->query("DROP TABLE IF EXISTS `" . $this->db->dbprefix('store_orders_has_store_products') . "`;");
 
 		$this->db->delete('settings', array('module' => 'store'));
 		{
