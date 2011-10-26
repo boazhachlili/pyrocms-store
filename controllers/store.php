@@ -17,7 +17,8 @@ class Store extends Public_Controller
 		// Load the required classes
 		$this->load->library('cart');
 		$this->load->model('store_m');
-		$this->lang->load('store');
+		$this->load->language('store');
+		$this->load->helper('date');
 		
 		$this->template->append_metadata(css('store.css', 'store'))
 						->append_metadata(js('store.js', 'store'));

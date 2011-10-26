@@ -17,7 +17,8 @@ class Admin extends Admin_Controller
 		// Load all the required classes
 		$this->load->model('store_m');
 		$this->load->library('form_validation');
-		$this->lang->load('store');
+		$this->load->language('store');
+		$this->load->helper('date');
 
 		
 		// Set the validation rules
