@@ -62,6 +62,10 @@ class Store extends Public_Controller
 		$this->template->build('cart', $this->data);
 	}
 	
+	public function checkout_cart(){
+		$this->store_m->build_order();
+	}
+	
 	public function update_cart(){
 		$this->redirect = $this->input->post('redirect');
 		$this->data = $this->input->post();

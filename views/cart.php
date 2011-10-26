@@ -17,7 +17,7 @@
 		<div id="cart_header_name"><?php echo $this->lang->line('store_label_cart_name'); ?></div>
 		<div id="cart_header_price"><?php echo $this->lang->line('store_label_cart_price'); ?></div>
 		<div id="cart_header_subtotal"><?php echo $this->lang->line('store_label_cart_subtotal'); ?></div>
-	</div>';
+	</div>
 	<?php $i=1; foreach($this->cart->contents() as $items) { ?>
 		<?php echo form_hidden($i.'[rowid]', $items['rowid']); ?>
 		<div class="cart_items">
@@ -48,10 +48,13 @@
 		</div>
 		
 		<div id="cart_controls">
-			<?php echo anchor('https://paypal.com',$this->lang->line('store_button_cart_paypal'),'class="button" id="cart_control_paypal"'); ?>
 			<?php echo form_submit('', $this->lang->line('store_button_cart_update'),'id="cart_control_update"'); ?>
+			<?php echo form_close(); ?>
+			<?php echo form_open('/store/checkout_cart/'); ?>
+			<?php echo form_dropdown('gateway', array('paypal' => 'paypal','authorize' => 'authorize','twoco' => 'twoco'),'paypal'); ?>
+			<?php echo form_submit('', $this->lang->line('store_button_cart_checkout'),'id="cart_control_checkout"'); ?>
+			<?php echo form_close(); ?>
 		</div>
-		<?php echo form_close(); ?>
 	<?php } else { ?>
 		<?php echo $this->lang->line('store_label_cart_empty'); ?>
 	<?php } ?>
