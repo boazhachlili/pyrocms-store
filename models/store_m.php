@@ -342,15 +342,22 @@ class Store_m extends MY_Model {
 			'tax'				=>	'0',
 			'shipping_cost'		=>	'0',
 		);
+		
 		$this->db->insert('store_orders',$this->data);
 		$this->order_id = $this->db->insert_id();
 		
-		$this->data = array(
-			''	=>	'',
-			''	=>	'',
-			''	=>	''
-		);
-		$this->db->insert('store_orders',$this->data);
+		foreach($this->cart->contents() as $items)
+		{
+			$this->data = array(
+				'orders_id'		=>	$this->order_id,
+				'users_id'		=>	$this->user->id,
+				'products_id'	=>	$items['id'],
+				'number'		=>	$items['qty']
+			);
+			$this->db->insert('store_orders_has_store_products',$this->data);
+		}
+		
+		redirect('/store/checkout/process/' . $this->input->post('gateway') . '/');
 	}
 	
 	public function ipn_paypal_success($orders_id)
