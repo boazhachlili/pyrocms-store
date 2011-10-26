@@ -32,7 +32,7 @@ class Checkout extends Public_Controller
 	}
 	
 	public function process($gateway,$orders_id){
-		
+		$this->orders = $this->store_m->get_order($orders_id);
 		switch($gateway)
 		{
 			case 'paypal':
@@ -42,11 +42,13 @@ class Checkout extends Public_Controller
 				$this->paypal->addField('cancel_return', site_url('/store/checkout/status/paypal/failure/' . $orders_id . '/'));
 				$this->paypal->addField('notify_url', site_url('/store/checkout/ipn/paypal/' . $orders_id . '/'));
 				
-				if($this->cart->contents()) {
-					$this->paypal->addField('item_name', '');
-					$this->paypal->addField('amount', '');
-					$this->paypal->addField('item_number', '');
-					$this->paypal->addField('custom', 'muri-khao');
+				foreach($this->orders->result() as $this->item)
+				{
+					$this->paypal->addField('item_name', $this->store_m->get_orders_product_name($this->item->products_id));
+					$this->paypal->addField('amount', $this->store_m->get_orders_product_price($this->item->products_id));
+					$this->paypal->addField('item_number', $this->item->products_id);
+					$this->paypal->addField('quantity', $this->item->number);
+					$this->paypal->addField('custom', $this->store_m->get_orders_users($this->item->users_id));
 				}
 				$this->paypal->enableTestMode();
 				
