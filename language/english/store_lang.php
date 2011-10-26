@@ -12,6 +12,9 @@
 $lang['store_shortcut_list_store']			= 'Store Index';
 $lang['store_shortcut_add_category']		= 'Add Category';
 $lang['store_shortcut_add_product']			= 'Add Product';
+$lang['store_shortcut_list_products']		= 'List Products';
+$lang['store_shortcut_list_categories']		= 'List Categories';
+
 
 // Titles
 $lang['store_title_store']         			= 'Store';

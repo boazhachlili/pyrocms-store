@@ -13,7 +13,7 @@
 		<?php foreach($sql->result() as $this->categories) { ?>
 		<li>
 			<div>
-				<a href="/store/category/<?php echo $this->categories->categories_id; ?>/" title="<?php echo $this->categories->name; ?>"><?php echo $this->categories->name; ?></a>
+				<a href="<?php echo site_url(); ?>store/category/<?php echo $this->categories->categories_id; ?>/" title="<?php echo $this->categories->name; ?>"><?php echo $this->categories->name; ?></a>
 			</div>
 			<div>
 				<img src="" alt="<?php echo $this->categories->name; ?>" />
