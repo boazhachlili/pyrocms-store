@@ -75,13 +75,4 @@ class Store extends Public_Controller
 		$this->cart->insert($this->data);
 		redirect($this->redirect);
 	}
-	
-	public function checkout(){
-		
-		$this->data = array(
-			''	=>	''
-		);
-		
-		$this->template->build('checkout', $this->data);
-	}
 }

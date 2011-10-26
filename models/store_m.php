@@ -273,4 +273,57 @@ class Store_m extends MY_Model {
 			return $this->result;
 		}
 	}
+	
+	public function build_order()
+	{
+		$this->data = array(
+			'users_id'			=>	$this->user->id,
+			'invoice_nr'		=>	rand(1, 100),
+			'ip_address'		=>	$this->input->ip_address(),
+			'telefone'			=>	'0',
+			'status'			=>	'pending',
+			'comments'			=>	'0',
+			'date_added'		=>	mdate("yyyy-MM-dd HH:mm:SS",now()),
+			'date_modified'		=>	mdate("yyyy-MM-dd HH:mm:SS",now()),
+			'payment_adress'	=>	'0',
+			'shipping_adress'	=>	'0',
+			'payment_method'	=>	'0',
+			'shipping_method'	=>	'0',
+			'tax'				=>	'0',
+			'shipping_cost'		=>	'0',
+		);
+		$this->db->insert('store_orders',$this->data);
+		$this->order_id = $this->db->insert_id();
+		
+		$this->data = array(
+			''	=>	'',
+			''	=>	'',
+			''	=>	''
+		);
+		$this->db->insert('store_orders',$this->data);
+	}
+	
+	public function ipn_paypal_success($orders_id)
+	{
+	}
+	
+	public function ipn_paypal_failure($orders_id,$ipn_data)
+	{
+	}
+	
+	public function ipn_authorize_success($orders_id)
+	{
+	}
+	
+	public function ipn_authorize_failure($orders_id,$ipn_data)
+	{
+	}
+	
+	public function ipn_twoco_success($orders_id)
+	{
+	}
+	
+	public function ipn_twoco_failure($orders_id,$ipn_data)
+	{
+	}
 }
