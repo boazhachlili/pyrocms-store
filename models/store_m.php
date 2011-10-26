@@ -195,6 +195,55 @@ class Store_m extends MY_Model {
 		return $this->db->insert($this->_table['store_categories'],$this->data);
 	}	
 	
+	
+	public function add_product(){
+		
+		$id = $this->store_m->get_store_id();
+		$this->data = array(
+	       		'categories_id'				=>	$this->input->post('categories_id'),
+			'config_id'				=>	$this->store_m->get_store_id(),
+			'attributes_id'				=>	$this->input->post('attributes_id'),
+			'name'					=>	$this->input->post('name'),
+			'meta_description'			=>	$this->input->post('meta_description'),
+			'meta_keywords'				=>	$this->input->post('meta_keywords'),
+			'html'					=>	$this->input->post('html'),
+			'price'					=>	$this->input->post('price'),
+			'stock'					=>	$this->input->post('stock'),
+			'limited'				=>	$this->input->post('limited'),
+			'limited_used'				=>	$this->input->post('limited_used'),
+			'discount'				=>	$this->input->post('discount'),
+			'images_id'				=>	$this->input->post('images_id'),
+			'thumbnail_id'				=>	$this->input->post('thumbnail_id'),
+			'allow_comments'			=>	$this->input->post('allow_comments')
+			
+	    );
+		$this->db->where('store_products',$id);
+		return $this->db->insert($this->_table['store_products'],$this->data);
+	}		
+
+	public function make_currency_dropdown()
+        {
+            $query = $this->db->get('store_currency');
+            if ($query->num_rows() == 0)
+            {
+                return array();
+            }
+            else
+            {
+
+                $data  = array('0'=>'Select');
+                foreach($query->result() as $row)
+                {
+
+                    $data[$row->currency_id] = $row->currency_name;
+
+                }
+
+                return $data;
+            }
+
+        }	
+	
 	public function make_categories_dropdown()
         {
             $query = $this->db->get('store_categories');

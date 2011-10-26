@@ -40,7 +40,7 @@
 			</li>
 			<li class="<?php echo alternator('even', ''); ?>">
 				<?php echo lang('store_field_currency','currency'); ?>
-				<?php echo form_input('currency',set_value('currency',$this->item->currency),'class="text" maxlength="10"'); ?>
+				<?php echo form_dropdown('currency',$this->store_m->make_currency_dropdown(),'class="text" maxlength="50"'); ?>
 				<span class="required-icon tooltip"><?php echo lang('required_label');?></span>
 			</li>
 			<li class="<?php echo alternator('even', ''); ?>">

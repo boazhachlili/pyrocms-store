@@ -116,3 +116,22 @@ $lang['store_cat_add_parent_id']			= 'Parent';
 $lang['store_cat_add_images_id']			= 'Images';
 $lang['store_cat_add_thumbnail']			= 'Thumbnail';
 $lang['store_cat_add_store_id']				= 'Store ID';
+
+// Add Product
+$lang['store_product_add_label']					= 'Add Product';
+$lang['store_product_add_product_id']				= 'Product ID';
+$lang['store_product_add_category_id']				= 'Category';
+$lang['store_product_add_name']						= 'Name';
+$lang['store_product_add_meta_description']			= 'Meta Description';
+$lang['store_product_add_meta_keywords']			= 'Meta Keywords';
+$lang['store_product_add_html']						= 'Description';
+$lang['store_product_add_price']					= 'Price';
+$lang['store_product_add_stock']					= 'Stock';
+$lang['store_product_add_limited']					= 'Limited Quantity';
+$lang['store_product_add_limited_used']				= 'Limited Used';
+$lang['store_product_add_discount']					= 'Discount';
+$lang['store_product_add_attributes_id']			= 'Attributes';
+$lang['store_product_add_images_id']				= 'Images';
+$lang['store_product_add_thumbnail']				= 'Thumbnail';
+$lang['store_product_add_store_id']					= 'Store ID';
+$lang['store_product_add_allow_comments']			= 'Allow Comments';

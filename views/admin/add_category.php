@@ -21,12 +21,12 @@
 	<ol>
 		<li class="<?php echo alternator('even', ''); ?>">
 			<?php echo lang('store_cat_add_name','name'); ?>
-			<?php echo form_input('name',set_value('name',''),'class="text" maxlength="10"'); ?>
+			<?php echo form_input('name',set_value('name',''),'class="text" maxlength="50"'); ?>
 			<span class="required-icon tooltip"><?php echo lang('required_label');?></span>
 		</li>
 		<li class="<?php echo alternator('even', ''); ?>">
 			<?php echo lang('store_cat_add_html','html'); ?>
-			<?php echo form_textarea('html',set_value('html',''),'class="wysiwyg-simple" maxlength="10"'); ?>
+			<?php echo form_textarea('html',set_value('html',''),'class="wysiwyg-simple" maxlength="1000"'); ?>
 			<span class="required-icon tooltip"><?php echo lang('required_label');?></span>
 		</li>
 		
