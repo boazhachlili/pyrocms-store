@@ -67,16 +67,16 @@ class Module_Store extends Module {
 		$this->db->query("INSERT INTO `" . $this->db->dbprefix('store_settings') . "` (`settings_id`, `slug`, `type`, `value`, `options`, `tab`, `is_required`, `gui`, `order`) VALUES (null, 'active', 'radio', '', '', 'general', '1', '1', '10');");
 		$this->db->query("INSERT INTO `" . $this->db->dbprefix('store_settings') . "` (`settings_id`, `slug`, `type`, `value`, `options`, `tab`, `is_required`, `gui`, `order`) VALUES (null, 'is_default', 'radio', '', '', 'general', '1', '1', '11');");
 		
-		$this->db->query("INSERT INTO `" . $this->db->dbprefix('store_settings') . "` (`settings_id`, `slug`, `type`, `value`, `options`, `tab`, `is_required`, `gui`, `order`) VALUES (null, 'paypal_enabled', 'checkbox', '0', '', 'payment-gateways', '1', '1', '12');");
+		$this->db->query("INSERT INTO `" . $this->db->dbprefix('store_settings') . "` (`settings_id`, `slug`, `type`, `value`, `options`, `tab`, `is_required`, `gui`, `order`) VALUES (null, 'paypal_enabled', 'radio', '0', '', 'payment-gateways', '1', '1', '12');");
 		$this->db->query("INSERT INTO `" . $this->db->dbprefix('store_settings') . "` (`settings_id`, `slug`, `type`, `value`, `options`, `tab`, `is_required`, `gui`, `order`) VALUES (null, 'paypal_account', 'text', '', '', 'payment-gateways', '1', '1', '13');");
 		$this->db->query("INSERT INTO `" . $this->db->dbprefix('store_settings') . "` (`settings_id`, `slug`, `type`, `value`, `options`, `tab`, `is_required`, `gui`, `order`) VALUES (null, 'paypal_developer_mode', 'radio', '1', '', 'payment-gateways', '1', '1', '14');");
 		
-		$this->db->query("INSERT INTO `" . $this->db->dbprefix('store_settings') . "` (`settings_id`, `slug`, `type`, `value`, `options`, `tab`, `is_required`, `gui`, `order`) VALUES (null, 'authorize_enabled', 'checkbox', '0', '', 'payment-gateways', '1', '1', '15');");
+		$this->db->query("INSERT INTO `" . $this->db->dbprefix('store_settings') . "` (`settings_id`, `slug`, `type`, `value`, `options`, `tab`, `is_required`, `gui`, `order`) VALUES (null, 'authorize_enabled', 'radio', '0', '', 'payment-gateways', '1', '1', '15');");
 		$this->db->query("INSERT INTO `" . $this->db->dbprefix('store_settings') . "` (`settings_id`, `slug`, `type`, `value`, `options`, `tab`, `is_required`, `gui`, `order`) VALUES (null, 'authorize_account', 'text', '', '', 'payment-gateways', '1', '1', '16');");
 		$this->db->query("INSERT INTO `" . $this->db->dbprefix('store_settings') . "` (`settings_id`, `slug`, `type`, `value`, `options`, `tab`, `is_required`, `gui`, `order`) VALUES (null, 'authorize_secret', 'text', '', '', 'payment-gateways', '1', '1', '17');");
 		$this->db->query("INSERT INTO `" . $this->db->dbprefix('store_settings') . "` (`settings_id`, `slug`, `type`, `value`, `options`, `tab`, `is_required`, `gui`, `order`) VALUES (null, 'authorize_developer_mode', 'radio', '1', '', 'payment-gateways', '1', '1', '18');");
 		
-		$this->db->query("INSERT INTO `" . $this->db->dbprefix('store_settings') . "` (`settings_id`, `slug`, `type`, `value`, `options`, `tab`, `is_required`, `gui`, `order`) VALUES (null, 'twoco_enabled', 'checkbox', '0', '', 'payment-gateways', '1', '1', '19');");
+		$this->db->query("INSERT INTO `" . $this->db->dbprefix('store_settings') . "` (`settings_id`, `slug`, `type`, `value`, `options`, `tab`, `is_required`, `gui`, `order`) VALUES (null, 'twoco_enabled', 'radio', '0', '', 'payment-gateways', '1', '1', '19');");
 		$this->db->query("INSERT INTO `" . $this->db->dbprefix('store_settings') . "` (`settings_id`, `slug`, `type`, `value`, `options`, `tab`, `is_required`, `gui`, `order`) VALUES (null, 'twoco_account', 'text', '', '', 'payment-gateways', '1', '1', '20');");
 		$this->db->query("INSERT INTO `" . $this->db->dbprefix('store_settings') . "` (`settings_id`, `slug`, `type`, `value`, `options`, `tab`, `is_required`, `gui`, `order`) VALUES (null, 'twoco_developer_mode', 'radio', '1', '', 'payment-gateways', '1', '1', '21');");
 		
