@@ -105,7 +105,7 @@ class Admin extends Admin_Controller
 		{
 			
 			$this->session->set_flashdata('success', lang('store_messages_edit_success'));
-			$this->store_m->edit();
+			$this->store_settings->settings_manager_store();
 			redirect('admin/store');
 		}
 	}

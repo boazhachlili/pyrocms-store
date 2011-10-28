@@ -30,20 +30,20 @@ $lang['store_tab_config']					= 'Store Config';
 $lang['store_tab_additional_info']			= 'Additional Information';
 
 // Fields
-$lang['store_field_name']					= 'Store name';
-$lang['store_field_email']					= 'Store default email';
-$lang['store_field_additional_emails']		= 'Additional emails (Separate with ",")';
-$lang['store_field_currency']				= 'Default currency';
-$lang['store_field_item_per_page']			= 'Items per Page';
-$lang['store_field_show_with_tax']			= 'Show with Tax';
-$lang['store_field_display_stock']			= 'Display Stock';
-$lang['store_field_allow_comments']			= 'Allow Comments';
-$lang['store_field_new_order_mail_alert']	= 'Mail Alert on new Order';
-$lang['store_field_active']					= 'Is active';
-$lang['store_field_is_default']				= 'Is default';
-$lang['store_field_agb']					= 'Store AGB';
-$lang['store_field_privacy_policy']			= 'Store Privacy Policy';
-$lang['store_field_delivery_information']	= 'Store Delivery Information';
+$lang['store_settings_name']					= 'Store name';
+$lang['store_settings_email']					= 'Store default email';
+$lang['store_settings_additional_emails']		= 'Additional emails (Separate with ",")';
+$lang['store_settings_currency']				= 'Default currency';
+$lang['store_settings_item_per_page']			= 'Items per Page';
+$lang['store_settings_show_with_tax']			= 'Show with Tax';
+$lang['store_settings_display_stock']			= 'Display Stock';
+$lang['store_settings_allow_comments']			= 'Allow Comments';
+$lang['store_settings_new_order_mail_alert']	= 'Mail Alert on new Order';
+$lang['store_settings_active']					= 'Is active';
+$lang['store_settings_is_default']				= 'Is default';
+$lang['store_settings_terms_and_conditions']	= 'Store AGB';
+$lang['store_settings_privacy_policy']			= 'Store Privacy Policy';
+$lang['store_settings_delivery_information']	= 'Store Delivery Information';
 
 // Radios
 $lang['store_radio_yes']					= ' Yes ';
