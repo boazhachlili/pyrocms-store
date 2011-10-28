@@ -37,8 +37,8 @@ class Checkout extends Public_Controller
 		switch($gateway)
 		{
 			case 'paypal':
-				$this->paypal->addField('business', 'payments@odin-ict.nl');
-				$this->paypal->addField('currency_code', 'EUR');
+				$this->paypal->addField('business', $this->store_settings->item('paypal_account'));
+				$this->paypal->addField('currency_code', $this->store_settings->currency());
 				$this->paypal->addField('return', site_url('/store/checkout/status/paypal/success/' . $orders_id . '/'));
 				$this->paypal->addField('cancel_return', site_url('/store/checkout/status/paypal/failure/' . $orders_id . '/'));
 				$this->paypal->addField('notify_url', site_url('/store/checkout/ipn/paypal/' . $orders_id . '/'));
@@ -51,35 +51,52 @@ class Checkout extends Public_Controller
 					$this->paypal->addField('quantity', $this->item->number);
 					$this->paypal->addField('custom', $this->store_m->get_orders_users($this->item->users_id));
 				}
-				$this->paypal->enableTestMode();
 				
+				if($this->store_settings->item('paypal_developer_mode') == 1)
+				{
+					$this->paypal->enableTestMode();
+				}
+
 				$this->paypal->submitPayment();
 			break;
 			
 			case 'authorize':
-				$this->authorize->setUserInfo('YOUR_LOGIN', 'YOUR_SECRET_KEY');
+				$this->authorize->setUserInfo($this->store_settings->item('authorize_account'), $this->store_settings->item('authorize_secret'));
 				$this->authorize->addField('x_Receipt_Link_URL', site_url('/store/checkout/status/authorize/success/' . $orders_id . '/'));
 				$this->authorize->addField('x_Relay_URL', site_url('/store/checkout/ipn/authorize/' . $orders_id . '/'));
 				
-				$this->authorize->addField('x_Description', 'T-Shirt');
-				$this->authorize->addField('x_Amount', '9.99');
-				$this->authorize->addField('x_Invoice_num', rand(1, 100));
-				$this->authorize->addField('x_Cust_ID', 'muri-khao');
+				foreach($this->orders->result() as $this->item)
+				{
+					$this->authorize->addField('x_Description', $this->store_m->get_orders_product_name($this->item->products_id));
+					$this->authorize->addField('x_Amount', $this->store_m->get_orders_product_price($this->item->products_id));
+					$this->authorize->addField('x_Invoice_num', $this->item->invoice_nr);
+					$this->authorize->addField('x_Cust_ID', $this->store_m->get_orders_users($this->item->users_id));	
+				}
 				
-				$this->authorize->enableTestMode();
+				if($this->store_settings->item('authorize_developer_mode') == 1)
+				{
+					$this->authorize->enableTestMode();
+				}
 				
 				$this->authorize->submitPayment();
 			break;
 			
 			case 'twoco':
-				$this->twoco->addField('sid', 'YOUR_VENDOR_ID');
-				$this->twoco->addField('cart_order_id', rand(1, 100));
-				$this->twoco->addField('total', '9.99');
+				$this->twoco->addField('sid', $this->store_settings->item('twoco_account'));
 				$this->twoco->addField('x_Receipt_Link_URL', site_url('/store/checkout/ipn/twoco/' . $orders_id . '/'));
-				$this->twoco->addField('tco_currency', 'USD');
-				$this->twoco->addField('custom', 'muri-khao');
+				$this->twoco->addField('tco_currency', $this->store_settings->currency());
 				
-				$this->twoco->enableTestMode();
+				foreach($this->orders->result() as $this->item)
+				{
+					$this->twoco->addField('cart_order_id', $this->item->invoice_nr);
+					$this->twoco->addField('total', $this->cart->format_number($this->cart->total()));
+					$this->twoco->addField('custom', $this->store_m->get_orders_users($this->item->users_id));
+				}
+				
+				if($this->store_settings->item('twoco_developer_mode') == 1)
+				{
+					$this->twoco->enableTestMode();
+				}
 				
 				$this->twoco->submitPayment();
 			break;

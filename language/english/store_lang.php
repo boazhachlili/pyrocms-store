@@ -27,6 +27,7 @@ $lang['store_title_add_category']         	= 'Store Add Category';
 
 // Tabs
 $lang['store_tab_config']					= 'Store Config';
+$lang['store_tab_payment_gateways']			= 'Payment Gateways';
 $lang['store_tab_additional_info']			= 'Additional Information';
 
 // Fields
