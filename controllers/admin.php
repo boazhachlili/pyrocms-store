@@ -20,8 +20,6 @@ class Admin extends Admin_Controller
 		$this->load->library('store_settings');
 		$this->load->language('store');
 		$this->load->helper('date');
-
-		$this->form_validation->set_rules($this->item_validation_rules);
 		
 		// We'll set the partials and metadata here since they're used everywhere
 		$this->template->set_partial('shortcuts', 'admin/partials/shortcuts')
@@ -33,7 +31,7 @@ class Admin extends Admin_Controller
 	{
 		$this->data = array();
 		
-		$this->item_validation_rules = array(
+		$this->validation_rules = array(
 				array('field' => 'name',					'label' => 'lang:store_field_name',					'rules' => 'trim|max_length[50]|required'),
 				array('field' => 'email',					'label' => 'lang:store_field_email',				'rules' => 'trim|max_length[100]|required|valid_email'),
 				array('field' => 'additional_emails',		'label' => 'lang:store_field_additional_emails',	'rules' => 'trim|max_length[100]|valid_emails'),
@@ -49,33 +47,25 @@ class Admin extends Admin_Controller
 				array('field' => 'delivery_information',	'label' => 'lang:store_field_delivery_information',	'rules' => 'required')
 		);
 		
-		$this->form_validation->set_rules($this->item_validation_rules);
-		if ($this->form_validation->run())
+		$this->form_validation->set_rules($this->validation_rules);
+		if ($this->form_validation->run()==FALSE)
 		{
-			
-			if ($this->store_settings->settings_manager_store())
-			{
-				
-				$this->session->set_flashdata('success', sprintf(lang('store_messages_edit_success'), $this->input->post('name')));
-				redirect('admin/store');
-				
-			}
-			else
-			{
-				
-				$this->session->set_flashdata(array('error'=> lang('store_cat_add_error')));
-				
-			}
-
-		}
-		else
-		{
-			
 			$this->template
 				->append_metadata($this->load->view('fragments/wysiwyg', $this->data, TRUE))
 				->title($this->module_details['name'], lang('store_title_edit_store'))
 				->build('admin/index',$this->data);
-				
+		}
+		else
+		{
+			if (!$this->store_settings->settings_manager_store()==TRUE)
+			{
+				$this->session->set_flashdata('success', sprintf(lang('store_messages_edit_success'), $this->input->post('name')));
+				redirect('admin/store');
+			}
+			else
+			{
+				$this->session->set_flashdata(array('error'=> lang('store_cat_add_error')));
+			}		
 		}
 	}
 
@@ -92,30 +82,26 @@ class Admin extends Admin_Controller
 		);
 
 		$this->form_validation->set_rules($this->validation_rules);
-		if ($this->form_validation->run())
+		if ($this->form_validation->run()==FALSE)
 		{
+			if($id){$this->data->parent_id = $id;}else{$this->data->parent_id = '';}
+			$this->data->categories = $this->store_m->make_categories_dropdown();
 			
-                    if ($this->store_m->add_category())
-                    {
-                        $this->session->set_flashdata('success', sprintf(lang('store_cat_add_success'), $this->input->post('name')));
-                            redirect('admin/store');
-                    }
-                    else
-                    {
-                        $this->session->set_flashdata(array('error'=> lang('store_cat_add_error')));
-                    }
-					
+			$this->template
+				->append_metadata($this->load->view('fragments/wysiwyg', $this->data, TRUE))
+				->build('admin/add_category', $this->data);	
 		}
 		else
 		{
-			
-			if($id){$this->data->parent_id = $id;}else{$this->data->parent_id = '';}
-			$this->data->categories = $this->store_m->make_categories_dropdown();
-	
-			$this->template
-				->append_metadata($this->load->view('fragments/wysiwyg', $this->data, TRUE))
-				->build('admin/add_category', $this->data);
-				
+			if ($this->store_m->add_category()==TRUE)
+			{
+				$this->session->set_flashdata('success', sprintf(lang('store_cat_add_success'), $this->input->post('name')));
+				redirect('admin/store');
+			}
+			else
+			{
+				$this->session->set_flashdata(array('error'=> lang('store_cat_add_error')));
+			}
 		}
 	}
 	
@@ -145,26 +131,23 @@ class Admin extends Admin_Controller
 		);
 
 		$this->form_validation->set_rules($this->validation_rules);
-		if ($this->form_validation->run())
+		if ($this->form_validation->run()==FALSE)
 		{
-                    if ($this->store_m->add_product())
-                    {
-                        $this->session->set_flashdata('success', sprintf(lang('store_product_add_success'), $this->input->post('name')));
-                            redirect('admin/store');
-                    }
-                    else
-                    {
-                        $this->session->set_flashdata(array('error'=> lang('store_product_add_error')));
-                    }
-
-		}
-		else
-		{
-
 			$this->template
 				->append_metadata($this->load->view('fragments/wysiwyg', $this->data, TRUE))
 				->build('admin/add_product', $this->data);
-
+		}
+		else
+		{
+			if ($this->store_m->add_product()==TRUE)
+			{
+				$this->session->set_flashdata('success', sprintf(lang('store_product_add_success'), $this->input->post('name')));
+				redirect('admin/store');
+			}
+			else
+			{
+				$this->session->set_flashdata(array('error'=> lang('store_product_add_error')));
+			}
 		}
 	}
 

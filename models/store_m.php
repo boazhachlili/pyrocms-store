@@ -100,43 +100,6 @@ class Store_m extends MY_Model {
 		return $this->db->count_all_results('store_orders'); 
 	}
 	
-	    /**   
-	 * Insert a new Store
-     * @param int $id
-     * @return string 
-     */		
-	public function insert(){
-		
-		$this->data = array(
-	        'name'					=>	$this->input->post('name'),
-			'email'					=>	$this->input->post('email'),
-			'additional_emails'		=>	$this->input->post('additional_emails'),
-			'currency'				=>	$this->input->post('currency'),
-			'item_per_page'			=>	$this->input->post('item_per_page'),
-			'show_with_tax'			=>	$this->input->post('show_with_tax'),
-			'display_stock'			=>	$this->input->post('display_stock'),
-			'allow_comments'		=>	$this->input->post('allow_comments'),
-			'new_order_mail_alert'	=>	$this->input->post('new_order_mail_alert'),
-			'active'				=>	$this->input->post('active'),
-			'terms_and_conditions'	=>	$this->input->post('terms_and_conditions'),
-			'privacy_policy'		=>	$this->input->post('privacy_policy'),
-			'delivery_information'	=>	$this->input->post('delivery_information')
-	    );
-		
-		return $this->db->insert($this->_table['store_config'],$this->data);
-	}
-
-	public function get_store_id()
-	{
-		$this->db->limit(1);
-		$this->query = $this->db->get($this->_table['store_config']);
-		foreach($this->query->result() as $this->item)
-		{
-			return $this->item->store_id;
-		}
-	}
-
-	
 	private function get_core_site_id($site_ref)
 	{
 		$this->query = $this->db->query("SELECT * FROM " . $this->_table['core_sites']. " WHERE ref='" . $site_ref . "';");
@@ -146,92 +109,44 @@ class Store_m extends MY_Model {
 		}
 	}
 	
-	public function edit(){
-		$this->store_settings->set_item('name', $this->input->post('name'));
-		$this->store_settings->set_item('email', $this->input->post('email'));
-		$this->store_settings->set_item('additional_emails', $this->input->post('additional_emails'));
-		$this->store_settings->set_item('currency', $this->input->post('currency'));
-		$this->store_settings->set_item('item_per_page', $this->input->post('item_per_page'));
-		$this->store_settings->set_item('show_with_tax', $this->input->post('show_with_tax'));
-		$this->store_settings->set_item('display_stock', $this->input->post('display_stock'));
-		$this->store_settings->set_item('allow_comments', $this->input->post('allow_comments'));
-		$this->store_settings->set_item('new_order_mail_alert', $this->input->post('new_order_mail_alert'));
-		$this->store_settings->set_item('active', $this->input->post('active'));
-		$this->store_settings->set_item('terms_and_conditions', $this->input->post('terms_and_conditions'));
-		$this->store_settings->set_item('privacy_policy', $this->input->post('privacy_policy'));
-		$this->store_settings->set_item('delivery_information', $this->input->post('delivery_information'));
-	}
-	
-	public function delete($id){
-		
-		$this->db->where('store_id',$id);
-		return $this->db->delete($this->_table['store_config']);
-	}
-	
-	
-	public function add_category(){
-		
-		$id = $this->store_m->get_store_id();
+	public function add_category()
+	{	
+		$id = $this->store_settings->item('store_id');
 		$this->data = array(
 	        'name'					=>	$this->input->post('name'),
 			'html'					=>	$this->input->post('html'),
 			'parent_id'				=>	$this->input->post('parent_id'),
 			'images_id'				=>	$this->input->post('images_id'),
-			'thumbnail_id'			=>	$this->input->post('thumbnail_id'),
-			'config_id'				=>	$this->store_m->get_store_id()
+			'thumbnail_id'			=>	$this->input->post('thumbnail_id')
 	    );
 		$this->db->where('store_categories',$id);
 		return $this->db->insert($this->_table['store_categories'],$this->data);
 	}	
 	
 	
-	public function add_product(){
-		
-		$id = $this->store_m->get_store_id();
+	public function add_product()
+	{
+		$id = $this->store_settings->item('store_id');
 		$this->data = array(
-	       		'categories_id'				=>	$this->input->post('categories_id'),
-			'config_id'				=>	$this->store_m->get_store_id(),
+	       	'categories_id'				=>	$this->input->post('categories_id'),
 			'attributes_id'				=>	$this->input->post('attributes_id'),
-			'name'					=>	$this->input->post('name'),
+			'name'						=>	$this->input->post('name'),
 			'meta_description'			=>	$this->input->post('meta_description'),
 			'meta_keywords'				=>	$this->input->post('meta_keywords'),
-			'html'					=>	$this->input->post('html'),
-			'price'					=>	$this->input->post('price'),
-			'stock'					=>	$this->input->post('stock'),
-			'limited'				=>	$this->input->post('limited'),
+			'html'						=>	$this->input->post('html'),
+			'price'						=>	$this->input->post('price'),
+			'stock'						=>	$this->input->post('stock'),
+			'limited'					=>	$this->input->post('limited'),
 			'limited_used'				=>	$this->input->post('limited_used'),
-			'discount'				=>	$this->input->post('discount'),
-			'images_id'				=>	$this->input->post('images_id'),
+			'discount'					=>	$this->input->post('discount'),
+			'images_id'					=>	$this->input->post('images_id'),
 			'thumbnail_id'				=>	$this->input->post('thumbnail_id'),
 			'allow_comments'			=>	$this->input->post('allow_comments')
 			
 	    );
 		$this->db->where('store_products',$id);
 		return $this->db->insert($this->_table['store_products'],$this->data);
-	}		
-
-	public function make_currency_dropdown()
-        {
-            $query = $this->db->get('store_currency');
-            if ($query->num_rows() == 0)
-            {
-                return array();
-            }
-            else
-            {
-
-                $data  = array('0'=>'Select');
-                foreach($query->result() as $row)
-                {
-
-                    $data[$row->currency_id] = $row->currency_name;
-
-                }
-
-                return $data;
-            }
-
-        }	
+	}
 	
 	public function make_categories_dropdown()
         {
@@ -281,7 +196,7 @@ class Store_m extends MY_Model {
 		$this->db->where('products_id',$product);
 		$this->query = $this->db->get('store_products');
 		foreach($this->query->result() as $this->product)
-		
+		{
 			$this->items = array(
 				'id'      => $this->product->products_id,
 				'qty'     => $this->input->post('qty'),
@@ -290,6 +205,7 @@ class Store_m extends MY_Model {
 				'options' => $this->get_product_attributes($this->product->attributes_id)
 			);
 			return $this->items;
+		}
 	}
 	
 	public function get_product_attributes($attributes)
