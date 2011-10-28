@@ -82,7 +82,6 @@
                 <?php echo form_radio('allow_comments','0',FALSE).$this->lang->line('store_radio_no'); ?>
 			</li>		
 	</ol>
-	<?php echo form_hidden('config_id',set_value($this->store_m->get_store_id(),$this->store_m->get_store_id()),'class="text" maxlength="10"'); ?>
 	<div class="buttons float-right padding-top">
 		<?php $this->load->view('admin/partials/buttons', array('buttons' => array('save', 'cancel') )); ?>
 	</div>
