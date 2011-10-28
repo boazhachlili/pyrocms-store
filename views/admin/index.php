@@ -109,7 +109,7 @@
 				<?php case 'radio': ?>
                     <li class="<?php echo alternator('even', ''); ?>">
                         <?php echo lang('store_settings_'.$this->setting->slug,$this->setting->slug); ?>
-                        <?php if($this->setting->value == 1) { ?>
+                        <?php if(set_value($this->setting->slug,$this->setting->value) == 1) { ?>
                         <?php echo form_radio($this->setting->slug,'1',TRUE).$this->lang->line('store_radio_yes'); ?>
                         <?php echo form_radio($this->setting->slug,'0',FALSE).$this->lang->line('store_radio_no'); ?>
                         <?php } else { ?>
@@ -121,7 +121,7 @@
 				<?php case 'checkbox': ?>
                     <li class="<?php echo alternator('even', ''); ?>">
                         <?php echo lang('store_settings_'.$this->setting->slug,$this->setting->slug); ?>
-                        <?php if($this->setting->value == 1) { ?>
+                        <?php if(set_value($this->setting->slug,$this->setting->value) == 1) { ?>
                         <?php echo form_checkbox($this->setting->slug,'1',TRUE); ?>
                         <?php } else { ?>
                         <?php echo form_checkbox($this->setting->slug,'0',TRUE); ?>
