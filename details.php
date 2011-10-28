@@ -46,6 +46,7 @@ class Module_Store extends Module {
 				`type` VARCHAR(255) NOT NULL ,
 				`value` TEXT NOT NULL ,
 				`options` VARCHAR(255) NOT NULL ,
+				`tab` VARCHAR(255) NOT NULL ,
 				`is_required` ENUM('1','0') NOT NULL ,
 				`gui` ENUM('1','0') NOT NULL ,
 				`order` INT NOT NULL ,
@@ -53,21 +54,21 @@ class Module_Store extends Module {
 			ENGINE = InnoDB;");
 		
 		$this->db->query("INSERT INTO `core_stores` (store_id, core_sites_id) VALUES (null,(SELECT `id` FROM `core_sites` WHERE ref='" . $this->site_ref . "'));");
-		$this->db->query("INSERT INTO `" . $this->db->dbprefix('store_settings') . "` (`settings_id`, `slug`, `type`, `value`, `options`, `is_required`, `gui`, `order`) VALUES (NULL, 'store_id', 'text',  LAST_INSERT_ID(), '', '1', '0', 0);");
-		$this->db->query("INSERT INTO `" . $this->db->dbprefix('store_settings') . "` (`settings_id`, `slug`, `type`, `value`, `options`, `is_required`, `gui`, `order`) VALUES (null, 'name', 'text', '', '', '1', '1', '1');");
-		$this->db->query("INSERT INTO `" . $this->db->dbprefix('store_settings') . "` (`settings_id`, `slug`, `type`, `value`, `options`, `is_required`, `gui`, `order`) VALUES (null, 'email', 'text', '', '', '1', '1', '2');");
-		$this->db->query("INSERT INTO `" . $this->db->dbprefix('store_settings') . "` (`settings_id`, `slug`, `type`, `value`, `options`, `is_required`, `gui`, `order`) VALUES (null, 'additional_emails', 'text', '', '', '1', '1', '3');");
-		$this->db->query("INSERT INTO `" . $this->db->dbprefix('store_settings') . "` (`settings_id`, `slug`, `type`, `value`, `options`, `is_required`, `gui`, `order`) VALUES (null, 'currency', 'dropdown', '', 'EUR=1|USD=2', '1', '1', '4');");
-		$this->db->query("INSERT INTO `" . $this->db->dbprefix('store_settings') . "` (`settings_id`, `slug`, `type`, `value`, `options`, `is_required`, `gui`, `order`) VALUES (null, 'item_per_page', 'text', '', '', '1', '1', '5');");
-		$this->db->query("INSERT INTO `" . $this->db->dbprefix('store_settings') . "` (`settings_id`, `slug`, `type`, `value`, `options`, `is_required`, `gui`, `order`) VALUES (null, 'show_with_tax', 'radio', '', 'No=0|Yes=1', '1', '1', '6');");
-		$this->db->query("INSERT INTO `" . $this->db->dbprefix('store_settings') . "` (`settings_id`, `slug`, `type`, `value`, `options`, `is_required`, `gui`, `order`) VALUES (null, 'display_stock', 'radio', '', 'No=0|Yes=1', '1', '1', '7');");
-		$this->db->query("INSERT INTO `" . $this->db->dbprefix('store_settings') . "` (`settings_id`, `slug`, `type`, `value`, `options`, `is_required`, `gui`, `order`) VALUES (null, 'allow_comments', 'radio', '', 'No=0|Yes=1', '1', '1', '8');");
-		$this->db->query("INSERT INTO `" . $this->db->dbprefix('store_settings') . "` (`settings_id`, `slug`, `type`, `value`, `options`, `is_required`, `gui`, `order`) VALUES (null, 'new_order_mail_alert', 'radio', '', 'No=0|Yes=1', '1', '1', '9');");
-		$this->db->query("INSERT INTO `" . $this->db->dbprefix('store_settings') . "` (`settings_id`, `slug`, `type`, `value`, `options`, `is_required`, `gui`, `order`) VALUES (null, 'active', 'radio', '', 'No=0|Yes=1', '1', '1', '10');");
-		$this->db->query("INSERT INTO `" . $this->db->dbprefix('store_settings') . "` (`settings_id`, `slug`, `type`, `value`, `options`, `is_required`, `gui`, `order`) VALUES (null, 'is_default', 'radio', '', 'No=0|Yes=1', '1', '1', '11');");
-		$this->db->query("INSERT INTO `" . $this->db->dbprefix('store_settings') . "` (`settings_id`, `slug`, `type`, `value`, `options`, `is_required`, `gui`, `order`) VALUES (null, 'terms_and_conditions', 'wysiwyg|simple', '', '', '1', '1', '12');");
-		$this->db->query("INSERT INTO `" . $this->db->dbprefix('store_settings') . "` (`settings_id`, `slug`, `type`, `value`, `options`, `is_required`, `gui`, `order`) VALUES (null, 'privacy_policy', 'textarea', '', '', '1', '1', '13');");
-		$this->db->query("INSERT INTO `" . $this->db->dbprefix('store_settings') . "` (`settings_id`, `slug`, `type`, `value`, `options`, `is_required`, `gui`, `order`) VALUES (null, 'delivery_information', 'textarea', '', '', '1', '1', '14');");
+		$this->db->query("INSERT INTO `" . $this->db->dbprefix('store_settings') . "` (`settings_id`, `slug`, `type`, `value`, `options`, `tab`, `is_required`, `gui`, `order`) VALUES (NULL, 'store_id', 'text',  LAST_INSERT_ID(), '', 'general', '1', '0', 0);");
+		$this->db->query("INSERT INTO `" . $this->db->dbprefix('store_settings') . "` (`settings_id`, `slug`, `type`, `value`, `options`, `tab`, `is_required`, `gui`, `order`) VALUES (null, 'name', 'text', '', '', 'general', '1', '1', '1');");
+		$this->db->query("INSERT INTO `" . $this->db->dbprefix('store_settings') . "` (`settings_id`, `slug`, `type`, `value`, `options`, `tab`, `is_required`, `gui`, `order`) VALUES (null, 'email', 'text', '', '', 'general', '1', '1', '2');");
+		$this->db->query("INSERT INTO `" . $this->db->dbprefix('store_settings') . "` (`settings_id`, `slug`, `type`, `value`, `options`, `tab`, `is_required`, `gui`, `order`) VALUES (null, 'additional_emails', 'text', '', '', 'general', '1', '1', '3');");
+		$this->db->query("INSERT INTO `" . $this->db->dbprefix('store_settings') . "` (`settings_id`, `slug`, `type`, `value`, `options`, `tab`, `is_required`, `gui`, `order`) VALUES (null, 'currency', 'dropdown', '', 'EUR=1|USD=2', 'general', '1', '1', '4');");
+		$this->db->query("INSERT INTO `" . $this->db->dbprefix('store_settings') . "` (`settings_id`, `slug`, `type`, `value`, `options`, `tab`, `is_required`, `gui`, `order`) VALUES (null, 'item_per_page', 'text', '', '', 'general', '1', '1', '5');");
+		$this->db->query("INSERT INTO `" . $this->db->dbprefix('store_settings') . "` (`settings_id`, `slug`, `type`, `value`, `options`, `tab`, `is_required`, `gui`, `order`) VALUES (null, 'show_with_tax', 'radio', '', 'No=0|Yes=1', 'general', '1', '1', '6');");
+		$this->db->query("INSERT INTO `" . $this->db->dbprefix('store_settings') . "` (`settings_id`, `slug`, `type`, `value`, `options`, `tab`, `is_required`, `gui`, `order`) VALUES (null, 'display_stock', 'radio', '', 'No=0|Yes=1', 'general', '1', '1', '7');");
+		$this->db->query("INSERT INTO `" . $this->db->dbprefix('store_settings') . "` (`settings_id`, `slug`, `type`, `value`, `options`, `tab`, `is_required`, `gui`, `order`) VALUES (null, 'allow_comments', 'radio', '', 'No=0|Yes=1', 'general', '1', '1', '8');");
+		$this->db->query("INSERT INTO `" . $this->db->dbprefix('store_settings') . "` (`settings_id`, `slug`, `type`, `value`, `options`, `tab`, `is_required`, `gui`, `order`) VALUES (null, 'new_order_mail_alert', 'radio', '', 'No=0|Yes=1', 'general', '1', '1', '9');");
+		$this->db->query("INSERT INTO `" . $this->db->dbprefix('store_settings') . "` (`settings_id`, `slug`, `type`, `value`, `options`, `tab`, `is_required`, `gui`, `order`) VALUES (null, 'active', 'radio', '', 'No=0|Yes=1', 'general', '1', '1', '10');");
+		$this->db->query("INSERT INTO `" . $this->db->dbprefix('store_settings') . "` (`settings_id`, `slug`, `type`, `value`, `options`, `tab`, `is_required`, `gui`, `order`) VALUES (null, 'is_default', 'radio', '', 'No=0|Yes=1', 'general', '1', '1', '11');");
+		$this->db->query("INSERT INTO `" . $this->db->dbprefix('store_settings') . "` (`settings_id`, `slug`, `type`, `value`, `options`, `tab`, `is_required`, `gui`, `order`) VALUES (null, 'terms_and_conditions', 'wysiwyg|simple', '', '', 'extra', '1', '1', '12');");
+		$this->db->query("INSERT INTO `" . $this->db->dbprefix('store_settings') . "` (`settings_id`, `slug`, `type`, `value`, `options`, `tab`, `is_required`, `gui`, `order`) VALUES (null, 'privacy_policy', 'textarea', '', '', 'extra', '1', '1', '13');");
+		$this->db->query("INSERT INTO `" . $this->db->dbprefix('store_settings') . "` (`settings_id`, `slug`, `type`, `value`, `options`, `tab`, `is_required`, `gui`, `order`) VALUES (null, 'delivery_information', 'textarea', '', '', 'extra', '1', '1', '14');");
 
 		$this->db->query("
 			CREATE  TABLE IF NOT EXISTS `" . $this->db->dbprefix('store_currency') . "` (
