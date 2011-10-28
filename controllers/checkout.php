@@ -18,6 +18,7 @@ class Checkout extends Public_Controller
 		$this->load->library('cart');
 		$this->load->library('paypal');
 		$this->load->library('authorize');
+		$this->load->library('store_settings');
 		$this->load->library('twoco');
 		$this->load->model('store_m');
 		$this->load->language('store');

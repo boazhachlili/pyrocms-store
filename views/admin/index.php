@@ -8,35 +8,33 @@
  * @subpackage 	Store Module
 **/
 ?>
-<?php foreach($sql->result() as $this->item){ ?>
-
-	<h3><?php echo lang('store_title_store_index')?></h3>
+<h3><?php echo lang('store_title_store_index')?></h3>
 
 <?php echo form_open(uri_string(), 'class="crud"'); ?>
 
 <div class="tabs">
 
 	<ul class="tab-menu">
-		<li><a href="#store-config"><span><?php echo lang('store_tab_config');?></span></a></li>
-		<li><a href="#store-additional-info"><span><?php echo lang('store_tab_additional_info');?></span></a></li>
+		<li><a href="#general"><span><?php echo lang('store_tab_config');?></span></a></li>
+		<li><a href="#extra"><span><?php echo lang('store_tab_additional_info');?></span></a></li>
 
 	</ul>
 	<!-- Content tab -->
-	<div id="store-config">
+	<div id="general">
 		<ul>
 			<li class="<?php echo alternator('even', ''); ?>">
 				<?php echo lang('store_field_name','name'); ?>
-				<?php echo form_input('name',set_value('name',$this->item->name),'class="text" maxlength="50"'); ?>
+				<?php echo form_input('name',set_value('name',$this->store_settings->item('name')),'class="text" maxlength="50"'); ?>
 				<span class="required-icon tooltip"><?php echo lang('required_label');?></span>
 			</li>
 			<li class="<?php echo alternator('even', ''); ?>">
 				<?php echo lang('store_field_email','email'); ?>
-				<?php echo form_input('email',set_value('email',$this->item->email),'class="text" maxlength="100"'); ?>
+				<?php echo form_input('email',set_value('email',$this->store_settings->item('email')),'class="text" maxlength="100"'); ?>
 				<span class="required-icon tooltip"><?php echo lang('required_label');?></span>
 			</li>
 			<li class="<?php echo alternator('even', ''); ?>">
 				<?php echo lang('store_field_additional_emails','additional_emails'); ?>
-				<?php echo form_input('additional_emails',set_value('additional_emails',$this->item->additional_emails),'class="text" maxlength="100"'); ?>
+				<?php echo form_input('additional_emails',set_value('additional_emails',$this->store_settings->item('additional_emails')),'class="text" maxlength="100"'); ?>
 			</li>
 			<li class="<?php echo alternator('even', ''); ?>">
 				<?php echo lang('store_field_currency','currency'); ?>
@@ -45,12 +43,12 @@
 			</li>
 			<li class="<?php echo alternator('even', ''); ?>">
 				<?php echo lang('store_field_item_per_page','item_per_page'); ?>
-				<?php echo form_input('item_per_page',set_value('item_per_page',$this->item->item_per_page),'class="text" maxlength="10"'); ?>
+				<?php echo form_input('item_per_page',set_value('item_per_page',$this->store_settings->item('item_per_page')),'class="text" maxlength="10"'); ?>
 				<span class="required-icon tooltip"><?php echo lang('required_label');?></span>
 			</li>
 			<li class="<?php echo alternator('even', ''); ?>">
 				<?php echo lang('store_field_show_with_tax','show_with_tax'); ?>
-               	<?php if($this->item->show_with_tax == 1) { ?>
+               	<?php if($this->store_settings->item('show_with_tax') == 1) { ?>
                 <?php echo form_radio('show_with_tax','1',TRUE).$this->lang->line('store_radio_yes'); ?>
                 <?php echo form_radio('show_with_tax','0',FALSE).$this->lang->line('store_radio_no'); ?>
                 <?php } else { ?>
@@ -60,7 +58,7 @@
 			</li>		
 			<li class="<?php echo alternator('even', ''); ?>">
 				<?php echo lang('store_field_display_stock','display_stock'); ?>
-               	<?php if($this->item->display_stock == 1) { ?>
+               	<?php if($this->store_settings->item('display_stock') == 1) { ?>
                 <?php echo form_radio('display_stock','1',TRUE).$this->lang->line('store_radio_yes'); ?>
                 <?php echo form_radio('display_stock','0',FALSE).$this->lang->line('store_radio_no'); ?>
                 <?php } else { ?>
@@ -70,7 +68,7 @@
 			</li>	
 			<li class="<?php echo alternator('even', ''); ?>">
 				<?php echo lang('store_field_allow_comments','allow_comments'); ?>
-               	<?php if($this->item->allow_comments == 1) { ?>
+               	<?php if($this->store_settings->item('allow_comments') == 1) { ?>
                 <?php echo form_radio('allow_comments','1',TRUE).$this->lang->line('store_radio_yes'); ?>
                 <?php echo form_radio('allow_comments','0',FALSE).$this->lang->line('store_radio_no'); ?>
                 <?php } else { ?>
@@ -80,7 +78,7 @@
 			</li>
 			<li class="<?php echo alternator('even', ''); ?>">
 				<?php echo lang('store_field_new_order_mail_alert','new_order_mail_alert'); ?>
-               	<?php if($this->item->new_order_mail_alert == 1) { ?>
+               	<?php if($this->store_settings->item('new_order_mail_alert') == 1) { ?>
                 <?php echo form_radio('new_order_mail_alert','1',TRUE).$this->lang->line('store_radio_yes'); ?>
                 <?php echo form_radio('new_order_mail_alert','0',FALSE).$this->lang->line('store_radio_no'); ?>
                 <?php } else { ?>
@@ -90,7 +88,7 @@
 			</li>	
 			<li class="<?php echo alternator('even', ''); ?>">
 				<?php echo lang('store_field_active','active'); ?>
-               	<?php if($this->item->active == 1) { ?>
+               	<?php if($this->store_settings->item('active') == 1) { ?>
                 <?php echo form_radio('active','1',TRUE).$this->lang->line('store_radio_yes'); ?>
                 <?php echo form_radio('active','0',FALSE).$this->lang->line('store_radio_no'); ?>
                 <?php } else { ?>
@@ -102,21 +100,21 @@
 	</div>
 
 	<!-- Meta data tab -->
-	<div id="store-additional-info">
+	<div id="extra">
 		<ul>
 			<li class="<?php echo alternator('even', ''); ?>">
 				<?php echo lang('store_field_agb','terms_and_conditions'); ?>
-				<?php echo form_textarea('terms_and_conditions',set_value('terms_and_conditions',$this->item->terms_and_conditions),'rows="7" class="wysiwyg-simple"'); ?>
+				<?php echo form_textarea('terms_and_conditions',set_value('terms_and_conditions',$this->store_settings->item('terms_and_conditions')),'rows="7" class="wysiwyg-simple"'); ?>
 				<span class="required-icon tooltip"><?php echo lang('required_label');?></span>
 			</li>
 			<li class="<?php echo alternator('even', ''); ?>">
 				<?php echo lang('store_field_privacy_policy','privacy_policy'); ?>
-				<?php echo form_textarea('privacy_policy',set_value('privacy_policy',$this->item->privacy_policy),'rows="7"'); ?>
+				<?php echo form_textarea('privacy_policy',set_value('privacy_policy',$this->store_settings->item('privacy_policy')),'rows="7"'); ?>
 				<span class="required-icon tooltip"><?php echo lang('required_label');?></span>
 			</li>
 			<li class="<?php echo alternator('even', ''); ?>">
 				<?php echo lang('store_field_delivery_information','delivery_information'); ?>
-				<?php echo form_textarea('delivery_information',set_value('delivery_information',$this->item->delivery_information),'rows="7"'); ?>
+				<?php echo form_textarea('delivery_information',set_value('delivery_information',$this->store_settings->item('delivery_information')),'rows="7"'); ?>
 				<span class="required-icon tooltip"><?php echo lang('required_label');?></span>
 			</li>			
 		</ul>
@@ -127,6 +125,3 @@
 	</div>
 	
 <?php echo form_close(); ?>
-<?php
-}
-?>

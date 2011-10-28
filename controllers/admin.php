@@ -17,6 +17,7 @@ class Admin extends Admin_Controller
 		// Load all the required classes
 		$this->load->model('store_m');
 		$this->load->library('form_validation');
+		$this->load->library('store_settings');
 		$this->load->language('store');
 		$this->load->helper('date');
 
@@ -85,10 +86,8 @@ class Admin extends Admin_Controller
 		// Something went wrong..
 		if ($this->form_validation->run()==FALSE)
 		{
-			$this->sql					= $this->store_m->fill_edit($this->store_m->get_store_id());
 			
 			$this->data = array(
-				'sql'			=>	$this->sql
 			);
 			
 			// Flash data
@@ -106,7 +105,7 @@ class Admin extends Admin_Controller
 		{
 			
 			$this->session->set_flashdata('success', lang('store_messages_edit_success'));
-			$this->store_m->edit($this->store_m->get_store_id());
+			$this->store_m->edit();
 			redirect('admin/store');
 		}
 	}
