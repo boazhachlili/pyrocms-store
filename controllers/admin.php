@@ -150,6 +150,17 @@ class Admin extends Admin_Controller
 			}
 		}
 	}
-
 	
+	
+	public function list_products()
+	{
+		$id = $this->store_settings->item('store_id');
+		$this->sql = $this->store_m->list_products($id);
+
+		$this->data = array(
+			'sql'	=>	$this->sql
+		);
+		
+		$this->template->build('admin/list_products', $this->data);
+	}
 }

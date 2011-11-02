@@ -52,7 +52,7 @@ class Store_m extends MY_Model {
      * @param int $id
      * @return array 
      */		
-	public function retrieve_categories($id){  
+	public function list_categories($id){  
 		$this->db->where(array('store_categories' => $id)); 
 		return $this->db->get($this->_table['store_categories'])
 					->row(); 
@@ -63,11 +63,9 @@ class Store_m extends MY_Model {
      * @param int $id
      * @return array 
      */		
-	public function retrieve_products($id){  
-		$this->db->select('store_products.*');
-		$this->db->where(array('store_products' => $id)); 
-		return $this->db->get($this->_table['store_categories'])
-					->result(); 
+	public function list_products($id){  
+		$this->query = $this->db->get('store_products');
+		return $this->query;
 	}
 
     /**   

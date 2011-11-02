@@ -23,6 +23,8 @@ $lang['store_title_add_store']         				= 'Add Store';
 $lang['store_title_edit_store']         			= 'Edit Store';
 $lang['store_title_stats_store']         			= 'Store Statistics';
 $lang['store_title_add_category']         			= 'Store Add Category';
+$lang['store_title_list_category']         			= 'Store List Categories';
+$lang['store_title_list_products']         			= 'Store List Products';
 
 
 // Tabs
@@ -99,6 +101,7 @@ $lang['store_label_widget_cart_empty']				= 'Empty';
 $lang['store_button_add_category']					= 'Add category';
 $lang['store_button_add_product']					= 'Add product';
 $lang['store_button_edit']							= 'Edit';
+$lang['store_button_view']							= 'View';
 $lang['store_button_delete']						= 'Delete';
 //$lang['store_button_preview']						= 'Preview';
 $lang['store_button_backup_data']					= 'Backup Data';
@@ -153,3 +156,12 @@ $lang['store_product_add_images_id']				= 'Images';
 $lang['store_product_add_thumbnail']				= 'Thumbnail';
 $lang['store_product_add_store_id']					= 'Store ID';
 $lang['store_product_add_allow_comments']			= 'Allow Comments';
+
+// List Products
+$lang['store_product_list_name']					= 'Name';
+$lang['store_product_list_category_id']				= 'Category';
+$lang['store_product_list_price']					= 'Price';
+$lang['store_product_list_thumbnail']				= 'Thumbnail';
+$lang['store_product_list_discount']				= 'Discount';
+$lang['store_product_list_actions']					= 'Actions';
+$lang['store_currently_no_products']				= 'Currently no products created';

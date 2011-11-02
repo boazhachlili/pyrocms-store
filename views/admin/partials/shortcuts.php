@@ -15,7 +15,7 @@
 		<li><?php echo anchor('admin/store/add_category', lang('store_shortcut_add_category'), 'class="add"') ?></li>
 		<li><?php echo anchor('admin/store/list_categories', lang('store_shortcut_list_categories')); ?></li>
 		<li><?php echo anchor('admin/store/add_product', lang('store_shortcut_add_product'), 'class="add"') ?></li>
-		<li><?php echo anchor('admin/store/list_prodcut', lang('store_shortcut_list_products')); ?></li>
+		<li><?php echo anchor('admin/store/list_products', lang('store_shortcut_list_products')); ?></li>
 	</ul>
 	<br class="clear-both" />
 </nav>
